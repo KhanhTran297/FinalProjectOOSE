@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
+    "react-error-boundary": "^3.1.4",
+    "react-router-dom": "^6.8.2",
+    "yup": "^1.0.2"
+  }
+}

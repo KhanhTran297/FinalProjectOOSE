@@ -1,0 +1,186 @@
+#newestUpdate {
+  display: grid;
+  grid-template-rows: 10% 90%;
+  min-height: 1000px;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+.date_actor i {
+  font-size: 5px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #6b6b6b;
+  padding: 0px 10px 0px 0px;
+}
+.date_actor p {
+  padding: 0px 10px 0px 0px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #6b6b6b;
+}
+/* titleNewestUpdate */
+#newestUpdate .titleNewestUpdate {
+  color: #3a1097;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+  margin: 20px 11px 20px 11px;
+}
+#newestUpdate .titleNewestUpdate::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  border-top: solid #00d1ed;
+}
+/* content Container */
+#newestUpdate .postwrap {
+  display: grid;
+  grid-template-rows: 60% 40%;
+}
+#newestUpdate .postWrap .topBoxContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 500px;
+}
+/* -----------------------------topBoxContent------------------------- */
+/* -----------------------------LeftContainer------------------------- */
+#newestUpdate .topBoxContainer .leftContainer {
+  padding-right: 10px;
+}
+#newestUpdate .topBoxContainer .leftContainer,
+#newestUpdate .bottomboxContainer .item {
+  display: grid;
+  grid-template-rows: 70% 30%;
+}
+#newestUpdate .leftContainer .postContentContainer,
+#newestUpdate .bottomboxContainer .postContentContainer {
+  display: grid;
+  grid-template-rows: 20% 80%;
+}
+#newestUpdate .leftContainer .postContent,
+#newestUpdate .bottomboxContainer .postContent {
+  /* display: grid;
+  grid-template-rows: 80% 20%; */
+  display: flex;
+  flex-direction: column;
+}
+#newestUpdate .leftContainer .date_actor,
+#newestUpdate .bottomboxContainer .date_actor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+}
+.leftContainer .categoryPost p {
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background-color: #f3edff;
+  gap: 10px;
+  margin-left: 8px;
+}
+.leftContainer .postContent {
+  padding: 10px;
+}
+.leftContainer .postContent .content p {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 20px;
+  color: #232323;
+}
+/* -----------------------------RightContainer------------------------ */
+#newestUpdate .topBoxContainer .rightContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  background-color: #f3deff;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 500px;
+}
+::-webkit-scrollbar {
+  display: none;
+  width: 8px;
+  /* background: lightgray; */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
+#newestUpdate .rightContainer .postContainer {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  border-bottom: solid #ccc;
+  padding: 10px;
+}
+.rightContainer .postContainer .imgBox {
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+  background-size: cover;
+  background-clip: padding-box;
+}
+#newestUpdate .rightContainer .postContentContainer {
+  display: grid;
+  grid-template-rows: 10% 90%;
+  padding-left: 10px;
+}
+.rightContainer .categoryPost p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.005em;
+  color: #6b6b6b;
+  margin-left: 10px;
+}
+#newestUpdate .rightContainer .postContent {
+  display: grid;
+  grid-template-rows: 80% 20%;
+  padding: 10px;
+}
+.rightContainer .postContent .content {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #232323;
+}
+#newestUpdate .rightContainer .date_actor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* -------------------------BottomboxContainer -----------------*/
+#newestUpdate .bottomboxContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+#newestUpdate .bottomboxContainer .item {
+  padding-right: 10px;
+}
+.bottomboxContainer .postContent {
+  padding: 10px;
+  margin-top: 5px;
+}
+.bottomboxContainer .categoryPost {
+  padding-bottom: 5px;
+}
+.bottomboxContainer .categoryPost p {
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background-color: #f3edff;
+  gap: 10px;
+}
+.bottomboxContainer .content p {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #232323;
+}

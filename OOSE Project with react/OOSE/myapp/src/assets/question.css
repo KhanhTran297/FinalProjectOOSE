@@ -1,0 +1,91 @@
+#question {
+  display: grid;
+  grid-template-rows: auto auto;
+  margin-top: 40px;
+}
+/* titleQuestions */
+#question .titleQuestions {
+  color: #3a1097;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+  margin: 20px 11px 20px 11px;
+}
+#question .titleQuestions::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  border-top: solid #00d1ed;
+}
+#question .questionsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 12px;
+}
+.questionsContainer .questionBox {
+  display: grid;
+  grid-template-rows: auto auto;
+  border-bottom: solid #ccc 0.5px;
+  padding: 10px 0px;
+}
+.questionBox .userBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+.questionBox .userBox .userAva {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.questionBox .userBox .userAva img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.questionBox .userBox .userName {
+  padding-left: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  color: #52575c;
+}
+.questionBox .userBox .date {
+  position: absolute;
+  right: 0;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  color: #52575c;
+}
+.questionBox .contentBox {
+  padding: 12px 0px;
+}
+.questionBox .contentBox p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #52575c;
+}
+#question .readMoreBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 0px;
+}
+#question .readMoreBox button {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 33px;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+#question .readMoreBox button:hover {
+  color: #3a1097;
+}

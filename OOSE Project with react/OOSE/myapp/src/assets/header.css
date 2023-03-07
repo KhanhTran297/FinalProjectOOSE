@@ -1,0 +1,87 @@
+#header {
+  backdrop-filter: blur(20px);
+  margin: 0 20px;
+}
+#header .headerContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 18px 0px 18px 0px;
+}
+#header .navBox {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+#header .navBox a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+}
+#header .navBox a:hover {
+  color: #00b4aa;
+}
+#header .navBox div {
+  margin-right: 20px;
+}
+/* toolBox */
+#header .toolBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+#header .toolBox i:hover {
+  color: red;
+  cursor: pointer;
+}
+#header .toolBox div {
+  margin-left: 120px;
+}
+#header .toolBox .searchBox {
+  position: relative;
+}
+#header .toolBox .searchBox .search-text {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+#header .toolBox .searchBox i {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+}
+.toolBox .userBox {
+  position: relative;
+}
+.toolBox .userBox .userOptions {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  transform: translate(0px, 10px);
+  background-color: #ffffff;
+  box-shadow: 0 3px 10px #000;
+  border-radius: 5px;
+}
+.toolBox .userBox .userOptions a {
+  display: block;
+  border-top: #ccc solid 0.5px;
+  padding: 10px 20px;
+  width: max-content;
+}
+.toolBox .userBox .userOptions a:hover {
+  color: #3a1097;
+  cursor: pointer;
+}
+/* Logo */
+#header .logoBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+#header .logoBox img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
