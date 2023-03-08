@@ -44,7 +44,7 @@
   color: #000;
   background-color: #f8f9fa;
   padding: 2px 4px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 #features .itemFeature .date_actor {
   display: flex;

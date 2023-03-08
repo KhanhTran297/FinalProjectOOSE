@@ -10,7 +10,7 @@ const Header = () => {
   };
   return (
     <div id="header">
-      <div className="headerContainer">
+      <div className="headerContainer ">
         <div className="navBox">
           <div className="logo">
             <div className="logoBox">

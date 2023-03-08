@@ -34,4 +34,9 @@
   border: none;
   margin-top: 30px;
   cursor: pointer;
+  background-color: #fff;
+  border-radius: 30px;
+}
+#slider .btnSlider:hover {
+  cursor: pointer;
 }

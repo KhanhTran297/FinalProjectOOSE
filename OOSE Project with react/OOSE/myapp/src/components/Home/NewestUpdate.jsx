@@ -36,10 +36,12 @@ const NewestUpdate = () => {
             <div className="postContainer">
               <div
                 className="imgBox"
-                style={{
-                  backgroundImage: 'url("./img/newest/top/right/post1.jpg")',
-                }}
-              ></div>
+                // style={{
+                //   backgroundImage: 'url("./img/newest/top/right/post1.jpg")',
+                // }}
+              >
+                <img src="./img/duck.jpg" alt="" className="imgPost" />
+              </div>
               <div className="postContentContainer">
                 <div className="categoryPost">
                   <p>Kiến thức</p>
@@ -60,10 +62,12 @@ const NewestUpdate = () => {
             <div className="postContainer">
               <div
                 className="imgBox"
-                style={{
-                  backgroundImage: 'url("./img/newest/top/right/post2.jpg")',
-                }}
-              ></div>
+                // style={{
+                //   backgroundImage: 'url("./img/newest/top/right/post2.jpg")',
+                // }}
+              >
+                <img src="./img/cat.jfif" alt="" className="imgPost" />
+              </div>
               <div className="postContentContainer">
                 <div className="categoryPost">
                   <p>Kiến thức</p>
@@ -84,10 +88,12 @@ const NewestUpdate = () => {
             <div className="postContainer">
               <div
                 className="imgBox"
-                style={{
-                  backgroundImage: 'url("./img/newest/top/right/post3.jpg")',
-                }}
-              ></div>
+                // style={{
+                //   backgroundImage: 'url("./img/newest/top/right/post3.jpg")',
+                // }}
+              >
+                <img src="./img/oldcomputer.jfif" alt="" className="imgPost" />
+              </div>
               <div className="postContentContainer">
                 <div className="categoryPost">
                   <p>Kiến thức</p>
@@ -108,10 +114,16 @@ const NewestUpdate = () => {
             <div className="postContainer">
               <div
                 className="imgBox"
-                style={{
-                  backgroundImage: 'url("./img/newest/top/right/post1.jpg")',
-                }}
-              ></div>
+                // style={{
+                //   backgroundImage: 'url("./img/newest/top/right/post1.jpg")',
+                // }}
+              >
+                <img
+                  src="./img/Keyboard Computer Office Business Background.jfif"
+                  alt=""
+                  className="imgPost"
+                />
+              </div>
               <div className="postContentContainer">
                 <div className="categoryPost">
                   <p>Kiến thức</p>
@@ -132,10 +144,12 @@ const NewestUpdate = () => {
             <div className="postContainer">
               <div
                 className="imgBox"
-                style={{
-                  backgroundImage: 'url("./img/newest/top/right/post1.jpg")',
-                }}
-              ></div>
+                // style={{
+                //   backgroundImage: 'url("./img/newest/top/right/post1.jpg")',
+                // }}
+              >
+                <img src="./img/cat.jfif" alt="" className="imgPost" />
+              </div>
               <div className="postContentContainer">
                 <div className="categoryPost">
                   <p>Kiến thức</p>
