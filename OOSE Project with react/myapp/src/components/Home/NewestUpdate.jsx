@@ -26,7 +26,7 @@ const NewestUpdate = () => {
                 </div>
                 <div className="date_actor">
                   <p>Mac 23</p>
-                  <i class="fa-solid fa-circle"></i>
+                  <i className="fa-solid fa-circle"></i>
                   <p>Andiez Le</p>
                 </div>
               </div>
@@ -53,7 +53,7 @@ const NewestUpdate = () => {
                   </div>
                   <div className="date_actor">
                     <p>Mac 23</p>
-                    <i class="fa-solid fa-circle"></i>
+                    <i className="fa-solid fa-circle"></i>
                     <p>Andiez Le</p>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const NewestUpdate = () => {
                   </div>
                   <div className="date_actor">
                     <p>Mac 23</p>
-                    <i class="fa-solid fa-circle"></i>
+                    <i className="fa-solid fa-circle"></i>
                     <p>Andiez Le</p>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ const NewestUpdate = () => {
                   </div>
                   <div className="date_actor">
                     <p>Mac 23</p>
-                    <i class="fa-solid fa-circle"></i>
+                    <i className="fa-solid fa-circle"></i>
                     <p>Andiez Le</p>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ const NewestUpdate = () => {
                   </div>
                   <div className="date_actor">
                     <p>Mac 23</p>
-                    <i class="fa-solid fa-circle"></i>
+                    <i className="fa-solid fa-circle"></i>
                     <p>Andiez Le</p>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ const NewestUpdate = () => {
                   </div>
                   <div className="date_actor">
                     <p>Mac 23</p>
-                    <i class="fa-solid fa-circle"></i>
+                    <i className="fa-solid fa-circle"></i>
                     <p>Andiez Le</p>
                   </div>
                 </div>
@@ -190,7 +190,7 @@ const NewestUpdate = () => {
                 </div>
                 <div className="date_actor">
                   <p>Mac 23</p>
-                  <i class="fa-solid fa-circle"></i>
+                  <i className="fa-solid fa-circle"></i>
                   <p>Andiez Le</p>
                 </div>
               </div>
@@ -216,7 +216,7 @@ const NewestUpdate = () => {
                 </div>
                 <div className="date_actor">
                   <p>Mac 23</p>
-                  <i class="fa-solid fa-circle"></i>
+                  <i className="fa-solid fa-circle"></i>
                   <p>Andiez Le</p>
                 </div>
               </div>
@@ -242,7 +242,7 @@ const NewestUpdate = () => {
                 </div>
                 <div className="date_actor">
                   <p>Mac 23</p>
-                  <i class="fa-solid fa-circle"></i>
+                  <i className="fa-solid fa-circle"></i>
                   <p>Andiez Le</p>
                 </div>
               </div>
@@ -268,7 +268,7 @@ const NewestUpdate = () => {
                 </div>
                 <div className="date_actor">
                   <p>Mac 23</p>
-                  <i class="fa-solid fa-circle"></i>
+                  <i className="fa-solid fa-circle"></i>
                   <p>Andiez Le</p>
                 </div>
               </div>

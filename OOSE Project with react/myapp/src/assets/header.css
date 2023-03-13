@@ -35,7 +35,10 @@
   color: red;
   cursor: pointer;
 }
-#header .toolBox div {
+#header .toolBox .searchContainer,
+#header .toolBox .iconChat,
+#header .toolBox .iconNotification,
+#header .toolBox .userBox {
   margin-left: 120px;
 }
 #header .toolBox .searchBox {
@@ -65,10 +68,11 @@
   border-radius: 5px;
 }
 .toolBox .userBox .userOptions a {
-  display: block;
+  display: flex;
   border-top: #ccc solid 0.5px;
   padding: 10px 20px;
   width: max-content;
+  align-items: center;
 }
 .toolBox .userBox .userOptions a:hover {
   color: #3a1097;

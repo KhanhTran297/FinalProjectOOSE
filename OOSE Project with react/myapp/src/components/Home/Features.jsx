@@ -12,7 +12,7 @@ const Features = () => {
             </div>
             <div className="date_actor">
               <p className="date">Mac 23</p>
-              <i class="fa-solid fa-circle"></i>
+              <i className="fa-solid fa-circle"></i>
               <p className="actor"> Andiez Le</p>
             </div>
           </div>
@@ -27,7 +27,7 @@ const Features = () => {
             </div>
             <div className="date_actor">
               <p className="date">Mac 23</p>
-              <i class="fa-solid fa-circle"></i>
+              <i className="fa-solid fa-circle"></i>
               <p className="actor"> Andiez Le</p>
             </div>
           </div>
@@ -42,7 +42,7 @@ const Features = () => {
             </div>
             <div className="date_actor">
               <p className="date">Mac 23</p>
-              <i class="fa-solid fa-circle"></i>
+              <i className="fa-solid fa-circle"></i>
               <p className="actor"> Andiez Le</p>
             </div>
           </div>

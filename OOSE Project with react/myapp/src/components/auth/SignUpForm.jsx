@@ -8,9 +8,10 @@ import { Label } from "../label";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IconEyeToggle } from "../icons";
+import useAccount from "@/hook/useAccount";
 
 const schema = yup.object({
-  name: yup.string().required("This field is required"),
+  username: yup.string().required("This field is required"),
   email: yup
     .string()
     .email("Invalid email address")
@@ -19,6 +20,8 @@ const schema = yup.object({
     .string()
     .required("This field is required")
     .min(8, "Password must be 8 character "),
+  fullname: yup.string().required("This field is required"),
+  phonenumber: yup.string().required("This field is required"),
 });
 
 const SignUpForm = () => {
@@ -30,10 +33,26 @@ const SignUpForm = () => {
     resolver: yupResolver(schema),
     mode: "onSubmit",
   });
-  const handleSignUp = (value) => {};
+
+  //hook
   const [showPassword, setShowPassword] = useState(false);
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
+  };
+  const { authSignup } = useAccount();
+  //methods
+  const handleSignUp = (value) => {
+    let data = {
+      avatarPath: "string",
+      email: value.email,
+      fullName: value.fullname,
+      kind: 1,
+      password: value.password,
+      phone: value.phonenumber,
+      status: 1,
+      username: value.username,
+    };
+    authSignup(data);
   };
   return (
     <div>
@@ -49,11 +68,21 @@ const SignUpForm = () => {
       </button>
       <form onSubmit={handleSubmit(handleSignUp)} className=" w-full ">
         <FormGroup>
-          <Label htmlFor="name">Username</Label>
+          <Label htmlFor="fullname">Fullname</Label>
           <Input
             control={control}
-            name="name"
-            type="name"
+            name="fullname"
+            type="fullname"
+            placeholder="Tran Minh Gia Khanh"
+            error={errors.email?.message}
+          ></Input>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="username">Username</Label>
+          <Input
+            control={control}
+            name="username"
+            type="username"
             placeholder="AnhBui"
             error={errors.name?.message}
           ></Input>
@@ -82,6 +111,17 @@ const SignUpForm = () => {
               onClick={handleTogglePassword}
             ></IconEyeToggle>
           </Input>
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="phonenumber">Phonenumber</Label>
+          <Input
+            control={control}
+            name="phonenumber"
+            type="phonenumber"
+            placeholder="xxx-xxx-xxx"
+            error={errors.email?.message}
+          ></Input>
         </FormGroup>
         {/* <div className="flex items-start mb-5 gap-x-5">
           <Checkbox name="term" checked={acceptTerm} onClick={handleToggleTerm}>

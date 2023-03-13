@@ -14,9 +14,9 @@ const Slider = () => {
         <button className="btnSlider">Get Started</button>
       </div>
       <div className="sliderImg">
-        <div className="imgBox">
+        {/* <div className="imgBox">
           <img src="./img/slider.jpg" alt="" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
