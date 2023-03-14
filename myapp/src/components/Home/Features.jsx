@@ -1,55 +1,16 @@
 import React from "react";
 import "../../assets/features.css";
+import FeaturePost from "./FeaturePost";
 const Features = () => {
   return (
-    <div id="features">
-      <div className="titleFeatures">Feature</div>
-      <div className="boxItems">
-        <div className="itemFeature">
-          <div className="titleItem">
-            <div className="categoryItem">
-              <a className="contentCategory">Kiến thức</a>
-            </div>
-            <div className="date_actor">
-              <p className="date">Mac 23</p>
-              <i className="fa-solid fa-circle"></i>
-              <p className="actor"> Andiez Le</p>
-            </div>
-          </div>
-          <div className="contentItem">
-            <p>Hướng dẫn setup phòng cực chill dành cho người mới toàn tập</p>
-          </div>
-        </div>
-        <div className="itemFeature">
-          <div className="titleItem">
-            <div className="categoryItem">
-              <a className="contentCategory">Kiến thức</a>
-            </div>
-            <div className="date_actor">
-              <p className="date">Mac 23</p>
-              <i className="fa-solid fa-circle"></i>
-              <p className="actor"> Andiez Le</p>
-            </div>
-          </div>
-          <div className="contentItem">
-            <p>Hướng dẫn setup phòng cực chill dành cho người mới toàn tập</p>
-          </div>
-        </div>
-        <div className="itemFeature">
-          <div className="titleItem">
-            <div className="categoryItem">
-              <a className="contentCategory">Kiến thức</a>
-            </div>
-            <div className="date_actor">
-              <p className="date">Mac 23</p>
-              <i className="fa-solid fa-circle"></i>
-              <p className="actor"> Andiez Le</p>
-            </div>
-          </div>
-          <div className="contentItem">
-            <p>Hướng dẫn setup phòng cực chill dành cho người mới toàn tập</p>
-          </div>
-        </div>
+    <div id="features" className=" grid grid-rows-[auto_auto]">
+      <div className="titleFeatures text-userOptions text-[28px] leading-9 font-semibold mt-5 mr-[11px] mb-5 ml-[11px] before:content-[''] before:border-t-[3px] before:absolute before:w-[50px] before:border-solid before:border-border_title">
+        Feature
+      </div>
+      <div className="boxItems grid grid-cols-[auto_auto_auto]">
+        <FeaturePost></FeaturePost>
+        <FeaturePost></FeaturePost>
+        <FeaturePost></FeaturePost>
       </div>
     </div>
   );

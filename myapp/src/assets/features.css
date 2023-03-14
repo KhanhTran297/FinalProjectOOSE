@@ -1,9 +1,9 @@
-#features {
+/* #features {
   display: grid;
   grid-template-rows: auto auto;
-}
+} */
 /* titleFeatures */
-#features .titleFeatures {
+/* #features .titleFeatures {
   color: #3a1097;
   font-size: 28px;
   line-height: 36px;
@@ -15,9 +15,9 @@
   position: absolute;
   width: 50px;
   border-top: solid #00d1ed;
-}
+} */
 /* BoxItems */
-#features .boxItems {
+/* #features .boxItems {
   display: grid;
   grid-template-columns: auto auto auto;
 }
@@ -25,7 +25,6 @@
   display: grid;
   grid-template-rows: 20% 80%;
   height: 272px;
-  background-image: url("./img/itemFeature.jpg");
   background-repeat: no-repeat;
   margin: 10px;
   border-radius: 10px;
@@ -66,4 +65,4 @@
   font-weight: 600;
   font-size: 22px;
   line-height: 28px;
-}
+} */

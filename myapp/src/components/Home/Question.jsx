@@ -1,12 +1,15 @@
 import React from "react";
-import "../../assets/question.css";
+// import "../../assets/question.css";
+import QuestionBox from "./QuestionBox";
 
 const Question = () => {
   return (
-    <div id="question">
-      <div className="titleQuestions">Questions need your help</div>
-      <div className="questionsContainer">
-        <div className="questionBox">
+    <div id="question" className="grid grid-row-[auto_auto] mt-10">
+      <div className="titleQuestions text-[#3a1097] text-[28px] leading-9 font-semibold mt-[20px] mb-[20px] mr-[11px] ml-[11px] before:contents[''] before:absolute before:w-[50px] before:border-solid before:border-border_title before:border-t-[3px]">
+        Questions need your help
+      </div>
+      <div className="questionsContainer flex flex-col pl-3 pr-3">
+        {/* <div className="questionBox">
           <div className="userBox">
             <div className="userAva">
               <img src="./img/ava/user1.jfif" alt="" />
@@ -21,41 +24,15 @@ const Question = () => {
               han dado. Saludos! 😄😄
             </p>
           </div>
-        </div>
-        <div className="questionBox">
-          <div className="userBox">
-            <div className="userAva">
-              <img src="./img/ava/user2.jfif" alt="" />
-            </div>
-            <div className="userName">Haykel Gevara</div>
-            <div className="date">HOY 14:34</div>
-          </div>
-          <div className="contentBox">
-            <p>
-              Genial! Sin duda del servicio brindado no me han surgido dudas y
-              ahora me siento más seguro, el servicio ha sido impecable.{" "}
-            </p>
-          </div>
-        </div>
-        <div className="questionBox">
-          <div className="userBox">
-            <div className="userAva">
-              <img src="./img/ava/user3.jfif" alt="" />
-            </div>
-            <div className="userName">Yenna Castro</div>
-            <div className="date">HOY 14:34</div>
-          </div>
-          <div className="contentBox">
-            <p>
-              Se me ha pegado un poco la plataforma, sin embargo el servicio
-              dado por los doctores ha sido bastante genial. Espero lean mis
-              comentarios para optimizar la plataforma 🙂
-            </p>
-          </div>
-        </div>
+        </div> */}
+        <QuestionBox url="./img/ava/user1.jfif"></QuestionBox>
+        <QuestionBox url="./img/ava/user2.jfif"></QuestionBox>
+        <QuestionBox url="./img/ava/user3.jfif"></QuestionBox>
       </div>
-      <div className="readMoreBox">
-        <button className="readMorebtn">Read More</button>
+      <div className="readMoreBox flex justify-center items-center pt-7 pb-7">
+        <button className="readMorebtn text-[24px] font-bold leading-[33px] text-black pt-[10px] pb-[10px] pl-5 pr-5 bg-white cursor-pointer hover:text-[#3a1097]">
+          Read More
+        </button>
       </div>
     </div>
   );

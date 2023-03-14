@@ -32,6 +32,8 @@ module.exports = {
         darkRed: "#422C32",
         header: "#00b4aa",
         userOptions: "#3a1097",
+        border_title: "#00d1ed",
+        rightBox: "#f3deff",
       },
       boxShadow: {
         sdprimary: "10px 10px 20px rgba(211, 211, 211, 0.25)",
