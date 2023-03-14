@@ -16,32 +16,50 @@ const UserOptions = (props) => {
     Logout();
   };
   return (
-    <div className="userOptions">
+    <div className="userOptions absolute z-10 right-0 translate-x-0 translate-y-[10px] bg-white shadow-userOptions rounded-5">
       {props.checkAccount ? (
-        <div className=" m-0">
-          <Link to="" className="yourpage">
+        <div className=" m-0 p-userOptions w-userOptions">
+          <Link
+            to=""
+            className="yourpage flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+          >
             <i className="fa-solid fa-user"></i>
             <p className=" ml-1">{props.fullname}</p>
           </Link>
-          <Link to="" className="profile">
+          <Link
+            to=""
+            className="profile flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+          >
             <i className="fa-solid fa-user-pen"></i>
             <p className=" ml-1">Profile</p>
           </Link>
-          <Link to="" className="bookmark cursor-pointer">
+          <Link
+            to=""
+            className="bookmark flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+          >
             <i className="fa-regular fa-bookmark"></i>
             <p className=" ml-1">Bookmark</p>
           </Link>
-          <Link onClick={handleLogout} className=" cursor-pointer">
+          <Link
+            onClick={handleLogout}
+            className=" flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+          >
             <i className="fa-solid fa-right-from-bracket"></i>
             <p className=" ml-1">Logout</p>
           </Link>
         </div>
       ) : (
         <div className="">
-          <Link to="signup" className="signin">
+          <Link
+            to="signup"
+            className="signin flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+          >
             <p>Sign up</p>
           </Link>
-          <Link to="login" className="profile">
+          <Link
+            to="login"
+            className="profile flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+          >
             <p>Sign in</p>
           </Link>
         </div>

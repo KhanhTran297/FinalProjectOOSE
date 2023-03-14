@@ -29,45 +29,67 @@ const Header = () => {
     }
   }, [profileAccount?.data, isLoggedIn]);
   return (
-    <div id="header">
-      <div className="headerContainer ">
-        <div className="navBox">
-          <div className="logo">
-            <div className="logoBox">
-              <img src="./img/logo1.jfif" alt="" className="logoImg" />
+    <div id="header" className=" mt-0 mb-0 mr-5 ml-5 backdrop-blur-xl">
+      <div className="headerContainer grid grid-cols-2 pt-18 pb-18 pl-0 pr-0 ">
+        <div className="navBox flex items-center">
+          <div className="logo mr-5">
+            <div className="logoBox w-10 h-10 rounded-full mr-5">
+              <img
+                src="./img/logo1.jfif"
+                alt=""
+                className="logoImg w-full h-full rounded-full"
+              />
             </div>
           </div>
-          <div className="Home">
-            <Link to="/">HOME</Link>
+          <div className="Home mr-5">
+            <Link
+              to="/"
+              className=" no-underline text-black text-18 cursor-pointer hover:text-header"
+            >
+              HOME
+            </Link>
           </div>
-          <div className="Forum">
-            <Link to="/forum">FORUM</Link>
+          <div className="Forum mr-5">
+            <Link
+              to="/forum"
+              className="no-underline text-black text-18 cursor-pointer hover:text-header"
+            >
+              FORUM
+            </Link>
           </div>
-          <div className="Contact">
-            <Link to="/contact">CONTACT</Link>
+          <div className="Contact mr-5">
+            <Link
+              to="/contact"
+              className="no-underline text-black text-18 cursor-pointer hover:text-header"
+            >
+              CONTACT
+            </Link>
           </div>
         </div>
-        <div className="toolBox">
-          <div className="searchContainer">
-            <form action="" className="searchBox">
+        <div className="toolBox flex flex-row items-center justify-end">
+          <div className="searchContainer ml-5">
+            <form action="" className="searchBox relative">
               <input
                 type="text"
-                className="search-text"
+                className="search-text p-searchtext rounded-5 border-none"
                 placeholder="Search Post..."
                 required
               />
-              <i className="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass hover:text-red-600 cursor-pointer absolute right-0 bottom-0 translate-x-[-50%] translate-y-[-80%]"></i>
             </form>
           </div>
-          <div className="iconChat">
-            <i className="fa-sharp fa-regular fa-comments"></i>
+          <div className="iconChat ml-5">
+            <i className="fa-sharp fa-regular fa-comments hover:text-red-600 cursor-pointer"></i>
           </div>
-          <div className="iconNotification">
-            <i className="fa-regular fa-bell"></i>
+          <div className="iconNotification ml-5">
+            <i className="fa-regular fa-bell hover:text-red-600 cursor-pointer"></i>
           </div>
 
-          <div className="userBox">
-            <i className="fa-regular fa-user" onClick={handleToggleuserBox}></i>
+          <div className="userBox ml-5 relative">
+            <i
+              className="fa-regular fa-user hover:text-red-600 cursor-pointer"
+              onClick={handleToggleuserBox}
+            ></i>
             {userbox ? (
               <UserOptions
                 fullname={profileAccount?.data.fullName}

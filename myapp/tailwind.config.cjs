@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         primary: ["Epilogue", "sans-serif"],
       },
+      fontSize: {
+        18: "18px",
+      },
       colors: {
         primary: "#1DC071",
         secondary: "#6F49FD",
@@ -27,12 +30,26 @@ module.exports = {
         darkSoft: "#24242C",
         darkStroke: "#3A3A43",
         darkRed: "#422C32",
+        header: "#00b4aa",
+        userOptions: "#3a1097",
       },
       boxShadow: {
         sdprimary: "10px 10px 20px rgba(211, 211, 211, 0.25)",
+        userOptions: "0 3px 10px #000",
       },
       spacing: {
         293: "293px",
+      },
+      padding: {
+        18: "18px",
+        searchtext: "10px",
+        userOptions: "0px 10px",
+      },
+      borderRadius: {
+        5: "5px",
+      },
+      width: {
+        userOptions: "200px",
       },
     },
   },

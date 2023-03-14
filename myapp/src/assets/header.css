@@ -1,4 +1,4 @@
-#header {
+/* #header {
   backdrop-filter: blur(20px);
   margin: 0 20px;
 }
@@ -10,9 +10,9 @@
 #header .navBox {
   display: flex;
   align-items: center;
-  /* justify-content: space-evenly; */
-}
-#header .navBox a {
+ 
+} */
+/* #header .navBox a {
   text-decoration: none;
   color: black;
   font-size: 18px;
@@ -23,9 +23,9 @@
 }
 #header .navBox div {
   margin-right: 20px;
-}
+} */
 /* toolBox */
-#header .toolBox {
+/* #header .toolBox {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -77,9 +77,9 @@
 .toolBox .userBox .userOptions a:hover {
   color: #3a1097;
   cursor: pointer;
-}
+} */
 /* Logo */
-#header .logoBox {
+/* #header .logoBox {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -88,4 +88,4 @@
   height: 100%;
   width: 100%;
   border-radius: 50%;
-}
+} */
