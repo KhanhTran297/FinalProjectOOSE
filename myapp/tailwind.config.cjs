@@ -44,6 +44,7 @@ module.exports = {
         18: "18px",
         searchtext: "10px",
         userOptions: "0px 10px",
+        slider: "48px 36px",
       },
       borderRadius: {
         5: "5px",
@@ -51,6 +52,12 @@ module.exports = {
       width: {
         userOptions: "200px",
         userOptions_authen: "110px",
+      },
+      gridTemplateColumns: {
+        slider: "",
+      },
+      backgroundImage: {
+        slider: "linear-gradient(155deg, #00b4aa 6.67%, #a4d96c 84.1%)",
       },
     },
   },
