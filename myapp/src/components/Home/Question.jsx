@@ -8,22 +8,6 @@ const Question = () => {
         Questions need your help
       </div>
       <div className="questionsContainer flex flex-col pl-3 pr-3">
-        {/* <div className="questionBox">
-          <div className="userBox">
-            <div className="userAva">
-              <img src="./img/ava/user1.jfif" alt="" />
-            </div>
-            <div className="userName">Kilary Kreithman</div>
-            <div className="date">HOY 14:34</div>
-          </div>
-          <div className="contentBox">
-            <p>
-              Hola! El servicio que me has brindado con Huli ha sido bastante
-              eficiente, encantado de todo el servicio y las prestaciones que me
-              han dado. Saludos! 😄😄
-            </p>
-          </div>
-        </div> */}
         <QuestionBox url="./img/ava/user1.jfif"></QuestionBox>
         <QuestionBox url="./img/ava/user2.jfif"></QuestionBox>
         <QuestionBox url="./img/ava/user3.jfif"></QuestionBox>
