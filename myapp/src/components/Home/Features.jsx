@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/features.css";
 import FeaturePost from "./FeaturePost";
 const Features = () => {
   return (

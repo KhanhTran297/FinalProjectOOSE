@@ -1,6 +1,4 @@
 import React from "react";
-// import "../../assets/newestUpdate.css";
-// import "../../assets/index.css";
 import NewestUpdateMainPost from "./NewestUpdateMainPost";
 import NewestUpdatePost from "./NewestUpdatePost";
 const NewestUpdate = () => {

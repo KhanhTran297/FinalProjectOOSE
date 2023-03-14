@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/slider.css";
 const Slider = () => {
   return (
     <div id="slider" className=" grid grid-cols-[60%_40%] p-slider bg-slider">

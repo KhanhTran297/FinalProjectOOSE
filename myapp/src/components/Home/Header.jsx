@@ -2,7 +2,6 @@ import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../assets/header.css";
 import UserOptions from "./UserOptions";
 const Header = () => {
   //hooks

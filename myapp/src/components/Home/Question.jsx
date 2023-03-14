@@ -1,5 +1,4 @@
 import React from "react";
-// import "../../assets/question.css";
 import QuestionBox from "./QuestionBox";
 
 const Question = () => {
