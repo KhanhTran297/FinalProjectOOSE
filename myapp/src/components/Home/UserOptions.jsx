@@ -49,16 +49,16 @@ const UserOptions = (props) => {
           </Link>
         </div>
       ) : (
-        <div className="">
+        <div className=" w-userOptions_authen">
           <Link
             to="signup"
-            className="signin flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+            className="signin justify-center pt-1 pb-1 flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >
             <p>Sign up</p>
           </Link>
           <Link
             to="login"
-            className="profile flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
+            className="profile justify-center pt-1 pb-1 flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >
             <p>Sign in</p>
           </Link>

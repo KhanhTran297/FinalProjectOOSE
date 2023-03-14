@@ -67,7 +67,7 @@ const Header = () => {
           </div>
         </div>
         <div className="toolBox flex flex-row items-center justify-end">
-          <div className="searchContainer ml-5">
+          <div className="searchContainer ml-36">
             <form action="" className="searchBox relative">
               <input
                 type="text"
@@ -78,14 +78,14 @@ const Header = () => {
               <i className="fa-solid fa-magnifying-glass hover:text-red-600 cursor-pointer absolute right-0 bottom-0 translate-x-[-50%] translate-y-[-80%]"></i>
             </form>
           </div>
-          <div className="iconChat ml-5">
+          <div className="iconChat ml-36">
             <i className="fa-sharp fa-regular fa-comments hover:text-red-600 cursor-pointer"></i>
           </div>
-          <div className="iconNotification ml-5">
+          <div className="iconNotification ml-36">
             <i className="fa-regular fa-bell hover:text-red-600 cursor-pointer"></i>
           </div>
 
-          <div className="userBox ml-5 relative">
+          <div className="userBox ml-36 relative">
             <i
               className="fa-regular fa-user hover:text-red-600 cursor-pointer"
               onClick={handleToggleuserBox}

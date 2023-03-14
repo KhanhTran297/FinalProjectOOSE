@@ -50,6 +50,7 @@ module.exports = {
       },
       width: {
         userOptions: "200px",
+        userOptions_authen: "110px",
       },
     },
   },
