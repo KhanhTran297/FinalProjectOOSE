@@ -9,34 +9,7 @@ const NewestUpdate = () => {
       </div>
       <div className="postWrap grid grid-rows-[60%_40%]">
         <div className="topBoxContainer grid grid-cols-[auto_auto] ">
-          {/* <div className="leftContainer pr-[10px] grid">
-            <div className="imgBox">
-              <img
-                src="./img/newest/top/left/post1.jpg"
-                alt=""
-                className="imgPost"
-              />
-            </div>
-            <div className="postContentContainer">
-              <div className="categoryPost">
-                <p>Kiến thức</p>
-              </div>
-              <div className="postContent">
-                <div className="content">
-                  <p>
-                    Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-                  </p>
-                </div>
-                <div className="date_actor">
-                  <p>Mac 23</p>
-                  <i className="fa-solid fa-circle"></i>
-                  <p>Andiez Le</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <NewestUpdateMainPost url="./img/newest/top/left/post1.jpg"></NewestUpdateMainPost>
-          {/* <NewestUpdatePost url="./img/cat.jfif"></NewestUpdatePost> */}
           <div className="rightContainer flex flex-col overflow-y-scroll bg-rightBox rounded-[10px] pl-[10px] pr-[10px] h-[500px] ">
             <NewestUpdatePost
               url="./img/duck.jpg"
@@ -65,114 +38,10 @@ const NewestUpdate = () => {
           </div>
         </div>
         <div className="bottomboxContainer flex flex-row justify-between ">
-          {/* <div className="item">
-            <div className="imgBox">
-              <img
-                src="./img/newest/bottom/post1.jpg"
-                alt=""
-                className="imgPost"
-              />
-            </div>
-            <div className="postContentContainer">
-              <div className="categoryPost">
-                <p>Kiến thức</p>
-              </div>
-              <div className="postContent">
-                <div className="content">
-                  <p>
-                    Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-                  </p>
-                </div>
-                <div className="date_actor">
-                  <p>Mac 23</p>
-                  <i className="fa-solid fa-circle"></i>
-                  <p>Andiez Le</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <NewestUpdatePost url="./img/newest/bottom/post1.jpg"></NewestUpdatePost>
           <NewestUpdatePost url="./img/newest/bottom/post2.jpg"></NewestUpdatePost>
           <NewestUpdatePost url="./img/newest/bottom/post3.jpg"></NewestUpdatePost>
           <NewestUpdatePost url="./img/newest/bottom/post4.jpg"></NewestUpdatePost>
-          {/* <div className="item">
-            <div className="imgBox">
-              <img
-                src="./img/newest/bottom/post2.jpg"
-                alt=""
-                className="imgPost"
-              />
-            </div>
-            <div className="postContentContainer">
-              <div className="categoryPost">
-                <p>Kiến thức</p>
-              </div>
-              <div className="postContent">
-                <div className="content">
-                  <p>
-                    Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-                  </p>
-                </div>
-                <div className="date_actor">
-                  <p>Mac 23</p>
-                  <i className="fa-solid fa-circle"></i>
-                  <p>Andiez Le</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
-          {/* <div className="item">
-            <div className="imgBox">
-              <img
-                src="./img/newest/bottom/post3.jpg"
-                alt=""
-                className="imgPost"
-              />
-            </div>
-            <div className="postContentContainer">
-              <div className="categoryPost">
-                <p>Kiến thức</p>
-              </div>
-              <div className="postContent">
-                <div className="content">
-                  <p>
-                    Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-                  </p>
-                </div>
-                <div className="date_actor">
-                  <p>Mac 23</p>
-                  <i className="fa-solid fa-circle"></i>
-                  <p>Andiez Le</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
-          {/* <div className="item">
-            <div className="imgBox">
-              <img
-                src="./img/newest/bottom/post4.jpg"
-                alt=""
-                className="imgPost"
-              />
-            </div>
-            <div className="postContentContainer">
-              <div className="categoryPost">
-                <p>Kiến thức</p>
-              </div>
-              <div className="postContent">
-                <div className="content">
-                  <p>
-                    Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-                  </p>
-                </div>
-                <div className="date_actor">
-                  <p>Mac 23</p>
-                  <i className="fa-solid fa-circle"></i>
-                  <p>Andiez Le</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

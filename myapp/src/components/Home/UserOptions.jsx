@@ -27,7 +27,7 @@ const UserOptions = (props) => {
             <p className=" ml-1">{props.fullname}</p>
           </Link>
           <Link
-            to=""
+            to="profile"
             className="profile flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >
             <i className="fa-solid fa-user-pen"></i>
