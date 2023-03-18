@@ -10,12 +10,15 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useCookie from "./useCookie";
+import useMyToast from "./useMyToast";
 
 function useAccount() {
+  //hooks
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setCookie, getCookie, removeCookie } = useCookie();
+  const { useSuccess, useError } = useMyToast();
   //login
   const {
     mutate: handleLogin,
@@ -33,40 +36,13 @@ function useAccount() {
         getProfileAccount();
         // dispatch(getAccountProfileApi({ requiredToken: true }));
         navigate("/");
-        toast.success("Login success!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        useSuccess("Login Success!");
       } else {
-        toast.error("Wrong username or password", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        useError("Wrong username or password");
       }
     },
     onError: () => {
-      toast.error("Wrong username or password", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      useError("Wrong username or password");
     },
   });
   //get
@@ -105,16 +81,7 @@ function useAccount() {
     mutationFn: authLogoutApi,
     onSuccess: () => {
       removeCookie();
-      toast.success("Logout success!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      useSuccess("Logout success!");
       navigate("/");
     },
   });
