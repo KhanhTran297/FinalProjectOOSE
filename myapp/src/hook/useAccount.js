@@ -29,7 +29,7 @@ function useAccount() {
         //set token to cookie
         setCookie(data.data.token);
         //Luu thong tin account vao client state
-        // dispatch(setUser(data.))
+
         getProfileAccount();
         // dispatch(getAccountProfileApi({ requiredToken: true }));
         navigate("/");
@@ -79,6 +79,8 @@ function useAccount() {
     queryFn: getAccountProfileApi,
     onSuccess: (profileAccount) => {
       // console.log(profileAccount);
+      // sau Khi login thanh cong thi tien hanh get data user va luu vao client state tuc la redux
+      dispatch(setUser(profileAccount.data));
     },
   });
   //signup

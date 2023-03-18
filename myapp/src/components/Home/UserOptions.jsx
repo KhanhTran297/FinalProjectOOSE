@@ -1,19 +1,18 @@
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const UserOptions = (props) => {
   //hooks
   const { logout } = useAccount();
   const { removeCookie } = useCookie();
-  // console.log("check", props.checkAccount);
+  // const { profileAccount } = useAccount();
+  //variables
   let check = props.check;
-  const { profileAccount } = useAccount();
   //methods
   const handleLogout = () => {
-    // console.log("hello");
-    // removeCookie();
     logout();
   };
   return (
@@ -21,11 +20,11 @@ const UserOptions = (props) => {
       {props.checkAccount ? (
         <div className=" m-0 p-userOptions w-max">
           <Link
-            to=""
+            to="home"
             className="yourpage p-[10px] grid grid-cols-[auto_auto] border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >
             <img
-              src={profileAccount?.data.avatar}
+              src={props.avatar}
               className=" w-[30px] h-[30px] rounded-full"
               alt=""
             />

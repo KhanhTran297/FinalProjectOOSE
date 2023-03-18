@@ -1,19 +1,22 @@
 import useAccount from "@/hook/useAccount";
 import React from "react";
+import { useSelector } from "react-redux";
 import BasicList from "./BasicList";
 
 const Profile = () => {
   //hooks
-  const { profileAccount, getProfileAccount, loadingPage } = useAccount();
-  console.log("loading page", loadingPage);
-  console.log("profile user:", profileAccount);
+  //   const { profileAccount, getProfileAccount, loadingPage } = useAccount();
+  //   console.log("loading page", loadingPage);
+  //   console.log("profile user:", profileAccount);
+  const selector = useSelector((state) => state.account);
+  const userAccount = selector.account;
   return (
     <div className="grid grid-cols-[30%_70%] h-full  mt-4 ml-2 mr-2">
       <div className="left  grid grid-rows-[40%_60%]">
         <div className="imgAvaContainer flex justify-center items-center flex-col border-solid ">
           <div className="imgBox h-[80%] w-[70%] rounded-full flex flex-col justify-center">
             <img
-              src={profileAccount?.data.avatar}
+              src={userAccount?.avatar}
               alt=""
               className=" w-full h-full rounded-full shadow-2xl"
             />
@@ -30,7 +33,7 @@ const Profile = () => {
         <div className="top flex flex-col relative">
           <div className="username flex flex-row items-center">
             <p className="text-[38px] font-semibold pl-[10px]">
-              {profileAccount?.data.username}
+              {userAccount?.username}
             </p>
             <i class="fa-solid fa-location-dot ml-[12px] text-[12px]">
               {" "}
@@ -71,7 +74,7 @@ const Profile = () => {
                 Fullname:
               </p>
               <p className=" text-[18px] font-medium opacity-60 ">
-                {profileAccount?.data.fullName}
+                {userAccount?.fullName}
               </p>
               <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>
@@ -80,14 +83,14 @@ const Profile = () => {
                 Email:{" "}
               </p>
               <p className=" text-[18px] font-medium opacity-60 ">
-                {profileAccount?.data.email}
+                {userAccount?.email}
               </p>
               <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>
             <div className="pt-[20px] pb-[20px]  relative border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
               <p className=" text-[20px] font-semibold  text-header">Phone: </p>
               <p className=" text-[18px] font-medium opacity-60 ">
-                {profileAccount?.data.phone}
+                {userAccount?.phone}
               </p>
               <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>

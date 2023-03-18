@@ -1,6 +1,7 @@
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserOptions from "./UserOptions";
 const Header = () => {
@@ -8,7 +9,10 @@ const Header = () => {
   const [userbox, setUserBox] = useState(false);
   const [checkAccount, setCheckAccount] = useState(false);
   const { isLoggedIn } = useCookie();
-  const { profileAccount, getProfileAccount } = useAccount();
+  const { getProfileAccount } = useAccount();
+  const selector = useSelector((state) => state.account);
+  //variable
+  const userAccount = selector.account;
   //method
   const handleToggleuserBox = () => {
     setUserBox((prevState) => !prevState);
@@ -16,9 +20,21 @@ const Header = () => {
   // console.log("Profile", profileAccount);
   useEffect(() => {
     //Neu co token trong cookie
+    //Luu userdata trong global state
+    // if (isLoggedIn()) {
+    //   //Neu chua co tai khoan trong (global state) thi refetch de lay thong tin user
+    //   if (!profileAccount?.data) {
+    //     getProfileAccount();
+    //   } else {
+    //     setCheckAccount((checkAccount) => (checkAccount = true));
+    //   }
+    // } else {
+    //   setCheckAccount((checkAccount) => (checkAccount = false));
+    // }
+    //Luu userdata trong client state
     if (isLoggedIn()) {
       //Neu chua co tai khoan trong (global state) thi refetch de lay thong tin user
-      if (!profileAccount?.data) {
+      if (!userAccount) {
         getProfileAccount();
       } else {
         setCheckAccount((checkAccount) => (checkAccount = true));
@@ -26,7 +42,7 @@ const Header = () => {
     } else {
       setCheckAccount((checkAccount) => (checkAccount = false));
     }
-  }, [profileAccount?.data, isLoggedIn]);
+  }, [userAccount, isLoggedIn]);
   return (
     <div id="header" className=" mt-0 mb-0  backdrop-blur-xl shadow-2xl">
       <div className="headerContainer grid grid-cols-2 pt-18 pb-18 pl-0 pr-0 w-full ">
@@ -91,8 +107,8 @@ const Header = () => {
             ></i>
             {userbox ? (
               <UserOptions
-                fullname={profileAccount?.data.fullName}
-                avatar={profileAccount?.data.avatar}
+                fullname={userAccount?.fullName}
+                avatar={userAccount?.avatar}
                 check={userbox}
                 checkAccount={checkAccount}
               ></UserOptions>
