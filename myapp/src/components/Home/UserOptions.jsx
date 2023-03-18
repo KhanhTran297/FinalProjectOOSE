@@ -5,18 +5,18 @@ import { Link } from "react-router-dom";
 
 const UserOptions = (props) => {
   //hooks
-  const { Logout } = useAccount();
+  const { logout } = useAccount();
   const { removeCookie } = useCookie();
-  console.log("check", props.checkAccount);
+  // console.log("check", props.checkAccount);
   let check = props.check;
   //methods
   const handleLogout = () => {
     // console.log("hello");
     // removeCookie();
-    Logout();
+    logout();
   };
   return (
-    <div className="userOptions absolute z-10 right-0 translate-x-0 translate-y-[10px] bg-white shadow-userOptions rounded-5">
+    <div className="userOptions absolute z-10 right-[24px] translate-x-0 translate-y-[10px] bg-white shadow-userOptions rounded-5">
       {props.checkAccount ? (
         <div className=" m-0 p-userOptions w-userOptions">
           <Link

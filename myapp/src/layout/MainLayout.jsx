@@ -4,8 +4,8 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <div className="ml-2 mr-2">
-      <Header></Header>
+    <div className="">
+      {/* <Header></Header> */}
       <Outlet></Outlet>
     </div>
   );

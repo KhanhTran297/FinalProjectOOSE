@@ -7,10 +7,13 @@ import { useNavigate } from "react-router-dom";
 const GuardRoute = ({ children }) => {
   //hooks
   const { isLoggedIn } = useCookie();
-  const { profileAccount, getProfileAccount } = useAccount();
+  const { profileAccount, getProfileAccount, loadingPage } = useAccount();
+  console.log("test:", loadingPage);
   const navigate = useNavigate();
+  console.log("islogged", isLoggedIn());
   useEffect(() => {
     //Neu co token trong cookie
+
     if (isLoggedIn()) {
       if (!profileAccount?.data) {
         getProfileAccount();
@@ -21,7 +24,11 @@ const GuardRoute = ({ children }) => {
       navigate("/login");
     }
   }, [profileAccount?.data, isLoggedIn]);
-  return <div className="">{children}</div>;
+  return (
+    <div className="">
+      {loadingPage ? <div>Loading</div> : <div>{children}</div>}
+    </div>
+  );
 };
 
 export default GuardRoute;

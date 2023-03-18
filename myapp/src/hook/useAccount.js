@@ -70,7 +70,11 @@ function useAccount() {
     },
   });
   //get
-  const { data: profileAccount, refetch: getProfileAccount } = useQuery({
+  const {
+    data: profileAccount,
+    refetch: getProfileAccount,
+    isLoading: loadingPage,
+  } = useQuery({
     queryKey: ["profileAccount"],
     queryFn: getAccountProfileApi,
     onSuccess: (profileAccount) => {
@@ -95,7 +99,7 @@ function useAccount() {
     },
   });
   //logout
-  const { mutate: Logout } = useMutation({
+  const { mutate: logout } = useMutation({
     mutationFn: authLogoutApi,
     onSuccess: () => {
       removeCookie();
@@ -119,7 +123,8 @@ function useAccount() {
     profileAccount,
     getAccountProfileApi,
     getProfileAccount,
-    Logout,
+    logout,
+    loadingPage,
   };
 }
 export default useAccount;

@@ -4,10 +4,11 @@ import BasicList from "./BasicList";
 
 const Profile = () => {
   //hooks
-  const { profileAccount, getProfileAccount } = useAccount();
+  const { profileAccount, getProfileAccount, loadingPage } = useAccount();
+  console.log("loading page", loadingPage);
   console.log("profile user:", profileAccount);
   return (
-    <div className="grid grid-cols-[30%_70%] h-full mt-4">
+    <div className="grid grid-cols-[30%_70%] h-full  mt-4 ml-2 mr-2">
       <div className="left  grid grid-rows-[40%_60%]">
         <div className="imgAvaContainer flex justify-center items-center flex-col border-solid ">
           <div className="imgBox h-[80%] w-[70%] rounded-full flex flex-col justify-center">

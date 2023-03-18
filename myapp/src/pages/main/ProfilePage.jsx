@@ -4,7 +4,8 @@ import React from "react";
 
 const ProfilePage = () => {
   return (
-    <div className=" h-[1000px] border-solid border-t-[1px] mt-4 ">
+    <div className=" h-[1000px]  ">
+      <Header></Header>
       <Profile></Profile>
     </div>
   );

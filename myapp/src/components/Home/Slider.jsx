@@ -1,7 +1,10 @@
 import React from "react";
 const Slider = () => {
   return (
-    <div id="slider" className=" grid grid-cols-[60%_40%] p-slider bg-slider">
+    <div
+      id="slider"
+      className=" grid grid-cols-[60%_40%] p-slider bg-slider rounded-[10px]"
+    >
       <div className="sliderContent pr-5">
         <div className="titleContent text-white text-[48px] font-bold leading-[59px] pt-[18px] pb-[18px]">
           Baby love
