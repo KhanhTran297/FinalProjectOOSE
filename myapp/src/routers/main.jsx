@@ -18,10 +18,6 @@ export default function init(routes) {
         element: <HomePage />,
       },
       {
-        path: "forum",
-        element: <ForumPage />,
-      },
-      {
         path: "contact",
         element: <ContactPage />,
       },
@@ -32,6 +28,10 @@ export default function init(routes) {
             <ProfilePage></ProfilePage>
           </GuardRoute>
         ),
+      },
+      {
+        path: "forum",
+        element: <ForumPage></ForumPage>,
       },
     ],
   };

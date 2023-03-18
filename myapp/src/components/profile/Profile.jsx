@@ -35,9 +35,9 @@ const Profile = () => {
             <p className="text-[38px] font-semibold pl-[10px]">
               {userAccount?.username}
             </p>
-            <i class="fa-solid fa-location-dot ml-[12px] text-[12px]">
+            <i class="fa-solid fa-location-dot ml-[12px] text-[12px] opacity-60">
               {" "}
-              <span className="ml-[2px] text-[12px] font-light op">
+              <span className="ml-[2px] text-[12px] font-light opacity-60">
                 NhaTrang, VN
               </span>
             </i>

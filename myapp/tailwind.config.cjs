@@ -34,6 +34,7 @@ module.exports = {
         userOptions: "#3a1097",
         border_title: "#00d1ed",
         rightBox: "#f3deff",
+        blueborder: "#0768EA",
       },
       boxShadow: {
         sdprimary: "10px 10px 20px rgba(211, 211, 211, 0.25)",
