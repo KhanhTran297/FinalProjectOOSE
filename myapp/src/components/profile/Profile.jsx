@@ -15,10 +15,10 @@ const Profile = () => {
             <img
               src={profileAccount?.data.avatar}
               alt=""
-              className=" w-full h-full rounded-full"
+              className=" w-full h-full rounded-full shadow-2xl"
             />
           </div>
-          <button className=" text-blue-400 font-semibold text-[18px] mt-2">
+          <button className=" text-header font-semibold text-[18px] mt-2 hover:text-red-400">
             Change photo
           </button>
         </div>
@@ -50,66 +50,60 @@ const Profile = () => {
               Report User
             </button>
           </div> */}
-          <div className="bg-img bg-red-400 w-full h-[80%] relative rounded-[10px]">
+          <div className="bg-img  w-full h-[80%] relative rounded-[10px]">
             <img
               src="./img/bgprofile.jpg"
               alt=""
-              className=" absolute w-full h-full rounded-[10px]"
+              className=" absolute w-full h-full rounded-[10px] shadow-2xl"
             />
           </div>
         </div>
 
         <div className="bottom ">
           <div className="title p-[10px] border-solid border-t-[1px] relative ">
-            <div className=" border-solid border-blue-400 border-b-[3px] w-max pb-[10px]">
+            <div className=" border-solid border-b-header border-b-[3px] w-max pb-[10px]">
               <i class="fa-solid fa-user"></i> About
             </div>
           </div>
           <div className="content flex flex-col">
-            <div className=" pt-[20px] pb-[20px]   border-solid border-b-[1px] ml-4 mr-4">
-              <p className=" text-[20px] font-semibold relative ">
+            <div className=" pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+              <p className=" text-[20px] font-semibold relative text-header  ">
                 Fullname:
-                <span className=" text-[18px] font-medium opacity-60 ml-3">
-                  {profileAccount?.data.fullName}
-                  <i class="fa-solid fa-pencil absolute right-0 bottom-0 cursor-pointer hover:text-red-500"></i>
-                </span>
               </p>
+              <p className=" text-[18px] font-medium opacity-60 ">
+                {profileAccount?.data.fullName}
+              </p>
+              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>
-            <div className="pt-[20px] pb-[20px]   border-solid border-b-[1px] ml-4 mr-4">
-              <p className=" text-[20px] font-semibold relative ">
+            <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+              <p className=" text-[20px] font-semibold relative text-header ">
                 Email:{" "}
-                <span className=" text-[18px] font-medium opacity-60 ml-3">
-                  {profileAccount?.data.email}
-                  <i class="fa-solid fa-pencil absolute right-0 bottom-0 cursor-pointer hover:text-red-500"></i>
-                </span>
               </p>
-            </div>
-            <div className="pt-[20px] pb-[20px]   border-solid border-b-[1px] ml-4 mr-4">
-              <p className=" text-[20px] font-semibold relative">
-                Phone:{" "}
-                <span className=" text-[18px] font-medium opacity-60 ml-3">
-                  {profileAccount?.data.phone}
-                  <i class="fa-solid fa-pencil absolute right-0 bottom-0 cursor-pointer hover:text-red-500"></i>
-                </span>
+              <p className=" text-[18px] font-medium opacity-60 ">
+                {profileAccount?.data.email}
               </p>
+              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>
-            <div className="pt-[20px] pb-[20px]   border-solid border-b-[1px] ml-4 mr-4">
-              <p className=" text-[20px] font-semibold relative">
+            <div className="pt-[20px] pb-[20px]  relative border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+              <p className=" text-[20px] font-semibold  text-header">Phone: </p>
+              <p className=" text-[18px] font-medium opacity-60 ">
+                {profileAccount?.data.phone}
+              </p>
+              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
+            </div>
+            <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+              <p className=" text-[20px] font-semibold  text-header">
                 Gender:{""}
-                <span className=" text-[18px] font-medium opacity-60 ml-3">
-                  Male
-                  <i class="fa-solid fa-pencil absolute right-0 bottom-0 cursor-pointer hover:text-red-500"></i>
-                </span>
               </p>
+              <p className=" text-[18px] font-medium opacity-60  ">Male</p>
+              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>
-            <div className="pt-[20px] pb-[20px]   border-solid border-b-[1px] ml-4 mr-4">
-              <p className=" text-[20px] font-semibold relative">
+            <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center ">
+              <p className=" text-[20px] font-semibold relative text-header">
                 Dob:{" "}
-                <span className=" text-[18px] font-medium opacity-60 ml-3">
-                  dd/mm/yyyy
-                  <i class="fa-solid fa-pencil absolute right-0 bottom-0 cursor-pointer hover:text-red-500"></i>
-                </span>
               </p>
+              <p className=" text-[18px] font-medium opacity-60 ">dd/mm/yyyy</p>
+              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>
           </div>
         </div>

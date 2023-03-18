@@ -15,17 +15,17 @@ export default function BasicList() {
       <nav aria-label="main mailbox folders">
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton className=" hover:text-red-400">
               <ListItemIcon>
-                <i class="fa-solid fa-bookmark text-[18px] m-1"></i>
+                <i className="fa-solid fa-bookmark text-[18px] m-1 "></i>
               </ListItemIcon>
               <ListItemText primary="BookMarks" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton className=" hover:text-red-400">
               <ListItemIcon>
-                <i class="fa-solid fa-lock text-[18px] m-1"></i>
+                <i className="fa-solid fa-lock text-[18px] m-1"></i>
               </ListItemIcon>
               <ListItemText primary="Change password" />
             </ListItemButton>
