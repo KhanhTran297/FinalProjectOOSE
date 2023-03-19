@@ -2,18 +2,22 @@ import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserOptions = (props) => {
   //hooks
   const { logout } = useAccount();
   const { removeCookie } = useCookie();
+  const navigate = useNavigate();
   // const { profileAccount } = useAccount();
   //variables
   let check = props.check;
   //methods
   const handleLogout = () => {
     logout();
+  };
+  const handlePage = (page) => {
+    navigate(page);
   };
   return (
     <div className="userOptions absolute z-10 right-[24px] translate-x-0 translate-y-[10px] bg-white shadow-userOptions rounded-5">

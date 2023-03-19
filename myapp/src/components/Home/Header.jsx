@@ -2,7 +2,7 @@ import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserOptions from "./UserOptions";
 const Header = () => {
   //hooks
@@ -11,12 +11,14 @@ const Header = () => {
   const { isLoggedIn } = useCookie();
   const { getProfileAccount } = useAccount();
   const selector = useSelector((state) => state.account);
+
   //variable
   const userAccount = selector.account;
   //method
   const handleToggleuserBox = () => {
     setUserBox((prevState) => !prevState);
   };
+
   // console.log("Profile", profileAccount);
   useEffect(() => {
     //Neu co token trong cookie
