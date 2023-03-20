@@ -4,6 +4,7 @@ const accountStore = createSlice({
   initialState: {
     account: [],
     token: null,
+    pass: null,
   },
   reducers: {
     authLogin: () => {},
@@ -20,10 +21,16 @@ const accountStore = createSlice({
         account: action.payload,
       };
     },
+    setPass: (state, action) => {
+      return {
+        ...state,
+        pass: action.payload,
+      };
+    },
   },
 });
 //Action
-export const { authLogin, authRegister, setToken, setUser } =
+export const { authLogin, authRegister, setToken, setUser, setPass } =
   accountStore.actions;
 //Reducer
 export default accountStore.reducer;

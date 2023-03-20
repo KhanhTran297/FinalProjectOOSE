@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^2.9.11",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
+    "@mui/styled-engine-sc": "^5.11.11",
     "@reduxjs/toolkit": "^1.9.3",
     "@tanstack/react-query-devtools": "^4.26.1",
     "antd": "^5.3.1",
@@ -30,7 +31,8 @@
     "react-query": "^3.39.3",
     "react-redux": "^8.0.5",
     "react-toastify": "^9.1.1",
-    "redux-saga": "^1.2.2"
+    "redux-saga": "^1.2.2",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

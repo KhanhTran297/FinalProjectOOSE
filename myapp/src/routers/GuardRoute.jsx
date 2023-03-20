@@ -8,9 +8,9 @@ const GuardRoute = ({ children }) => {
   //hooks
   const { isLoggedIn } = useCookie();
   const { profileAccount, getProfileAccount, loadingPage } = useAccount();
-  console.log("test:", loadingPage);
+  // console.log("test:", loadingPage);
   const navigate = useNavigate();
-  console.log("islogged", isLoggedIn());
+  // console.log("islogged", isLoggedIn());
   useEffect(() => {
     //Neu co token trong cookie
 

@@ -3,7 +3,7 @@ import useCookie from "@/hook/useCookie";
 import { instance } from "./instance";
 
 const { getCookie } = useCookie();
-const { useGet, usePost } = useCallApi();
+const { useGet, usePost, useEdit } = useCallApi();
 export const authLoginApi = (params) => {
   const url = "/account/login";
   return usePost({ url, params });
@@ -20,4 +20,9 @@ export const SignUpApi = (params) => {
 export const authLogoutApi = () => {
   const url = "/account/logout";
   return useGet({ url, requiredToken: true });
+};
+//edit
+export const editProfileApi = (params) => {
+  const url = "/account/update_profile";
+  return useEdit({ url, requiredToken: true, params });
 };

@@ -12,7 +12,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "react-query";
 import useAccount from "@/hook/useAccount";
 import { Field, Form, Formik, replace } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPass } from "@/redux/slice/account";
 const schema = yup.object({
   username: yup.string().required("This field is required"),
   password: yup.string().required("this field is required"),
@@ -31,6 +32,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { handleLogin } = useAccount();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //variables
   const accountToken = selector.token;
   //method
@@ -41,10 +43,11 @@ const LoginForm = () => {
     // console.log(value);
     // console.log("username:", value.username);
     // console.log("password:", value.password);
-    console.log(dataAccount);
-    console.log("username:", dataAccount.username);
-    console.log("password:", dataAccount.password);
+    // console.log(dataAccount);
+    // console.log("username:", dataAccount.username);
+    // console.log("password:", dataAccount.password);
     handleLogin(dataAccount);
+    dispatch(setPass(dataAccount.password));
   };
   return (
     <div>

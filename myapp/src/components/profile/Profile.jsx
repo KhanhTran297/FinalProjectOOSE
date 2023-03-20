@@ -1,7 +1,8 @@
 import useAccount from "@/hook/useAccount";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import BasicList from "./BasicList";
+import BasicTabs from "./TabPanel";
 
 const Profile = () => {
   //hooks
@@ -10,6 +11,13 @@ const Profile = () => {
   //   console.log("profile user:", profileAccount);
   const selector = useSelector((state) => state.account);
   const userAccount = selector.account;
+  const [modifyFullname, setModifyFullname] = useState(false);
+  //methods
+  const handleModifyFullname = () => {
+    setModifyFullname((prevstate) => prevstate);
+  };
+  //variables
+
   return (
     <div className="grid grid-cols-[30%_70%] h-full  mt-4 ml-2 mr-2">
       <div className="left  grid grid-rows-[40%_60%]">
@@ -35,7 +43,7 @@ const Profile = () => {
             <p className="text-[38px] font-semibold pl-[10px]">
               {userAccount?.username}
             </p>
-            <i class="fa-solid fa-location-dot ml-[12px] text-[12px] opacity-60">
+            <i className="fa-solid fa-location-dot ml-[12px] text-[12px] opacity-60">
               {" "}
               <span className="ml-[2px] text-[12px] font-light opacity-60">
                 NhaTrang, VN
@@ -63,12 +71,12 @@ const Profile = () => {
         </div>
 
         <div className="bottom ">
-          <div className="title p-[10px] border-solid border-t-[1px] relative ">
+          {/* <div className="title p-[10px] border-solid border-t-[1px] relative ">
             <div className=" border-solid border-b-header border-b-[3px] w-max pb-[10px]">
               <i class="fa-solid fa-user"></i> About
             </div>
-          </div>
-          <div className="content flex flex-col">
+          </div> */}
+          {/* <div className="content flex flex-col">
             <div className=" pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
               <p className=" text-[20px] font-semibold relative text-header  ">
                 Fullname:
@@ -108,7 +116,9 @@ const Profile = () => {
               <p className=" text-[18px] font-medium opacity-60 ">dd/mm/yyyy</p>
               <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
             </div>
-          </div>
+          </div> */}
+          {/* <IconTabs userAccount={userAccount}></IconTabs> */}
+          <BasicTabs dataUserAccount={userAccount}></BasicTabs>
         </div>
       </div>
     </div>

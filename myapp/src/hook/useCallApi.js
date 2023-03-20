@@ -13,8 +13,7 @@ function useCallApi() {
     let fullHeader = { ...headers };
     // If required TOKEN -> Get Access Token from Cookies
     // console.log("requiredToken:", requiredToken);
-    requiredToken &&
-      (fullHeader["Authorization"] = `Bearer ${getCookie("accountToken")}`);
+    requiredToken && (fullHeader["Authorization"] = `Bearer ${getCookie()}`);
 
     const usedGet = () =>
       instance.get(
@@ -43,8 +42,7 @@ function useCallApi() {
     let fullHeader = { ...headers };
     // If required TOKEN -> Get Access Token from Cookies
     // console.log("requireToken post", requiredToken);
-    requiredToken &&
-      (fullHeader["Authorization"] = `Bearer ${getCookie("accountToken")}`);
+    requiredToken && (fullHeader["Authorization"] = `Bearer ${getCookie()}`);
 
     const usedPost = () =>
       instance.post(
@@ -69,7 +67,7 @@ function useCallApi() {
     // Get all header
     let fullHeader = { ...headers };
     // If required TOKEN -> Get Access Token from Cookies
-    requiredToken && (fullHeader["Authorization"] = `Bearer ${getToken()}`);
+    requiredToken && (fullHeader["Authorization"] = `Bearer ${getCookie()}`);
 
     const usedDelete = () =>
       instance.delete(
@@ -84,6 +82,32 @@ function useCallApi() {
       );
     return usedDelete();
   };
-  return { useGet, usePost, useDelete };
+  //Edit
+  const useEdit = ({
+    url = "",
+    params = {},
+    headers = {},
+    requiredToken = false,
+  } = {}) => {
+    // Get all header
+    let fullHeader = { ...headers };
+    // If required TOKEN -> Get Access Token from Cookies
+    // console.log("requiredToken:", requiredToken);
+    requiredToken && (fullHeader["Authorization"] = `Bearer ${getCookie()}`);
+
+    const usedEdit = () =>
+      instance.put(
+        url,
+        { ...params },
+        {
+          headers: {
+            ...instance.defaults.headers,
+            ...fullHeader,
+          },
+        }
+      );
+    return usedEdit();
+  };
+  return { useGet, usePost, useDelete, useEdit };
 }
 export default useCallApi;

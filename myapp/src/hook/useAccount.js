@@ -1,12 +1,13 @@
 import {
   authLoginApi,
   authLogoutApi,
+  editProfileApi,
   getAccountProfileApi,
   SignUpApi,
 } from "@/api/account";
 import { setToken, setUser } from "@/redux/slice/account";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useCookie from "./useCookie";
@@ -17,8 +18,11 @@ function useAccount() {
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { setCookie, getCookie, removeCookie } = useCookie();
+  const { setCookie, getCookie, removeCookie, setPassCookie } = useCookie();
   const { useSuccess, useError } = useMyToast();
+  const selector = useSelector((state) => state.account);
+  //variables
+  const passAcc = selector.pass;
   //login
   const {
     mutate: handleLogin,
@@ -31,6 +35,7 @@ function useAccount() {
         removeCookie();
         //set token to cookie
         setCookie(data.data.token);
+
         //Luu thong tin account vao client state
 
         getProfileAccount();
@@ -56,6 +61,8 @@ function useAccount() {
     onSuccess: (profileAccount) => {
       // console.log(profileAccount);
       // sau Khi login thanh cong thi tien hanh get data user va luu vao client state tuc la redux
+      //luu password vao cookie
+      setPassCookie(passAcc);
       dispatch(setUser(profileAccount.data));
     },
   });
@@ -63,16 +70,7 @@ function useAccount() {
   const { mutate: authSignup } = useMutation({
     mutationFn: SignUpApi,
     onSuccess: () => {
-      toast.success("Signup success!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      useSuccess("Sign up success!");
       navigate("/");
     },
   });
@@ -85,6 +83,17 @@ function useAccount() {
       navigate("/");
     },
   });
+  //edit profile
+  const { mutate: editProfile } = useMutation({
+    mutationFn: editProfileApi,
+    onSuccess: () => {
+      getProfileAccount();
+      useSuccess("Edit success!");
+    },
+    onError: () => {
+      useError("Save fail!!!!");
+    },
+  });
   return {
     handleLogin,
     accountdata,
@@ -94,6 +103,7 @@ function useAccount() {
     getProfileAccount,
     logout,
     loadingPage,
+    editProfile,
   };
 }
 export default useAccount;
