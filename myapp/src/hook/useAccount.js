@@ -86,9 +86,13 @@ function useAccount() {
   //edit profile
   const { mutate: editProfile } = useMutation({
     mutationFn: editProfileApi,
-    onSuccess: () => {
-      getProfileAccount();
-      useSuccess("Edit success!");
+    onSuccess: (respone) => {
+      if (respone.result) {
+        getProfileAccount();
+        useSuccess("Edit success!");
+      } else {
+        useError("Old password not match!!!");
+      }
     },
     onError: () => {
       useError("Save fail!!!!");

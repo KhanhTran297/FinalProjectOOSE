@@ -34,7 +34,7 @@ const ChangePassword = (props) => {
   return (
     <Formik
       initialValues={{
-        oldpassword: getPassCookie(),
+        oldpassword: "",
         newpassword: "",
       }}
       onSubmit={(values) => {
@@ -50,7 +50,6 @@ const ChangePassword = (props) => {
           <Field
             name="oldpassword"
             className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
-            disabled
           ></Field>
         </div>
         <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
