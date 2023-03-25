@@ -1,10 +1,9 @@
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import React, { useEffect } from "react";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
-const GuardRoute = ({ children }) => {
+const GuardRouteLoginSignUp = ({ children }) => {
   //hooks
   const { isLoggedIn } = useCookie();
   const { profileAccount, getProfileAccount, loadingPage } = useAccount();
@@ -29,4 +28,4 @@ const GuardRoute = ({ children }) => {
   );
 };
 
-export default GuardRoute;
+export default GuardRouteLoginSignUp;

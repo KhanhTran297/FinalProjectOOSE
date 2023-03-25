@@ -1,6 +1,8 @@
 import AuthenLayout from "@/layout/AuthenLayout";
 import LoginPage from "@/pages/auth/LoginPage";
 import SignUpPage from "@/pages/auth/SignUpPage";
+import HomePage from "@/pages/main/HomePage";
+import GuardRoute from "./GuardRoute";
 
 // Xem cấu trúc routes ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -14,11 +16,11 @@ export default function init(routes) {
     children: [
       {
         path: "login",
-        element: <LoginPage />,
+        element: <LoginPage></LoginPage>,
       },
       {
         path: "signup",
-        element: <SignUpPage />,
+        element: <SignUpPage></SignUpPage>,
       },
     ],
   };
