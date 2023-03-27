@@ -3,6 +3,7 @@ import LoginPage from "@/pages/auth/LoginPage";
 import SignUpPage from "@/pages/auth/SignUpPage";
 import HomePage from "@/pages/main/HomePage";
 import GuardRoute from "./GuardRoute";
+import GuardRouteLoginSignUp from "./GuardRouteLoginSignUp";
 
 // Xem cấu trúc routes ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -16,11 +17,19 @@ export default function init(routes) {
     children: [
       {
         path: "login",
-        element: <LoginPage></LoginPage>,
+        element: (
+          <GuardRouteLoginSignUp>
+            <LoginPage></LoginPage>
+          </GuardRouteLoginSignUp>
+        ),
       },
       {
         path: "signup",
-        element: <SignUpPage></SignUpPage>,
+        element: (
+          <GuardRouteLoginSignUp>
+            <SignUpPage></SignUpPage>
+          </GuardRouteLoginSignUp>
+        ),
       },
     ],
   };

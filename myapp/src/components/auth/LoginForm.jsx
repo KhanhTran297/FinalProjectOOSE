@@ -51,27 +51,6 @@ const LoginForm = () => {
   };
   return (
     <div>
-      {/* <Formik
-        initialValues={{ username: "", password: "" }}
-        onSubmit={(values) => {
-          loginAccount({
-            username: values.username,
-            password: values.password,
-          });
-        }}
-      >
-        <Form>
-          <Field
-            name="username"
-            className=" w-full border-1 "
-            placeholder="Enter ur username"
-          ></Field>
-          <Field name="password" placeholder="Enter ur password"></Field>
-          <Button className="w-full bg-primary" type="submit">
-            Login
-          </Button>
-        </Form>
-      </Formik> */}
       <form onSubmit={handleSubmit(loginAccount)} className=" w-full ">
         <FormGroup>
           <Label htmlFor="username">Username</Label>

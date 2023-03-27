@@ -14,16 +14,18 @@ const GuardRouteLoginSignUp = ({ children }) => {
     if (isLoggedIn()) {
       if (!profileAccount?.data) {
         getProfileAccount();
+        navigate("/");
       } else {
-        return;
+        navigate("/");
       }
     } else {
-      navigate("/login");
+      return;
     }
   }, [profileAccount?.data, isLoggedIn]);
   return (
     <div className="">
-      {loadingPage ? <div>Loading</div> : <div>{children}</div>}
+      {/* {loadingPage ? <div>Loading</div> : <div>{children}</div>} */}
+      {children}
     </div>
   );
 };

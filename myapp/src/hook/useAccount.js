@@ -31,20 +31,14 @@ function useAccount() {
   } = useMutation({
     mutationFn: authLoginApi,
     onSuccess: (data) => {
-      if (data.result) {
-        removeCookie();
-        //set token to cookie
-        setCookie(data.data.token);
-
-        //Luu thong tin account vao client state
-
-        getProfileAccount();
-        // dispatch(getAccountProfileApi({ requiredToken: true }));
-        navigate("/");
-        useSuccess("Login Success!");
-      } else {
-        useError("Wrong username or password");
-      }
+      removeCookie();
+      //set token to cookie
+      setCookie(data.data.token);
+      //Luu thong tin account vao client state
+      getProfileAccount();
+      // dispatch(getAccountProfileApi({ requiredToken: true }));
+      navigate("/");
+      useSuccess("Login Success!");
     },
     onError: () => {
       useError("Wrong username or password");
@@ -58,12 +52,14 @@ function useAccount() {
   } = useQuery({
     queryKey: ["profileAccount"],
     queryFn: getAccountProfileApi,
+    enabled: false,
+    retry: 0,
     onSuccess: (profileAccount) => {
-      // console.log(profileAccount);
-      // sau Khi login thanh cong thi tien hanh get data user va luu vao client state tuc la redux
-      //luu password vao cookie
-      setPassCookie(passAcc);
       dispatch(setUser(profileAccount.data));
+    },
+    onError: () => {
+      removeCookie();
+      navigate("/login");
     },
   });
   //signup

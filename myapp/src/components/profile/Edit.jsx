@@ -31,12 +31,9 @@ const Edit = (props) => {
     let dataAccount = {
       avatar: props.dataUserAccount?.avatar,
       fullName: data?.fullname,
-      oldPassword: "2972002",
-      password: "2972002",
+      oldPassword: "123",
+      password: "123",
     };
-    console.log(dataAccount);
-    // console.log(dataAccount);
-    // console.log("hello");
     editProfile(dataAccount);
   };
   //variables

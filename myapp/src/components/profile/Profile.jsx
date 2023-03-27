@@ -50,17 +50,6 @@ const Profile = () => {
               </span>
             </i>
           </div>
-          {/* <div className="toolBox flex flex-row absolute bottom-2  ">
-            <button className=" p-[10px] bg-blue-400 mr-2 ml-2 rounded-[10px]">
-              <i class="fa-solid fa-message mr-1"></i>Send Message
-            </button>
-            <button className="p-[10px] bg-blue-400 mr-2 ml-2 rounded-[10px]">
-              Add Contact
-            </button>
-            <button className="p-[10px] bg-blue-400 mr-2 ml-2 rounded-[10px]">
-              Report User
-            </button>
-          </div> */}
           <div className="bg-img  w-full h-[80%] relative rounded-[10px]">
             <img
               src="./img/bgprofile.jpg"
@@ -71,53 +60,6 @@ const Profile = () => {
         </div>
 
         <div className="bottom ">
-          {/* <div className="title p-[10px] border-solid border-t-[1px] relative ">
-            <div className=" border-solid border-b-header border-b-[3px] w-max pb-[10px]">
-              <i class="fa-solid fa-user"></i> About
-            </div>
-          </div> */}
-          {/* <div className="content flex flex-col">
-            <div className=" pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
-              <p className=" text-[20px] font-semibold relative text-header  ">
-                Fullname:
-              </p>
-              <p className=" text-[18px] font-medium opacity-60 ">
-                {userAccount?.fullName}
-              </p>
-              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
-            </div>
-            <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
-              <p className=" text-[20px] font-semibold relative text-header ">
-                Email:{" "}
-              </p>
-              <p className=" text-[18px] font-medium opacity-60 ">
-                {userAccount?.email}
-              </p>
-              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
-            </div>
-            <div className="pt-[20px] pb-[20px]  relative border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
-              <p className=" text-[20px] font-semibold  text-header">Phone: </p>
-              <p className=" text-[18px] font-medium opacity-60 ">
-                {userAccount?.phone}
-              </p>
-              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
-            </div>
-            <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
-              <p className=" text-[20px] font-semibold  text-header">
-                Gender:{""}
-              </p>
-              <p className=" text-[18px] font-medium opacity-60  ">Male</p>
-              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
-            </div>
-            <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center ">
-              <p className=" text-[20px] font-semibold relative text-header">
-                Dob:{" "}
-              </p>
-              <p className=" text-[18px] font-medium opacity-60 ">dd/mm/yyyy</p>
-              <i class="fa-solid fa-pencil absolute right-0 translate-y-[-50%] top-[50%] cursor-pointer hover:text-red-500"></i>
-            </div>
-          </div> */}
-          {/* <IconTabs userAccount={userAccount}></IconTabs> */}
           <BasicTabs dataUserAccount={userAccount}></BasicTabs>
         </div>
       </div>

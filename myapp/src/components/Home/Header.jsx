@@ -19,7 +19,6 @@ const Header = () => {
     setUserBox((prevState) => !prevState);
   };
 
-  // console.log("Profile", profileAccount);
   useEffect(() => {
     //Neu co token trong cookie
     //Luu userdata trong global state
@@ -35,7 +34,7 @@ const Header = () => {
     // }
     //Luu userdata trong client state
     if (isLoggedIn()) {
-      //Neu chua co tai khoan trong (global state) thi refetch de lay thong tin user
+      //Neu chua co tai khoan trong (client state) thi refetch de lay thong tin user
       if (!userAccount) {
         getProfileAccount();
       } else {
