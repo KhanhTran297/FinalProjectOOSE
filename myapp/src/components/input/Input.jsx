@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useController } from "react-hook-form";
 import PropTypes from "prop-types";
 // import { withErrorBoundary } from "react-error-boundary";
 import ErrorComponent from "@/components/common/ErrorComponent";
+import { IconEyeToggle } from "../icons";
 
 const Input = (props) => {
   const {
@@ -19,6 +20,7 @@ const Input = (props) => {
     name,
     defaultValue: "",
   });
+
   return (
     <div className="relative">
       <input
@@ -35,6 +37,7 @@ const Input = (props) => {
         {...rest}
         {...field}
       />
+
       {error.length > 0 && (
         <span className="absolute text-sm font-medium pointer-events-none text-error top-2/4 -translate-y-2/4 left-6 error-input w-full">
           {error}

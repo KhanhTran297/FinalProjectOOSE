@@ -40,12 +40,6 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
   const loginAccount = (dataAccount) => {
-    // console.log(value);
-    // console.log("username:", value.username);
-    // console.log("password:", value.password);
-    // console.log(dataAccount);
-    // console.log("username:", dataAccount.username);
-    // console.log("password:", dataAccount.password);
     handleLogin(dataAccount);
     dispatch(setPass(dataAccount.password));
   };
@@ -67,7 +61,7 @@ const LoginForm = () => {
           <Input
             control={control}
             name="password"
-            type={`${showPassword ? "text" : "password"}`}
+            // type={`${showPassword ? "text" : "password"}`}
             placeholder="Enter ur password"
             error={errors.password?.message}
           >

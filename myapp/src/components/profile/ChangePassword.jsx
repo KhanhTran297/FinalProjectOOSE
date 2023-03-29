@@ -32,40 +32,45 @@ const ChangePassword = (props) => {
 
   const userAccount = selector.account;
   return (
-    <Formik
-      initialValues={{
-        oldpassword: "",
-        newpassword: "",
-      }}
-      onSubmit={(values) => {
-        handleSave(values);
-      }}
-      className="w-full"
-    >
-      <Form className="flex flex-col">
-        <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
-          <p className=" text-[20px] font-semibold  text-header">
-            Old password:{""}
-          </p>
-          <Field
-            name="oldpassword"
-            className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
-          ></Field>
-        </div>
-        <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
-          <p className=" text-[20px] font-semibold  text-header">
-            New password:{""}
-          </p>
-          <Field
-            name="newpassword"
-            className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
-          ></Field>
-        </div>
-        <Button className="w-full bg-primary mt-5" type="submit">
-          Save
-        </Button>
-      </Form>
-    </Formik>
+    <div className=" flex-1 flex-col flex  items-center">
+      <div className=" mt-20 text-[40px] text-header font-extrabold">
+        CHANGE PASSWORD
+      </div>
+      <Formik
+        initialValues={{
+          oldpassword: "",
+          newpassword: "",
+        }}
+        onSubmit={(values) => {
+          handleSave(values);
+        }}
+        className="w-full "
+      >
+        <Form className="flex flex-col flex-1 mt-16  w-full">
+          <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+            <p className=" text-[20px] font-semibold  text-header">
+              Old password:{""}
+            </p>
+            <Field
+              name="oldpassword"
+              className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
+            ></Field>
+          </div>
+          <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+            <p className=" text-[20px] font-semibold  text-header">
+              New password:{""}
+            </p>
+            <Field
+              name="newpassword"
+              className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
+            ></Field>
+          </div>
+          <Button className="w-full bg-primary mt-5" type="submit">
+            Save
+          </Button>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 

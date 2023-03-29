@@ -45,13 +45,16 @@ const Header = () => {
     }
   }, [userAccount, isLoggedIn]);
   return (
-    <div id="header" className=" mt-0 mb-0  backdrop-blur-xl shadow-2xl">
+    <div
+      id="header"
+      className=" mt-0 mb-0  backdrop-blur-xl shadow-2xl relative z-10"
+    >
       <div className="headerContainer grid grid-cols-2 pt-18 pb-18 pl-0 pr-0 w-full ">
         <div className="navBox flex items-center">
           <div className="logo mr-5 ml-5">
             <div className="logoBox w-10 h-10 rounded-full mr-5">
               <img
-                src="./img/logo1.jfif"
+                src="./img/logo.jpg"
                 alt=""
                 className="logoImg w-full h-full rounded-full"
               />

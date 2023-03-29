@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IconEyeToggle } from "../icons";
 import useAccount from "@/hook/useAccount";
+import useMyToast from "@/hook/useMyToast";
 
 const schema = yup.object({
   username: yup.string().required("This field is required"),
@@ -23,7 +24,7 @@ const schema = yup.object({
   fullname: yup.string().required("This field is required"),
   phonenumber: yup.string().required("This field is required"),
 });
-
+const { useError } = useMyToast();
 const SignUpForm = () => {
   const {
     handleSubmit,
@@ -42,17 +43,21 @@ const SignUpForm = () => {
   const { authSignup } = useAccount();
   //methods
   const handleSignUp = (value) => {
-    let data = {
-      avatarPath: "string",
-      email: value.email,
-      fullName: value.fullname,
-      kind: 1,
-      password: value.password,
-      phone: value.phonenumber,
-      status: 1,
-      username: value.username,
-    };
-    authSignup(data);
+    if (value.password == value.confirmpassword) {
+      let data = {
+        avatarPath: "string",
+        email: value.email,
+        fullName: value.fullname,
+        kind: 1,
+        password: value.password,
+        phone: value.phonenumber,
+        status: 1,
+        username: value.username,
+      };
+      authSignup(data);
+    } else {
+      useError("Confirm password is not correct");
+    }
   };
   return (
     <div>
@@ -112,7 +117,21 @@ const SignUpForm = () => {
             ></IconEyeToggle>
           </Input>
         </FormGroup>
-
+        <FormGroup>
+          <Label htmlFor="password">Confirm password</Label>
+          <Input
+            control={control}
+            name="confirmpassword"
+            type={`${showPassword ? "text" : "password"}`}
+            placeholder="confirm  password"
+            error={errors.password?.message}
+          >
+            <IconEyeToggle
+              open={showPassword}
+              onClick={handleTogglePassword}
+            ></IconEyeToggle>
+          </Input>
+        </FormGroup>
         <FormGroup>
           <Label htmlFor="phonenumber">Phonenumber</Label>
           <Input

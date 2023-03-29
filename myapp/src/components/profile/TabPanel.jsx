@@ -59,11 +59,6 @@ export default function BasicTabs(props) {
         >
           <Tab label="About" {...a11yProps(0)} className=" text-header"></Tab>
           <Tab label="Edit" {...a11yProps(1)} className=" text-header" />
-          <Tab
-            label="Change Password"
-            {...a11yProps(1)}
-            className=" text-header"
-          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -71,11 +66,6 @@ export default function BasicTabs(props) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Edit dataUserAccount={props.dataUserAccount}></Edit>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <ChangePassword
-          dataUserAccount={props.dataUserAccount}
-        ></ChangePassword>
       </TabPanel>
     </Box>
   );

@@ -23,8 +23,10 @@ const UserOptions = (props) => {
     <div className="userOptions absolute z-10 right-[24px] translate-x-0 translate-y-[10px] bg-white shadow-userOptions rounded-5">
       {props.checkAccount ? (
         <div className=" m-0 p-userOptions w-max">
-          <Link
-            to="home"
+          <div
+            onClick={() => {
+              navigate("/");
+            }}
             className="yourpage p-[10px] grid grid-cols-[auto_auto] border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >
             <img
@@ -33,14 +35,16 @@ const UserOptions = (props) => {
               alt=""
             />
             <p className=" ml-3">{props.fullname}</p>
-          </Link>
-          <Link
-            to="profile"
+          </div>
+          <div
+            onClick={() => {
+              navigate("/profile");
+            }}
             className="profile p-[10px] grid grid-cols-[20%_80%] border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer "
           >
             <i className="fa-solid fa-user-pen"></i>
             <p className=" ml-1">Profile</p>
-          </Link>
+          </div>
           <Link
             to=""
             className="bookmark p-[10px] grid grid-cols-[20%_80%] border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
