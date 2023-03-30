@@ -44,7 +44,7 @@ const Input = (props) => {
         </span>
       )}
       {children && (
-        <span className="absolute cursor-pointer select-none left top-2/4 -translate-y-2/4 w-full">
+        <span className="absolute cursor-pointer select-none left-[90%] top-2/4 -translate-y-2/4 w-full">
           {children}
         </span>
       )}

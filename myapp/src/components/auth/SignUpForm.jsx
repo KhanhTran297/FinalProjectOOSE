@@ -40,6 +40,10 @@ const SignUpForm = () => {
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
+  const [showConfirm, setShowConfirm] = useState(false);
+  const handleToggleConfirm = () => {
+    setShowConfirm(!showConfirm);
+  };
   const { authSignup } = useAccount();
   //methods
   const handleSignUp = (value) => {
@@ -122,13 +126,13 @@ const SignUpForm = () => {
           <Input
             control={control}
             name="confirmpassword"
-            type={`${showPassword ? "text" : "password"}`}
+            type={`${showConfirm ? "text" : "password"}`}
             placeholder="confirm  password"
             error={errors.password?.message}
           >
             <IconEyeToggle
-              open={showPassword}
-              onClick={handleTogglePassword}
+              open={showConfirm}
+              onClick={handleToggleConfirm}
             ></IconEyeToggle>
           </Input>
         </FormGroup>
@@ -142,19 +146,6 @@ const SignUpForm = () => {
             error={errors.email?.message}
           ></Input>
         </FormGroup>
-        {/* <div className="flex items-start mb-5 gap-x-5">
-          <Checkbox name="term" checked={acceptTerm} onClick={handleToggleTerm}>
-            <p className="flex-1 text-xs lg:text-sm text-text2 dark:text-text3">
-              I agree to the
-              <span className="underline text-secondary">
-                {" "}
-                Terms of Use
-              </span>{" "}
-              and have read and understand the
-              <span className="underline text-secondary"> Privacy policy.</span>
-            </p>
-          </Checkbox>
-        </div> */}
         <Button className="w-full bg-primary" type="submit">
           Create Account
         </Button>

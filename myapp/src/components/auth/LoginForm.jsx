@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import FormGroup from "../common/FormGroup";
-import Header from "../Home/Header";
 import { IconEyeToggle } from "../icons";
 import * as yup from "yup";
 import { Input } from "../input";
 import { Label } from "../label";
 import { Button } from "../button";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "react-query";
 import useAccount from "@/hook/useAccount";
-import { Field, Form, Formik, replace } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { setPass } from "@/redux/slice/account";
 const schema = yup.object({
@@ -80,6 +77,9 @@ const LoginForm = () => {
       </Link>
       <Link to="/signup" className="p-2 border rounded-md">
         Go to Signup
+      </Link>
+      <Link to="/forgotpassword" className="p-2 border rounded-md">
+        forgot password ?
       </Link>
       {/* <button
         onClick={() => {

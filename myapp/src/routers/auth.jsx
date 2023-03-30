@@ -1,7 +1,10 @@
+import ForgotPassword from "@/components/forgotPassword/ForgotPassword";
 import AuthenLayout from "@/layout/AuthenLayout";
+import ForgotPasswordPage from "@/pages/auth/ForgotPasswordPage";
 import LoginPage from "@/pages/auth/LoginPage";
 import SignUpPage from "@/pages/auth/SignUpPage";
 import HomePage from "@/pages/main/HomePage";
+import { element } from "prop-types";
 import GuardRoute from "./GuardRoute";
 import GuardRouteLoginSignUp from "./GuardRouteLoginSignUp";
 
@@ -30,6 +33,10 @@ export default function init(routes) {
             <SignUpPage></SignUpPage>
           </GuardRouteLoginSignUp>
         ),
+      },
+      {
+        path: "forgotpassword",
+        element: <ForgotPasswordPage></ForgotPasswordPage>,
       },
     ],
   };
