@@ -8,7 +8,7 @@ const QuestionBox = (props) => {
         <div className="userAva w-10 h-10 rounded-full border-[1px] border-solid border-[#ccc]">
           <img src={props.url} alt="" className="w-full h-full rounded-full" />
         </div>
-        <div className="userName pl-[20px] font-bold text-[14px] leading-6 tracking-[-0.2px] text-black">
+        <div className="userName pl-[20px] font-bold text-[14px] leading-6 tracking-[-0.2px] text-black cursor-pointer hover:text-userOptions">
           Kilary Kreithman
         </div>
         <div className="date absolute right-0 font-semibold text-[14px] leading-6 tracking-[-0.2px] text-[#52575c]">

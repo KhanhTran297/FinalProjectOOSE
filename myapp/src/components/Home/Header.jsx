@@ -11,7 +11,7 @@ const Header = () => {
   const { isLoggedIn } = useCookie();
   const { getProfileAccount } = useAccount();
   const selector = useSelector((state) => state.account);
-
+  const navigate = useNavigate();
   //variable
   const userAccount = selector.account;
   //method
@@ -21,18 +21,6 @@ const Header = () => {
 
   useEffect(() => {
     //Neu co token trong cookie
-    //Luu userdata trong global state
-    // if (isLoggedIn()) {
-    //   //Neu chua co tai khoan trong (global state) thi refetch de lay thong tin user
-    //   if (!profileAccount?.data) {
-    //     getProfileAccount();
-    //   } else {
-    //     setCheckAccount((checkAccount) => (checkAccount = true));
-    //   }
-    // } else {
-    //   setCheckAccount((checkAccount) => (checkAccount = false));
-    // }
-    //Luu userdata trong client state
     if (isLoggedIn()) {
       //Neu chua co tai khoan trong (client state) thi refetch de lay thong tin user
       if (!userAccount) {
@@ -49,10 +37,15 @@ const Header = () => {
       id="header"
       className=" mt-0 mb-0  backdrop-blur-xl shadow-2xl relative z-10"
     >
-      <div className="headerContainer grid grid-cols-2 pt-18 pb-18 pl-0 pr-0 w-full ">
+      <div className="headerContainer grid grid-cols-2 pt-18 pb-18 pl-0 pr-0 w-full cursor-pointer ">
         <div className="navBox flex items-center">
           <div className="logo mr-5 ml-5">
-            <div className="logoBox w-10 h-10 rounded-full mr-5">
+            <div
+              className="logoBox w-10 h-10 rounded-full mr-5"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <img
                 src="./img/logo.jpg"
                 alt=""
@@ -63,7 +56,7 @@ const Header = () => {
           <div className="Home mr-5">
             <Link
               to="/"
-              className=" no-underline text-black text-18 cursor-pointer hover:text-header"
+              className=" no-underline text-black text-18 cursor-pointer hover:text-userOptions font-semibold"
             >
               HOME
             </Link>
@@ -71,7 +64,7 @@ const Header = () => {
           <div className="Forum mr-5">
             <Link
               to="/forum"
-              className="no-underline text-black text-18 cursor-pointer hover:text-header"
+              className="no-underline text-black text-18 cursor-pointer hover:text-userOptions font-semibold"
             >
               FORUM
             </Link>
@@ -79,7 +72,7 @@ const Header = () => {
           <div className="Contact mr-5">
             <Link
               to="/contact"
-              className="no-underline text-black text-18 cursor-pointer hover:text-header"
+              className="no-underline text-black text-18 cursor-pointer hover:text-userOptions font-semibold"
             >
               CONTACT
             </Link>
@@ -94,19 +87,19 @@ const Header = () => {
                 placeholder="Search Post..."
                 required
               />
-              <i className="fa-solid fa-magnifying-glass hover:text-red-600 cursor-pointer absolute right-0 bottom-0 translate-x-[-50%] translate-y-[-80%]"></i>
+              <i className="fa-solid fa-magnifying-glass hover:text-red-600 cursor-pointer absolute right-0 bottom-0 translate-x-[-50%] translate-y-[-80%] text-[18px]"></i>
             </form>
           </div>
           <div className="iconChat ml-36">
-            <i className="fa-sharp fa-regular fa-comments hover:text-red-600 cursor-pointer"></i>
+            <i className="fa-sharp fa-regular fa-comments hover:text-red-600 cursor-pointer text-[18px]"></i>
           </div>
           <div className="iconNotification ml-36">
-            <i className="fa-regular fa-bell hover:text-red-600 cursor-pointer"></i>
+            <i className="fa-regular fa-bell hover:text-red-600 cursor-pointer text-[18px]"></i>
           </div>
 
           <div className="userBox ml-36 relative">
             <i
-              className="fa-regular fa-user hover:text-red-600 cursor-pointer mr-6"
+              className="fa-regular fa-user hover:text-red-600 cursor-pointer mr-6 text-[18px]"
               onClick={handleToggleuserBox}
             ></i>
             {userbox ? (

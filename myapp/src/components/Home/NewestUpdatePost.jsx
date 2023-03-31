@@ -4,7 +4,7 @@ const NewestUpdatePost = (props) => {
   return (
     <div className="">
       {props.position == "right" ? (
-        <div className="postContainer grid grid-cols-[30%_70%] border-b-2 border-solid border-[#ccc] p-[10px]">
+        <div className="postContainer grid grid-cols-[30%_70%] border-b-2 border-solid border-[#ccc] p-[10px] hover:opacity-60 cursor-pointer">
           <div className="imgBox relative w-full h-full  ">
             <img
               src={props.url}
@@ -35,7 +35,7 @@ const NewestUpdatePost = (props) => {
           </div>
         </div>
       ) : (
-        <div className="postContainer grid grid-rows-[70%_30%] h-full">
+        <div className="postContainer grid grid-rows-[70%_30%] h-full hover:opacity-60 cursor-pointer">
           <div className="imgBox relative w-full h-full ">
             <img
               src={props.url}

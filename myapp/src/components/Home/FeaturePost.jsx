@@ -2,11 +2,11 @@ import React from "react";
 
 const FeaturePost = () => {
   return (
-    <div className="itemFeature relative grid grid-rows-[20%_80%] h-[272px] bg-no-repeat m-[10px]">
+    <div className="itemFeature relative grid grid-rows-[20%_80%] h-[272px] bg-no-repeat m-[10px]  hover:opacity-[0.6] cursor-pointer">
       <img
         src="./img/cat.jfif"
         alt=""
-        className=" absolute w-full h-full rounded-[10px] z-[-1]"
+        className=" absolute w-full h-full rounded-[10px] z-[-1] "
       />
       <div className="titleItem grid grid-cols-[40%_60%] mt-5 mr-[10px] ml-5">
         <div className="categoryItem flex items-center">

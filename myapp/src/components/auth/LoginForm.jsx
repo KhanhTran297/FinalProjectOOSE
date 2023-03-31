@@ -42,7 +42,7 @@ const LoginForm = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit(loginAccount)} className=" w-full ">
+      <form onSubmit={handleSubmit(loginAccount)} className=" w-full relative ">
         <FormGroup>
           <Label htmlFor="username">Username</Label>
           <Input
@@ -68,19 +68,33 @@ const LoginForm = () => {
             ></IconEyeToggle>
           </Input>
         </FormGroup>
+        <div className=" mb-4 flex justify-end">
+          <Link to="/forgotpassword" className="p-2 text-blue-500  underline">
+            forgot password ?
+          </Link>
+        </div>
+
         <Button className="w-full bg-primary" type="submit">
           Login
         </Button>
       </form>
-      <Link to="/" className="p-2 border rounded-md">
+      {/* <Link to="/" className="p-2 border rounded-md">
         Go to Home Page
-      </Link>
-      <Link to="/signup" className="p-2 border rounded-md">
-        Go to Signup
-      </Link>
-      <Link to="/forgotpassword" className="p-2 border rounded-md">
-        forgot password ?
-      </Link>
+      </Link> */}
+      <div
+        className=" absolute top-4 right-4 w-[60px] h-[60px] cursor-pointer hover:w-[70px] hover:h-[70px]"
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        <img src="./img/logo.jpg  " alt="" />
+      </div>
+      <div className="mt-2">
+        <Link to="/signup" className="p-2 text-primary underline ">
+          Go to Signup
+        </Link>
+      </div>
+
       {/* <button
         onClick={() => {
           navigate("/");

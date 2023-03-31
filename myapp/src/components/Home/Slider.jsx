@@ -15,13 +15,17 @@ const Slider = () => {
           repellat repudiandae, quibusdam eaque et voluptatum possimus excepturi
           fugiat corporis dolor?
         </div>
-        <button className="btnSlider pt-[16px] pb-[16px] pr-[43px] pl-[43px] gap-[10px] border-none mt-[30px] cursor-pointer bg-white rounded-[30px]">
+        <button className="btnSlider pt-[16px] pb-[16px] pr-[43px] pl-[43px] gap-[10px] border-none mt-[30px] cursor-pointer bg-white rounded-[30px] hover:bg-userOptions hover:text-white">
           Get Started
         </button>
       </div>
       <div className="sliderImg">
         <div className="imgBox">
-          <img src="./img/slider.jpg" className=" w-full h-full" alt="" />
+          <img
+            src="./img/slider.jpg"
+            className=" w-full h-full rounded-[20px]"
+            alt=""
+          />
         </div>
       </div>
     </div>
