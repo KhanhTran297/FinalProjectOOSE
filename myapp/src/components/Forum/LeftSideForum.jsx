@@ -2,7 +2,7 @@ import React from "react";
 
 const LeftSideForum = () => {
   return (
-    <div className="w-[310px] h-auto mt-6 ml-5 ">
+    <div className=" h-auto mt-6 ml-5 ">
       <div className="h-[96px] bg-slate-200 rounded-lg flex flex-col justify-center items-center  border border-solid border-blueborder mb-4">
         <p className="text-base font-semibold text-black">Community</p>
         <p className="text-4xl font-bold text-blueborder">PARENTS</p>

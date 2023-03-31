@@ -2,7 +2,7 @@ import React from "react";
 
 const RightSideForum = () => {
   return (
-    <div className="w-[310px] h-auto mt-6 mr-5 ">
+    <div className=" h-auto mt-6 mr-5 flex place-items-center flex-col">
       <a href="" className="cursor-pointer">
         <div className="h-[200px] bg-slate-200 rounded-lg flex flex-row justify-center items-center  border border-solid border-blueborder mb-4">
           <div className="w-[60%] h-[100px]">

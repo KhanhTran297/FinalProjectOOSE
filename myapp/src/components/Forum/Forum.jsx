@@ -12,9 +12,9 @@ const Forum = () => {
   //variables
   const userAccount = selector.account;
   return (
-    <div className="flex flex-row">
+    <div className="grid grid-cols-[20%_60%_20%]">
       <LeftSideForum className="fixed"></LeftSideForum>
-      <div className="ml-2 mr-2 w-[60%] flex flex-col place-items-center justify-center">
+      <div className="ml-2 mr-2  flex flex-col place-items-center justify-center">
         <TitleForum></TitleForum>
         <CreatePost avatar={userAccount?.avatar}></CreatePost>
         <div className="">
