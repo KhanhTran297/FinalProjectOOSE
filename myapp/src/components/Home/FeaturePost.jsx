@@ -6,7 +6,7 @@ const FeaturePost = () => {
       <img
         src="./img/cat.jfif"
         alt=""
-        className=" absolute w-full h-full rounded-[10px] z-[-1] "
+        className=" absolute w-full h-full rounded-[10px] z-[-1] object-cover "
       />
       <div className="titleItem grid grid-cols-[40%_60%] mt-5 mr-[10px] ml-5">
         <div className="categoryItem flex items-center">

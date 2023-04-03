@@ -9,7 +9,7 @@ const NewestUpdatePost = (props) => {
             <img
               src={props.url}
               alt=""
-              className="imgPost w-full h-full absolute rounded-[10px]"
+              className="imgPost w-full h-full absolute rounded-[10px] object-cover"
             />
           </div>
           <div className="postContentContainer grid grid-rows-[10%_90%] pl-[10px]">
