@@ -33,13 +33,12 @@ function useAccount() {
     onSuccess: (data) => {
       removeCookie();
       //set token to cookie
-      console.log(data.data.token);
       setCookie(data.data.token);
       //Luu thong tin account vao client state
       getProfileAccount();
       // dispatch(getAccountProfileApi({ requiredToken: true }));
       navigate("/");
-      useSuccess("Login Success!");
+      // useSuccess("Login Success!");
     },
     onError: () => {
       useError("Wrong username or password");
@@ -76,7 +75,7 @@ function useAccount() {
     mutationFn: authLogoutApi,
     onSuccess: () => {
       removeCookie();
-      useSuccess("Logout success!");
+      // useSuccess("Logout success!");
       navigate("/");
     },
   });

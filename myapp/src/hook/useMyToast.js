@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 function useMyToast() {
   const useSuccess = (content) => {
     toast.success(content, {
@@ -10,6 +10,8 @@ function useMyToast() {
       draggable: true,
       progress: undefined,
       theme: "light",
+      preventDuplicates: true,
+      preventOpenDuplicates: true,
     });
   };
   const useError = (content) => {
@@ -22,6 +24,7 @@ function useMyToast() {
       draggable: true,
       progress: undefined,
       theme: "light",
+      preventDuplicates: true,
     });
   };
   return { useSuccess, useError };

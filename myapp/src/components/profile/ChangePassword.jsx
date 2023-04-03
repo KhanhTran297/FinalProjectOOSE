@@ -40,48 +40,20 @@ const ChangePassword = (props) => {
   });
   //hooks
   const selector = useSelector((state) => state.account);
-  const pass = selector.pass;
   const { editProfile } = useAccount();
   const { getPassCookie } = useCookie();
-  //methods
-  // const handleSave = (data) => {
-  //   let dataAccount = {
-  //     avatar: props.dataUserAccount?.avatar,
-  //     fullName: props.dataUserAccount?.fullName,
-  //     oldPassword: data.oldpassword,
-  //     password: data.newpassword,
-  //   };
-  //   // console.log(dataAccount);
-  //   // console.log("hello");
-  //   editProfile(dataAccount);
-  // };
-  const handleSave = (data) => {
-    if (data.newpassword == data.confirmnew) {
-      let data = {
-        avatar: props.dataUserAccount?.avatar,
-        fullName: props.dataUserAccount?.fullName,
-        oldPassword: data.oldpassword,
-        password: data.newpassword,
-      };
-      editProfile(data);
-    }
-  };
   //variables
-  //hook
-  // const [showOldPassword, setShowOldPassword] = useState(false);
-  // const handleToggleOldPassword = () => {
-  //   setShowOldPassword(!showOldPassword);
-  // };
-  // const [showNewPassword, setShowNewPassword] = useState(false);
-  // const handleToggleNewPassword = () => {
-  //   setShowNewPassword(!showNewPassword);
-  // };
-  // const [showConfirmNew, setShowConfirmNew] = useState(false);
-  // const handleToggleConfirmNew = () => {
-  //   setShowConfirmNew(!showConfirmNew);
-  // };
-
-  const userAccount = selector.account;
+  const accountdata = selector.account;
+  //methods
+  const handleSave = (data) => {
+    let newdata = {
+      avatar: accountdata?.avatar,
+      fullName: accountdata?.fullName,
+      oldPassword: data.oldpassword,
+      password: data.newpassword,
+    };
+    editProfile(newdata);
+  };
   return (
     <div className=" flex-1 flex-col flex  items-center">
       <div className=" mt-20 text-[40px] text-header font-extrabold">

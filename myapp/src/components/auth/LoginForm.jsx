@@ -39,7 +39,6 @@ const LoginForm = () => {
   const loginAccount = (dataAccount) => {
     handleLogin(dataAccount);
     dispatch(setPass(dataAccount.password));
-    // console.log(dataAccount);
   };
   return (
     <div>
