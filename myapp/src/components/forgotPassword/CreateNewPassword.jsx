@@ -13,8 +13,14 @@ import { useDispatch, useSelector } from "react-redux";
 import useMyToast from "@/hook/useMyToast";
 
 const schema = yup.object({
-  newpassword: yup.string().required("This field is required"),
-  confirmpassword: yup.string().required("this field is required"),
+  newpassword: yup
+    .string()
+    .required("This field is required")
+    .min(8, "Password must be 8 character "),
+  confirmpassword: yup
+    .string()
+    .required("this field is required")
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 const CreateNewPassword = () => {
   const {

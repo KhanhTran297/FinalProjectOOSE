@@ -7,6 +7,7 @@ import HomePage from "@/pages/main/HomePage";
 import { element } from "prop-types";
 import GuardRoute from "./GuardRoute";
 import GuardRouteLoginSignUp from "./GuardRouteLoginSignUp";
+import CreateNewPasswordPage from "@/pages/auth/CreateNewPasswordPage";
 
 // Xem cấu trúc routes ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -22,7 +23,7 @@ export default function init(routes) {
         path: "login",
         element: (
           <GuardRouteLoginSignUp>
-            <LoginPage></LoginPage>
+            <LoginPage />
           </GuardRouteLoginSignUp>
         ),
       },
@@ -30,13 +31,17 @@ export default function init(routes) {
         path: "signup",
         element: (
           <GuardRouteLoginSignUp>
-            <SignUpPage></SignUpPage>
+            <SignUpPage />
           </GuardRouteLoginSignUp>
         ),
       },
       {
         path: "forgotpassword",
-        element: <ForgotPasswordPage></ForgotPasswordPage>,
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: "createnewpassword",
+        element: <CreateNewPasswordPage />,
       },
     ],
   };

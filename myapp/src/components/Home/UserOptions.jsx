@@ -25,7 +25,7 @@ const UserOptions = (props) => {
         <div className=" m-0 p-userOptions w-max">
           <div
             onClick={() => {
-              navigate("/");
+              navigate("/personal");
             }}
             className="yourpage p-[10px] grid grid-cols-[auto_auto] border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >

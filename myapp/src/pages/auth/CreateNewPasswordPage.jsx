@@ -1,9 +1,7 @@
 import CreateNewPassword from "@/components/forgotPassword/CreateNewPassword";
-import ForgotPassword from "@/components/forgotPassword/ForgotPassword";
-import React, { useState } from "react";
-import { set } from "react-hook-form";
+import React from "react";
 
-const ForgotPasswordPage = () => {
+const CreateNewPasswordPage = () => {
   return (
     <div className="bg-slate-500 h-screen flex place-items-center justify-center">
       <div className=" p-4 w-[500px] bg-white rounded-[10px]">
@@ -12,13 +10,13 @@ const ForgotPasswordPage = () => {
         {/* <Outlet></Outlet> */}
         <div>
           <h1 className="mb-1 text-lg font-semibold text-center lg:text-xl lg:mb-3 text-text1 dark:text-white">
-            Forgot password
+            Create new password
           </h1>
-          <ForgotPassword />
+          <CreateNewPassword />
         </div>
       </div>
     </div>
   );
 };
 
-export default ForgotPasswordPage;
+export default CreateNewPasswordPage;

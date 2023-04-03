@@ -33,6 +33,7 @@ function useAccount() {
     onSuccess: (data) => {
       removeCookie();
       //set token to cookie
+      console.log(data.data.token);
       setCookie(data.data.token);
       //Luu thong tin account vao client state
       getProfileAccount();
@@ -67,7 +68,7 @@ function useAccount() {
     mutationFn: SignUpApi,
     onSuccess: () => {
       useSuccess("Sign up success!");
-      navigate("/");
+      navigate("/login");
     },
   });
   //logout

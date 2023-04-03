@@ -5,6 +5,8 @@ import HomePage from "@/pages/main/HomePage";
 import ProfilePage from "@/pages/main/ProfilePage";
 import { element } from "prop-types";
 import GuardRoute from "./GuardRoute";
+import BlogPage from "@/pages/main/BlogPage";
+import PersonalPage from "@/pages/main/PersonalPage";
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -18,8 +20,8 @@ export default function init(routes) {
         element: <HomePage />,
       },
       {
-        path: "contact",
-        element: <ContactPage />,
+        path: "blog",
+        element: <BlogPage />,
       },
       {
         path: "profile",
@@ -32,6 +34,14 @@ export default function init(routes) {
       {
         path: "forum",
         element: <ForumPage></ForumPage>,
+      },
+      {
+        path: "personal",
+        element: (
+          <GuardRoute>
+            <PersonalPage />
+          </GuardRoute>
+        ),
       },
     ],
   };

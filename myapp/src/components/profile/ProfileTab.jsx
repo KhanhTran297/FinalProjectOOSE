@@ -7,7 +7,7 @@ const ProfileTab = (props) => {
       <div className="top flex flex-col  relative">
         <div className="username flex flex-row items-center">
           <p className="text-[38px] font-semibold pl-[10px]">
-            {props.userAccount?.username}
+            {props.userAccount?.fullName}
           </p>
           <i className="fa-solid fa-location-dot ml-[12px] text-[12px] opacity-60">
             {" "}
@@ -26,7 +26,7 @@ const ProfileTab = (props) => {
       </div>
 
       <div className="bottom mt-5 ">
-        <BasicTabs dataUserAccount={props.userAccount}></BasicTabs>
+        <BasicTabs dataUserAccount={props.userAccount} />
       </div>
     </div>
   );

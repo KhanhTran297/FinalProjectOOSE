@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPass } from "@/redux/slice/account";
 const schema = yup.object({
   username: yup.string().required("This field is required"),
-  password: yup.string().required("this field is required"),
+  password: yup.string().required("This field is required"),
 });
 const LoginForm = () => {
   const {
@@ -39,6 +39,7 @@ const LoginForm = () => {
   const loginAccount = (dataAccount) => {
     handleLogin(dataAccount);
     dispatch(setPass(dataAccount.password));
+    // console.log(dataAccount);
   };
   return (
     <div>
@@ -58,7 +59,7 @@ const LoginForm = () => {
           <Input
             control={control}
             name="password"
-            // type={`${showPassword ? "text" : "password"}`}
+            type={`${showPassword ? "text" : "password"}`}
             placeholder="Enter ur password"
             error={errors.password?.message}
           >

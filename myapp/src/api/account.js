@@ -13,8 +13,8 @@ export const getAccountProfileApi = () => {
   return useGet({ url, requiredToken: true });
 };
 export const SignUpApi = (params) => {
-  const url = "/account/create_admin";
-  return usePost({ url, requiredToken: true, params });
+  const url = "accounts/save-user";
+  return usePost({ url, params });
 };
 //logout
 export const authLogoutApi = () => {

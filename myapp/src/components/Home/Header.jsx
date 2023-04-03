@@ -71,10 +71,10 @@ const Header = () => {
           </div>
           <div className="Contact mr-5">
             <Link
-              to="/contact"
+              to="/blog"
               className="no-underline text-black text-18 cursor-pointer hover:text-userOptions font-semibold"
             >
-              CONTACT
+              BLOG
             </Link>
           </div>
         </div>

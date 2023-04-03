@@ -12,17 +12,25 @@ import useAccount from "@/hook/useAccount";
 import useMyToast from "@/hook/useMyToast";
 
 const schema = yup.object({
-  username: yup.string().required("This field is required"),
-  email: yup
+  ac_dob: yup.string().required("This field is required"),
+  ac_email: yup
     .string()
     .email("Invalid email address")
     .required("This field is required"),
-  password: yup
+  ac_password: yup
     .string()
     .required("This field is required")
     .min(8, "Password must be 8 character "),
-  fullname: yup.string().required("This field is required"),
-  phonenumber: yup.string().required("This field is required"),
+  ac_confirmpassword: yup
+    .string()
+    .required("This field is required")
+    .oneOf([yup.ref("ac_password"), null], "Passwords must match"),
+
+  ac_username: yup.string().required("This field is required"),
+  ac_phone: yup
+    .string()
+    .required("This field is required")
+    .matches(/((09|03|07|08|05)+([0-9]{8})\b)/g, "Invalid phone format"),
 });
 const { useError } = useMyToast();
 const SignUpForm = () => {
@@ -47,21 +55,7 @@ const SignUpForm = () => {
   const { authSignup } = useAccount();
   //methods
   const handleSignUp = (value) => {
-    if (value.password == value.confirmpassword) {
-      let data = {
-        avatarPath: "string",
-        email: value.email,
-        fullName: value.fullname,
-        kind: 1,
-        password: value.password,
-        phone: value.phonenumber,
-        status: 1,
-        username: value.username,
-      };
-      authSignup(data);
-    } else {
-      useError("Confirm password is not correct");
-    }
+    authSignup(value);
   };
   return (
     <div>
@@ -71,49 +65,60 @@ const SignUpForm = () => {
           Login
         </Link>
       </p>
-      <button className="flex items-center justify-center w-full py-4 mb-5 text-base font-semibold border gap-x-3 border-strock rounded-xl text-text2 dark:text-white dark:border-darkStroke">
+      <button className="flex items-center justify-center w-full py-4 mb-5 text-xl font-semibold border gap-x-3 border-strock rounded-xl text-text2 dark:text-white dark:border-darkStroke">
         {/* <img srcSet="/icon-google.png 2x" alt="icon-google" /> */}
         <span>Sign up with google</span>
       </button>
       <form onSubmit={handleSubmit(handleSignUp)} className=" w-full ">
         <FormGroup>
-          <Label htmlFor="fullname">Fullname</Label>
+          <Label htmlFor="ac_username">Fullname</Label>
           <Input
             control={control}
-            name="fullname"
-            type="fullname"
+            name="ac_username"
+            type="ac_username"
             placeholder="Tran Minh Gia Khanh"
-            error={errors.email?.message}
+            error={errors.ac_username?.message}
           ></Input>
         </FormGroup>
+
         <FormGroup>
-          <Label htmlFor="username">Username</Label>
+          <Label htmlFor="ac_email">Email</Label>
           <Input
             control={control}
-            name="username"
-            type="username"
-            placeholder="AnhBui"
-            error={errors.name?.message}
-          ></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            control={control}
-            name="email"
-            type="email"
+            name="ac_email"
+            type="ac_email"
             placeholder="example@gmail.com"
-            error={errors.email?.message}
+            error={errors.ac_email?.message}
+          ></Input>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="ac_phone">Phonenumber</Label>
+          <Input
+            control={control}
+            name="ac_phone"
+            type="ac_phone"
+            placeholder="xxx-xxx-xxx"
+            error={errors.ac_phone?.message}
+          ></Input>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="ac_dob">Date of birth</Label>
+          <Input
+            control={control}
+            name="ac_dob"
+            type="ac_dob"
+            placeholder="yyyy-mm-dd"
+            error={errors.ac_dob?.message}
           ></Input>
         </FormGroup>
         <FormGroup>
           <Label htmlFor="password">Password</Label>
           <Input
             control={control}
-            name="password"
+            name="ac_password"
             type={`${showPassword ? "text" : "password"}`}
             placeholder="Create a password"
-            error={errors.password?.message}
+            error={errors.ac_password?.message}
           >
             <IconEyeToggle
               open={showPassword}
@@ -125,10 +130,10 @@ const SignUpForm = () => {
           <Label htmlFor="password">Confirm password</Label>
           <Input
             control={control}
-            name="confirmpassword"
+            name="ac_confirmpassword"
             type={`${showConfirm ? "text" : "password"}`}
             placeholder="confirm  password"
-            error={errors.password?.message}
+            error={errors.ac_confirmpassword?.message}
           >
             <IconEyeToggle
               open={showConfirm}
@@ -136,17 +141,7 @@ const SignUpForm = () => {
             ></IconEyeToggle>
           </Input>
         </FormGroup>
-        <FormGroup>
-          <Label htmlFor="phonenumber">Phonenumber</Label>
-          <Input
-            control={control}
-            name="phonenumber"
-            type="phonenumber"
-            placeholder="xxx-xxx-xxx"
-            error={errors.email?.message}
-          ></Input>
-        </FormGroup>
-        <Button className="w-full bg-primary" type="submit">
+        <Button className="w-full bg-primary mt-12" type="submit">
           Create Account
         </Button>
       </form>
