@@ -1,13 +1,10 @@
 import React, { Fragment, useState } from "react";
+import useClickOutSide from "@/hook/useClickOutSide";
 import Report from "../Modal/Report";
 
+
 const HeaderPost = (props) => {
-  //hooks
-  const [postBox, setPostBox] = useState(false);
-  //method
-  const handleTogglePostBox = () => {
-    setPostBox((prevState) => !prevState);
-  };
+  const {show,setShow,nodeRef} = useClickOutSide();
   const [showReport, setShowReport] = useState(false);
   return (
     <Fragment>
@@ -33,12 +30,12 @@ const HeaderPost = (props) => {
         </a>
 
         <span className="text-base font-semibold">{props.username}</span>
-        <span className="text-base font-normal text-slate-400 ml-[65%]">
+        <span className="text-base font-normal text-slate-400 ml-[75%]">
           7 days
         </span>
-        <div className="items-center ml-4 ">
+        <div className="items-center ml-4 " ref={nodeRef}>
           <div className="">
-            <button onClick={handleTogglePostBox}>
+            <button onClick={() => setShow(!show)}>
               <svg
                 fill="#000000"
                 width="24"
@@ -73,7 +70,7 @@ const HeaderPost = (props) => {
               </svg>
             </button>
 
-            {postBox ? (
+            {show ? (
               <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
                 <button
                   className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"

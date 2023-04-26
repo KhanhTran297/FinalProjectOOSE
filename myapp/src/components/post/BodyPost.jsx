@@ -6,8 +6,8 @@ import TitlePost from "./TitlePost";
 const BodyPost = () => {
   return (
     <div className="p-4">
-      <TitlePost></TitlePost>
-      <ContentBody></ContentBody>
+      <div className="text-2xl font-semibold">This is title</div>
+      <ReadMoreReadLess limit={200}>Hôm nay trời đẹp</ReadMoreReadLess>
       <Comment></Comment>
     </div>
   );

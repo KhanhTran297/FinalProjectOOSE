@@ -44,7 +44,7 @@ const CreatePostDetail = ({ open = false, handleClose = () => {} }) => {
           <div>
             <div className="pt-3  pl-6 pr-6 flex ">
               <span className="w-full text-lg font-medium  text-blue-500">
-                Tạo bài chia sẻ
+                Create a post to share
               </span>
               <span
                 className="absolute top-8 right-8 flex items-center justify-center w-10 h-10 p-1  cursor-pointer -translate-y-2/4 translate-x-2/4
@@ -64,18 +64,7 @@ const CreatePostDetail = ({ open = false, handleClose = () => {} }) => {
                   />
                 </svg>
               </span>
-              <div className="absolute left-[25px] top-10 font-bold   text-blue-500">
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={auth}
-                      onChange={handleChange}
-                      aria-label="login switch"
-                    />
-                  }
-                  label={auth ? "Mọi Người" : "Chuyên gia"}
-                />
-              </div>
+              
             </div>
           </div>
           <div className="w-full  flex relative mt-14 ml-2 z-0">

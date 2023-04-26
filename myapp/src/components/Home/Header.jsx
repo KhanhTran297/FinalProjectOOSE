@@ -4,21 +4,18 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import UserOptions from "./UserOptions";
+import useClickOutSide from "@/hook/useClickOutSide";
 const Header = () => {
   //hooks
-  const [userbox, setUserBox] = useState(false);
   const [checkAccount, setCheckAccount] = useState(false);
   const { isLoggedIn } = useCookie();
   const { getProfileAccount } = useAccount();
   const selector = useSelector((state) => state.account);
   const navigate = useNavigate();
+  const {show,setShow,nodeRef} = useClickOutSide();
   //variable
   const userAccount = selector.account;
-  //method
-  const handleToggleuserBox = () => {
-    setUserBox((prevState) => !prevState);
-  };
-
+  
   useEffect(() => {
     //Neu co token trong cookie
     if (isLoggedIn()) {
@@ -97,16 +94,16 @@ const Header = () => {
             <i className="fa-regular fa-bell hover:text-red-600 cursor-pointer text-[18px]"></i>
           </div>
 
-          <div className="userBox ml-36 relative">
+          <div className="userBox ml-36 relative" ref={nodeRef}>
             <i
               className="fa-regular fa-user hover:text-red-600 cursor-pointer mr-6 text-[18px]"
-              onClick={handleToggleuserBox}
+              onClick={() => setShow(!show)}
             ></i>
-            {userbox ? (
+            {show ? (
               <UserOptions
                 fullname={userAccount?.fullName}
                 avatar={userAccount?.avatar}
-                check={userbox}
+                check={show}
                 checkAccount={checkAccount}
               ></UserOptions>
             ) : (
