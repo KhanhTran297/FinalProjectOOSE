@@ -1,7 +1,7 @@
 import React from "react";
 import Comment from "../reply/Comment";
-import ContentBody from "./ContentBody";
-import TitlePost from "./TitlePost";
+import ReadMoreReadLess from "./ReadMoreReadLess";
+
 
 const BodyPost = () => {
   return (

@@ -101,8 +101,8 @@ const Header = () => {
             ></i>
             {show ? (
               <UserOptions
-                fullname={userAccount?.fullName}
-                avatar={userAccount?.avatar}
+                fullname={userAccount?.userFullName}
+                avatar={userAccount?.userAvatar}
                 check={show}
                 checkAccount={checkAccount}
               ></UserOptions>
