@@ -36,29 +36,29 @@ const Report = ({ open = false, handleClose = () => {} }) => {
         </span>
         <form action="" className="flex flex-col gap-2 mb-5">
           <span className="text-lg font-medium text-center text-blueborder">
-            Báo cáo nội dung
+            Content Report
           </span>
           <div className="flex">
-            <p className="text-lg font-medium text-blueborder mr-2">Lý do:</p>
+            <p className="text-lg font-medium text-blueborder mr-2">Reason:</p>
             <select className=" border-2 border-gray-300 rounded-lg h-10 w-[80%] focus:border-blue-500">
               <option selected value="reason">
-                Lý do
+                Reason
               </option>
-              <option value="content">Nội dung vi phạm nội quy</option>
+              <option value="content">Content that violates the rules</option>
               <option value="vocabulary">
-                Từ ngữ không tinh tế hay thô tục
+                Words are not subtle or vulgar
               </option>
               <option value="spam">Spam</option>
             </select>
           </div>
           <div className="flex">
             <p className="text-lg font-medium text-blueborder mr-2 mb-5">
-              Khác:
+              Others:
             </p>
             <input className="p-3 border-2 border-gray-300 rounded-md outline-none ml-1 focus:border-blue-500 h-10 w-[80%] float-left overscroll-auto"></input>
           </div>
           <Button variant="contained" endIcon={<SendIcon />}>
-            Gửi
+            Send
           </Button>
         </form>
       </div>
