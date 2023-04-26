@@ -5,15 +5,15 @@ import { instance } from "./instance";
 const { getCookie } = useCookie();
 const { useGet, usePost, useEdit } = useCallApi();
 export const authLoginApi = (params) => {
-  const url = "/account/login";
+  const url = "/appi/token";
   return usePost({ url, params });
 };
 export const getAccountProfileApi = () => {
-  const url = "/account/profile";
+  const url = "/v1/user/profile";
   return useGet({ url, requiredToken: true });
 };
 export const SignUpApi = (params) => {
-  const url = "accounts/save-user";
+  const url = "/v1/user/register";
   return usePost({ url, params });
 };
 //logout

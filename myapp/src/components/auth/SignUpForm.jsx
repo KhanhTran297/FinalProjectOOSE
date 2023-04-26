@@ -12,22 +12,22 @@ import useAccount from "@/hook/useAccount";
 import useMyToast from "@/hook/useMyToast";
 
 const schema = yup.object({
-  ac_dob: yup.string().required("This field is required"),
-  ac_email: yup
+  userDayOfBirth: yup.string().required("This field is required"),
+  userEmail: yup
     .string()
     .email("Invalid email address")
     .required("This field is required"),
-  ac_password: yup
+  userPassword: yup
     .string()
     .required("This field is required")
     .min(8, "Password must be 8 character "),
-  ac_confirmpassword: yup
-    .string()
-    .required("This field is required")
-    .oneOf([yup.ref("ac_password"), null], "Passwords must match"),
+  // ac_confirmpassword: yup
+  //   .string()
+  //   .required("This field is required")
+  //   .oneOf([yup.ref("ac_password"), null], "Passwords must match"),
 
-  ac_username: yup.string().required("This field is required"),
-  ac_phone: yup
+  userFullName: yup.string().required("This field is required"),
+  userPhone: yup
     .string()
     .required("This field is required")
     .matches(/((09|03|07|08|05)+([0-9]{8})\b)/g, "Invalid phone format"),
@@ -55,7 +55,11 @@ const SignUpForm = () => {
   const { authSignup } = useAccount();
   //methods
   const handleSignUp = (value) => {
-    authSignup(value);
+    var userDayOfBirth=value.userDayOfBirth+" 00:00:00"
+    console.log("string ne", userDayOfBirth);
+    var data={userAvatar: "https://i.pinimg.com/236x/19/b8/d6/19b8d6e9b13eef23ec9c746968bb88b1.jpg",userDayOfBirth:(value.userDayOfBirth+" 00:00:00") ,...value}
+    console.log("value ne:", data);
+    authSignup(data);
   };
   return (
     <div>
@@ -71,54 +75,54 @@ const SignUpForm = () => {
       </button>
       <form onSubmit={handleSubmit(handleSignUp)} className=" w-full ">
         <FormGroup>
-          <Label htmlFor="ac_username">Fullname</Label>
+          <Label htmlFor="userFullName">Fullname</Label>
           <Input
             control={control}
-            name="ac_username"
-            type="ac_username"
+            name="userFullName"
+            type="userFullName"
             placeholder="Tran Minh Gia Khanh"
-            error={errors.ac_username?.message}
+            error={errors.userFullName?.message}
           ></Input>
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="ac_email">Email</Label>
+          <Label htmlFor="userEmail">Email</Label>
           <Input
             control={control}
-            name="ac_email"
-            type="ac_email"
+            name="userEmail"
+            type="userEmail"
             placeholder="example@gmail.com"
-            error={errors.ac_email?.message}
+            error={errors.userEmail?.message}
           ></Input>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="ac_phone">Phonenumber</Label>
+          <Label htmlFor="userPhone">Phonenumber</Label>
           <Input
             control={control}
-            name="ac_phone"
-            type="ac_phone"
+            name="userPhone"
+            type="userPhone"
             placeholder="xxx-xxx-xxx"
-            error={errors.ac_phone?.message}
+            error={errors.userPhone?.message}
           ></Input>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="ac_dob">Date of birth</Label>
+          <Label htmlFor="userDayOfBirth">Date of birth</Label>
           <Input
             control={control}
-            name="ac_dob"
-            type="ac_dob"
+            name="userDayOfBirth"
+            type="userDayOfBirth"
             placeholder="yyyy-mm-dd"
-            error={errors.ac_dob?.message}
+            error={errors.userDayOfBirth?.message}
           ></Input>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="userPassword">Password</Label>
           <Input
             control={control}
-            name="ac_password"
+            name="userPassword"
             type={`${showPassword ? "text" : "password"}`}
             placeholder="Create a password"
-            error={errors.ac_password?.message}
+            error={errors.userPassword?.message}
           >
             <IconEyeToggle
               open={showPassword}
@@ -126,7 +130,7 @@ const SignUpForm = () => {
             ></IconEyeToggle>
           </Input>
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label htmlFor="password">Confirm password</Label>
           <Input
             control={control}
@@ -140,7 +144,7 @@ const SignUpForm = () => {
               onClick={handleToggleConfirm}
             ></IconEyeToggle>
           </Input>
-        </FormGroup>
+        </FormGroup> */}
         <Button className="w-full bg-primary mt-12" type="submit">
           Create Account
         </Button>
