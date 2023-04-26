@@ -31,6 +31,7 @@ function useAccount() {
   } = useMutation({
     mutationFn: authLoginApi,
     onSuccess: (data) => {
+      console.log("respone login ne:", data.data);
       removeCookie();
       //set token to cookie
       setCookie(data.data.token);

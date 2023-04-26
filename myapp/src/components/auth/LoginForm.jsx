@@ -12,7 +12,7 @@ import useAccount from "@/hook/useAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { setPass } from "@/redux/slice/account";
 const schema = yup.object({
-  username: yup.string().required("This field is required"),
+  email: yup.string().required("This field is required"),
   password: yup.string().required("This field is required"),
 });
 const LoginForm = () => {
@@ -38,19 +38,19 @@ const LoginForm = () => {
   };
   const loginAccount = (dataAccount) => {
     handleLogin(dataAccount);
-    dispatch(setPass(dataAccount.password));
+    // dispatch(setPass(dataAccount.password));
   };
   return (
     <div>
       <form onSubmit={handleSubmit(loginAccount)} className=" w-full relative ">
         <FormGroup>
-          <Label htmlFor="username">Username</Label>
+          <Label htmlFor="username">Email</Label>
           <Input
             control={control}
-            name="username"
-            type="username"
-            placeholder="Enter ur username"
-            error={errors.username?.message}
+            name="email"
+            type="email"
+            placeholder="Enter ur email"
+            error={errors.email?.message}
           ></Input>
         </FormGroup>
         <FormGroup>
