@@ -55,10 +55,10 @@ const SignUpForm = () => {
   const { authSignup } = useAccount();
   //methods
   const handleSignUp = (value) => {
-    var userDayOfBirth=value.userDayOfBirth+" 00:00:00"
-    console.log("string ne", userDayOfBirth);
-    var data={userAvatar: "https://i.pinimg.com/236x/19/b8/d6/19b8d6e9b13eef23ec9c746968bb88b1.jpg",userDayOfBirth:(value.userDayOfBirth+" 00:00:00") ,...value}
-    console.log("value ne:", data);
+    // var userDayOfBirth=value.userDayOfBirth+" 00:00:00"
+    // console.log("string ne", userDayOfBirth);
+    value.userDayOfBirth=value.userDayOfBirth+" 00:00:00"
+    var data={userAvatar: "https://i.pinimg.com/236x/19/b8/d6/19b8d6e9b13eef23ec9c746968bb88b1.jpg",...value}
     authSignup(data);
   };
   return (

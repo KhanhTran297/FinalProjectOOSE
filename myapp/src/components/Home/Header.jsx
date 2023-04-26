@@ -18,7 +18,6 @@ const Header = () => {
   const handleToggleuserBox = () => {
     setUserBox((prevState) => !prevState);
   };
-
   useEffect(() => {
     //Neu co token trong cookie
     if (isLoggedIn()) {
@@ -104,8 +103,8 @@ const Header = () => {
             ></i>
             {userbox ? (
               <UserOptions
-                fullname={userAccount?.fullName}
-                avatar={userAccount?.avatar}
+                fullname={userAccount?.userFullName}
+                avatar={userAccount?.userAvatar}
                 check={userbox}
                 checkAccount={checkAccount}
               ></UserOptions>

@@ -5,7 +5,7 @@ import { instance } from "./instance";
 const { getCookie } = useCookie();
 const { useGet, usePost, useEdit } = useCallApi();
 export const authLoginApi = (params) => {
-  const url = "/appi/token";
+  const url = "/api/token";
   return usePost({ url, params });
 };
 export const getAccountProfileApi = () => {
