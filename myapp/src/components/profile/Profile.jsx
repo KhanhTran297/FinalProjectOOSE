@@ -60,7 +60,7 @@ const Profile = () => {
         <div className="imgAvaContainer flex justify-center items-center flex-col border-solid ">
           <div className="imgBox h-[80%] w-[70%] rounded-full flex flex-col justify-center">
             <img
-              src={userAccount?.avatar}
+              src={userAccount?.userAvatar}
               alt=""
               className=" w-full h-full rounded-full shadow-2xl"
             />
