@@ -23,6 +23,11 @@ export const authLogoutApi = () => {
 };
 //edit
 export const editProfileApi = (params) => {
-  const url = "/account/update_profile";
+  const url = "/v1/user/update";
+  return useEdit({ url, requiredToken: true, params });
+};
+//changePassword
+export const changePasswordApi = (params) => {
+  const url = "/v1/account/change-password";
   return useEdit({ url, requiredToken: true, params });
 };

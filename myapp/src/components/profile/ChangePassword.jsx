@@ -12,10 +12,11 @@ import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import { useState } from "react";
 import { IconEyeToggle } from "../icons";
+import { changePasswordApi } from "@/api/account";
 
 const schema = yup.object({
   oldpassword: yup.string().required("This field is required"),
-  newpassword: yup
+  newPassword: yup
     .string()
     .notOneOf(
       [yup.ref("oldpassword"), null],
@@ -26,9 +27,10 @@ const schema = yup.object({
 
   confirmnew: yup
     .string()
-    .oneOf([yup.ref("newpassword"), null], "New Passwords must match")
+    .oneOf([yup.ref("newPassword"), null], "New Passwords must match")
     .required("This field is required"),
 });
+
 const ChangePassword = (props) => {
   const {
     handleSubmit,
@@ -40,19 +42,22 @@ const ChangePassword = (props) => {
   });
   //hooks
   const selector = useSelector((state) => state.account);
-  const { editProfile } = useAccount();
+  const { changePassword } = useAccount();
   const { getPassCookie } = useCookie();
   //variables
   const accountdata = selector.account;
   //methods
+
   const handleSave = (data) => {
-    let newdata = {
-      avatar: accountdata?.avatar,
-      fullName: accountdata?.fullName,
-      oldPassword: data.oldpassword,
-      password: data.newpassword,
-    };
-    editProfile(newdata);
+    // let newdata = {
+    //   avatar: accountdata?.avatar,
+    //   fullName: accountdata?.fullName,
+    //   oldPassword: data.oldpassword,
+    //   password: data.newpassword,
+    // };
+    var newPass = { newPassword: data.newPassword };
+    console.log(data.newPassword);
+    changePassword(newPass);
   };
   return (
     <div className=" flex-1 flex-col flex  items-center">
@@ -75,8 +80,8 @@ const ChangePassword = (props) => {
             <Label htmlFor="newpassword">New Password</Label>
             <Input
               control={control}
-              name="newpassword"
-              type="newpassword"
+              name="newPassword"
+              type="newPassword"
               placeholder="New password"
               error={errors.newpassword?.message}
             ></Input>

@@ -14,7 +14,8 @@ const UserOptions = (props) => {
   let check = props.check;
   //methods
   const handleLogout = () => {
-    logout();
+    // logout();
+    removeCookie();
   };
   const handlePage = (page) => {
     navigate(page);
