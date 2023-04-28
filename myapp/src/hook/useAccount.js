@@ -1,6 +1,7 @@
 import {
   authLoginApi,
   authLogoutApi,
+  changePasswordApi,
   editProfileApi,
   getAccountProfileApi,
   SignUpApi,
@@ -87,11 +88,21 @@ function useAccount() {
         getProfileAccount();
         useSuccess("Edit success!");
       } else {
-        useError("Old password not match!!!");
+        useError("Edit fail");
       }
     },
     onError: () => {
       useError("Save fail!!!!");
+    },
+  });
+  //change password
+  const { mutate: changePassword } = useMutation({
+    mutationFn: changePasswordApi,
+    onSuccess: () => {
+      useSuccess("ChangePassword success");
+    },
+    onError: () => {
+      useError("ChangePassword Fail");
     },
   });
   return {
@@ -104,6 +115,7 @@ function useAccount() {
     logout,
     loadingPage,
     editProfile,
+    changePassword,
   };
 }
 export default useAccount;

@@ -27,14 +27,11 @@ const Edit = (props) => {
   const pass = selector.pass;
   const { editProfile } = useAccount();
   //methods
-  const handleSave = (data) => {
-    let dataAccount = {
-      avatar: props.dataUserAccount?.avatar,
-      fullName: data?.fullname,
-      oldPassword: "123",
-      password: "123",
-    };
-    editProfile(dataAccount);
+  const handleSave = (values) => {
+    var data={...values}
+    data.userDayOfBirth=data.userDayOfBirth+" 00:00:00"
+    const editData={userAvatar: userAccount.userAvatar,...data}
+    editProfile(editData);
   };
   //variables
 
@@ -42,7 +39,10 @@ const Edit = (props) => {
   return (
     <Formik
       initialValues={{
-        fullname: props.dataUserAccount?.fullName,
+        userFullName: userAccount?.userFullName,
+        userEmail: userAccount?.userEmail,
+        userPhone: userAccount?.userPhone,
+        userDayOfBirth: userAccount?.userDayOfBirth?.slice(0,10)
       }}
       onSubmit={(values) => {
         handleSave(values);
@@ -55,7 +55,34 @@ const Edit = (props) => {
             Fullname:{""}
           </p>
           <Field
-            name="fullname"
+            name="userFullName"
+            className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
+          ></Field>
+        </div>
+        <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+          <p className=" text-[20px] font-semibold  text-header">
+            Email:{""}
+          </p>
+          <Field
+            name="userEmail"
+            className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
+          ></Field>
+        </div>
+        <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+          <p className=" text-[20px] font-semibold  text-header">
+            phone:{""}
+          </p>
+          <Field
+            name="userPhone"
+            className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
+          ></Field>
+        </div>
+        <div className="pt-[20px] pb-[20px] relative  border-solid border-b-[1px] ml-4 mr-4 grid grid-cols-[15%_85%] items-center">
+          <p className=" text-[20px] font-semibold  text-header">
+            Date of Birth:{""}
+          </p>
+          <Field
+            name="userDayOfBirth"
             className=" w-full border-1 p-[10px] rounded-[10px] opacity-60 border-opacity-60 "
           ></Field>
         </div>
