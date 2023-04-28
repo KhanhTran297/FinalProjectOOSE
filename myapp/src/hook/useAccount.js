@@ -6,7 +6,7 @@ import {
   SignUpApi,
 } from "@/api/account";
 import { setToken, setUser } from "@/redux/slice/account";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,6 @@ import useMyToast from "./useMyToast";
 
 function useAccount() {
   //hooks
-  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setCookie, getCookie, removeCookie, setPassCookie } = useCookie();

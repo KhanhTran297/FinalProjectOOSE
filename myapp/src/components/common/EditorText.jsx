@@ -8,7 +8,10 @@ const EditorText = () => {
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/docs/,
     // placeholder: placeholder || "Start typings...",
-    height: 200,
+    height: 300,
+    limitChars: 2000, 
+    limitCharsWarning: "You have entered more than the allowed number of characters.", 
+
   };
 
   return (
