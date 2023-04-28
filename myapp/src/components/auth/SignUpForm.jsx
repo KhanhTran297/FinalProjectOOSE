@@ -111,7 +111,7 @@ const SignUpForm = () => {
             control={control}
             name="userDayOfBirth"
             type="userDayOfBirth"
-            placeholder="yyyy-mm-dd"
+            placeholder="dd/mm/yyyy"
             error={errors.userDayOfBirth?.message}
           ></Input>
         </FormGroup>

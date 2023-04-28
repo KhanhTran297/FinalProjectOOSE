@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import useAccount from "@/hook/useAccount";
+import { setPass } from "@/redux/slice/account";
 import FormGroup from "../common/FormGroup";
 import { IconEyeToggle } from "../icons";
-import * as yup from "yup";
 import { Input } from "../input";
 import { Label } from "../label";
 import { Button } from "../button";
-import { yupResolver } from "@hookform/resolvers/yup";
-import useAccount from "@/hook/useAccount";
-import { useDispatch, useSelector } from "react-redux";
-import { setPass } from "@/redux/slice/account";
 const schema = yup.object({
   email: yup.string().required("This field is required"),
   password: yup.string().required("This field is required"),
@@ -79,9 +79,6 @@ const LoginForm = () => {
           Login
         </Button>
       </form>
-      {/* <Link to="/" className="p-2 border rounded-md">
-        Go to Home Page
-      </Link> */}
       <div
         className=" absolute top-4 right-4 w-[60px] h-[60px] cursor-pointer hover:w-[70px] hover:h-[70px]"
         onClick={() => {
@@ -96,13 +93,7 @@ const LoginForm = () => {
         </Link>
       </div>
 
-      {/* <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Back to home
-      </button> */}
+      
     </div>
   );
 };

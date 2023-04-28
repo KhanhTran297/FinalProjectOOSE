@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import authRoutes from "./auth";
 import mainRoutes from "./main";
+import adminRoutes from "./admin";
 
 const initRoutes = () => {
   // Create routes array
@@ -10,6 +11,7 @@ const initRoutes = () => {
   authRoutes(routes);
   // Tương tự
   mainRoutes(routes);
+  adminRoutes(routes);
 
   // Sau thực thi xong 2 hàm trên thì routes sẽ là mảng gồm
   // [{path:'/' element:... }, {path::'/' element: ...}]
