@@ -30,6 +30,8 @@ const CreatePost = (props) => {
     <Fragment>
       <div className="relative z-0">
         <CreatePostDetail
+          avatar={props.avatar}
+          fullname={props.fullname}
           open={showCreatePost}
           handleClose={() => setShowCreatePost(false)}
         ></CreatePostDetail>
@@ -55,7 +57,7 @@ const CreatePost = (props) => {
               className="ml-5 mr-5 w-[480px] bg-blueborder rounded-full text-white text-base"
               onClick={checkAccount}
             >
-              + Tạo bài viết
+              + Create post
             </button>
             <button className="mr-2">
               <svg

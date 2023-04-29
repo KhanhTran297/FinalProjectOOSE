@@ -3,11 +3,12 @@ import Comment from "../reply/Comment";
 import ReadMoreReadLess from "./ReadMoreReadLess";
 
 
-const BodyPost = () => {
+const BodyPost = (props) => {
+  
   return (
-    <div className="p-4">
-      <div className="text-2xl font-semibold">This is title</div>
-      <ReadMoreReadLess limit={200}>Hôm nay trời đẹp</ReadMoreReadLess>
+    <div className="pt-7 pb-7 w-full">
+      <div className="text-2xl font-semibold">{props.title}</div>
+      <ReadMoreReadLess limit={200}>{props.content}</ReadMoreReadLess>
       <Comment></Comment>
     </div>
   );
