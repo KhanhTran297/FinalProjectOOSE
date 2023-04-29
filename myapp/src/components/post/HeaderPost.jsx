@@ -14,26 +14,31 @@ const HeaderPost = (props) => {
           handleClose={() => setShowReport(false)}
         ></Report>
       </div>
-      <div className="w-full  flex ">
-        <a
-          href=""
-          className="w-8 h-8 border-[1px] ml-3 mr-3 border-solid border-blueborder relative rounded-full"
-        >
-          <span className="overflow-hidden  block">
-            <span className="pb-[100%] rounded-full"></span>
-            <img
-              src={props.avatar}
-              alt=""
-              className="rounded-full absolute w-full h-full"
-            />
-          </span>
-        </a>
+      <div className="w-full  flex  h-8 ">
+        <div className=" w-[90%] flex gap-4">
+          <a
+            href=""
+            className="w-8 h-8 border-[1px] mt-2  border-solid border-blueborder relative rounded-full"
+          >
+            <span className="overflow-hidden h-[100%] w-[100%] block">
+              <span className="pb-[100%] rounded-full"></span>
+              <img
+                src={props.avatar}
+                alt=""
+                className="rounded-full absolute w-full h-full"
+              />
+            </span>
+          </a>
 
-        <span className="text-base font-semibold">{props.username}</span>
-        <span className="text-base font-normal text-slate-400 ml-[75%]">
-          7 days
-        </span>
-        <div className="items-center ml-4 " ref={nodeRef}>
+          <div className="flex flex-col">
+            <span className="text-base font-semibold  ">{props.username}</span>
+            <span className="text-base font-normal text-slate-400  h-[100%]">
+            25/06/2023
+            </span>
+          </div>
+        </div>
+        
+        <div className="items-center w-[10%] " ref={nodeRef}>
           <div className="">
             <button onClick={() => setShow(!show)}>
               <svg

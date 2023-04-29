@@ -8,10 +8,13 @@ const Post = (props) => {
       <div>
         <div className="p-5">
           <HeaderPost
-            avatar={props.avatar}
-            username={props.username}
+            avatar={props.avatarAccountPost}
+            username={props.usernameAccountPost}
           ></HeaderPost>
-          <BodyPost></BodyPost>
+          <BodyPost 
+              key={props.key}
+              title={props.title}
+              content={props.content}></BodyPost>
         </div>
       </div>
     </div>

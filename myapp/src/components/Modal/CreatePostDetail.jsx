@@ -1,16 +1,50 @@
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import EditorText from "../common/EditorText";
 import { Button } from "antd";
+import EditorText from "../common/EditorText";
+import { useSelector } from "react-redux";
+import useCookie from "@/hook/useCookie";
+import useAccount from "@/hook/useAccount";
+import { useNavigate } from "react-router-dom";
+import usePost from "@/hook/usePost";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Input } from "../input";
+import { Label } from "../label";
 
-const CreatePostDetail = ({ open = false, handleClose = () => {} }) => {
+const schema = yup.object({
+  titlePost: yup.string().required("This field is required").max(50,"Post title should not exceed 100 characters"),
+  contentPost: yup.string().required("This field is required"),
+});
+
+const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {} }) => {
   const [auth, setAuth] = useState(true);
+  
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onSubmit",
+  });
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
+  const { createPost } = usePost();
+  const { user } = useAccount();
+  
+  const handleCreatePost = (value) => {
+    var data = {...value}
+    console.log("data",value)
+    createPost(data);
+  };
+
+  
+  
+
   const [loadings, setLoadings] = useState([]);
   const enterLoading = (index) => {
     setLoadings((prevLoadings) => {
@@ -39,8 +73,8 @@ const CreatePostDetail = ({ open = false, handleClose = () => {} }) => {
         className="absolute inset-0 bg-black bg-opacity-25 overlay"
         onClick={handleClose}
       ></div>
-      <div className="relative z-10 w-full bg-white mb-5 modal-content max-w-[550px] h-[500px]">
-        <div className=" w-[550px] h-[78px]  bg-slate-200 border border-3 border-solid border-gray-400">
+      <div className="relative z-10 w-full bg-white mb-5 modal-content max-w-[650px] h-[600px]">
+        <div className=" w-[650px] h-[50px]  bg-slate-200 border border-3 border-solid border-gray-400">
           <div>
             <div className="pt-3  pl-6 pr-6 flex ">
               <span className="w-full text-lg font-medium  text-blue-500">
@@ -67,7 +101,7 @@ const CreatePostDetail = ({ open = false, handleClose = () => {} }) => {
               
             </div>
           </div>
-          <div className="w-full  flex relative mt-14 ml-2 z-0">
+          <div className="w-full  flex relative mt-10 ml-2 z-0">
             <a
               href=""
               className="w-8 h-8 border-[1px] ml-3 mr-3 border-solid border-blueborder rounded-full"
@@ -75,34 +109,48 @@ const CreatePostDetail = ({ open = false, handleClose = () => {} }) => {
               <span className="overflow-hidden relative block">
                 <span className="pb-[100%] rounded-full"></span>
                 <img
-                  src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/306957382_1505431323240193_3567589334715023953_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=Ky_nZwTBR5UAX_IJGIG&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfCm6yOz_jwmqGC3qp_L4nJuzn3PT1FDBJ9ZF9st3ISXOg&oe=64147BE2"
+                  src={avatar}
                   alt=""
                   className="rounded-full"
                 />
               </span>
             </a>
 
-            <span className="text-base font-semibold">Peter Pan</span>
+            <span className="text-base font-semibold" >{fullname}</span>
           </div>
-          <form action="">
+          <form onSubmit={handleSubmit(handleCreatePost)}>
             <div className="block ">
-              <input
-                placeholder="Title "
-                className="h-[45px] m-5 ml-[5%] mb-3 w-[90%] border-2 rounded-lg p-2 overflow-scroll font-semibold uppercase"
-              ></input>
+              <Label htmlFor="titlePost">Title Post</Label>
+              <Input
+                control={control}
+                name="titlePost"
+                type="text"
+                placeholder="Title post"
+                error={errors.titlePost?.message}
+                className="h-[45px] m-5 ml-[5%] mb-3 w-[90%] border-2  p-2 overflow-scroll font-semibold"
+                
+              ></Input>
             </div>
             <div className="block w-[90%] ml-[5%]">
-              <EditorText />
+              <Label htmlFor="contentPost">Content Post</Label>
+              <Input
+                control={control}
+                name="contentPost"
+                type="text"
+                placeholder="Content post"
+                error={errors.contentPost?.message}
+                className="h-[45px] m-5 ml-[5%] mb-3 w-[90%] border-2  p-2 overflow-scroll font-semibold"
+                
+              ></Input>
             </div>
-            <div className="ml-[5%] mt-3 w-[90%]">
-              <Button
-                loading={loadings[0]}
-                onClick={() => enterLoading(0)}
+            <Button
+                // loading={loadings[0]}
+                // onClick={() => enterLoading(0)}
                 className="w-full text-white bg-blueborder"
-              >
+                type="submit"
+            >
                 UPLOAD
-              </Button>
-            </div>
+            </Button>
           </form>
         </div>
       </div>

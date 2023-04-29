@@ -106,7 +106,8 @@ function useCallApi() {
           },
         }
       );
-    return usedEdit();
+    return usedEdit(); 
+  
   };
   return { useGet, usePost, useDelete, useEdit };
 }

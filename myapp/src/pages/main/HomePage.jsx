@@ -9,7 +9,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 const HomePage = () => {
   //hooks
   const { getProfileAccount, profileAccount } = useAccount();
-  console.log("data tra ve tu usequery neeeee:", profileAccount);
   const navigate = useNavigate();
   const { removeCookie, isLoggedIn } = useCookie();
   const selector = useSelector((state) => state.account);

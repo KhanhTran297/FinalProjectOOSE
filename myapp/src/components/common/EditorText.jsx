@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import JoditEditor from "jodit-react";
 
-const EditorText = () => {
+const EditorText = (props) => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
@@ -18,6 +18,7 @@ const EditorText = () => {
     <JoditEditor
       ref={editor}
       value={content}
+      name={props.name}     
       config={config}
       tabIndex={1} // tabIndex of textarea
       onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons

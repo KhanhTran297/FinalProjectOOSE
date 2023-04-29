@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Post from "../post/Post";
 import CreatePost from "./CreatePost";
 import LeftSideForum from "./LeftSideForum";
 import RightSideForum from "./RightSideForum";
+import usePost from "@/hook/usePost";
+import useAccount from "@/hook/useAccount";
 
 const Forum = () => {
   //hooks
-  const selector = useSelector((state) => state.account);
+  const selectorAccount = useSelector((state) => state.account);
+  const selectorPost = useSelector((state) => state.post);
+  const { getListPost } = usePost();
+  const { getProfileAccount } = useAccount();
   //variables
-  const userAccount = selector.account;
+  const userAccount = selectorAccount.account;
+  const listPost = selectorPost.listPost;
+  // console.log("list post",listPost.content);
+  // console.log("getlist",getListPost)
+  useEffect(() => {
+    getListPost();
+    getProfileAccount();
+  }, [listPost,userAccount]);
   return (
     <div className="grid grid-cols-[20%_60%_20%]">
       <LeftSideForum className="fixed"></LeftSideForum>
@@ -21,31 +33,24 @@ const Forum = () => {
             </span>
           </div>
         </div>
-        <CreatePost avatar={userAccount?.avatar}></CreatePost>
+        <CreatePost 
+          avatar={userAccount?.userAvatar}
+          fullname={userAccount?.userFullName}
+        >
+        </CreatePost>
         <div className="mt-3">
-          <Post
-            avatar={userAccount?.avatar}
-            username={userAccount?.username}
-          ></Post>
+          {listPost?.content?.map((post) => (
+            <Post
+              key={post.post.id}
+              title={post.titlePost}
+              content={post.contentPost}
+              usernameAccountPost={post.accountPost.fullName}
+              avatarAccountPost={post.accountPost.avatarPath}
+              
+            />
+          ))}
         </div>
-        <div className="">
-          <Post
-            avatar={userAccount?.avatar}
-            username={userAccount?.username}
-          ></Post>
-        </div>
-        <div className="">
-          <Post
-            avatar={userAccount?.avatar}
-            username={userAccount?.username}
-          ></Post>
-        </div>
-        <div className="">
-          <Post
-            avatar={userAccount?.avatar}
-            username={userAccount?.username}
-          ></Post>
-        </div>
+        
       </div>
       <RightSideForum></RightSideForum>
     </div>
