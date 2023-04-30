@@ -46,6 +46,7 @@ const Forum = () => {
               content={post.contentPost}
               usernameAccountPost={post.accountPost.fullName}
               avatarAccountPost={post.accountPost.avatarPath}
+              emailAccountPost={post.accountPost.email}
               
             />
           ))}

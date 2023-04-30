@@ -35,7 +35,7 @@ const formats = [
 ];
 
 const RichTextField = (props) => {
-    const { label, disabled, name, required, style, labelAlign, formItemProps } = props;
+    const { label, disabled, name, required, style, labelAlign, formItemProps , value , onChange} = props;
 
     const modules = {
         toolbar: {
@@ -58,22 +58,17 @@ const RichTextField = (props) => {
 
     const { rules } = useFormField(props);
     return (
-        <Form.Item
-            {...formItemProps}
-            required={required}
-            labelAlign={labelAlign}
+        
+        <ReactQuill
+            value={value}
             name={name}
-            label={label}
-            rules={rules}
-            initialValue=""
-        >
-            <ReactQuill
-                style={style}
-                formats={formats}
-                modules={modules}
-                readOnly={disabled}
-            />
-        </Form.Item>
+            onChange={onChange}
+            style={style}
+            formats={formats}
+            modules={modules}
+            readOnly={disabled}
+        />
+        
     );
 };
 

@@ -10,6 +10,7 @@ const Post = (props) => {
           <HeaderPost
             avatar={props.avatarAccountPost}
             username={props.usernameAccountPost}
+            emailAccountPost={props.emailAccountPost}
           ></HeaderPost>
           <BodyPost 
               key={props.key}

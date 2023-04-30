@@ -1,9 +1,35 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import useClickOutSide from "@/hook/useClickOutSide";
 import Report from "../Modal/Report";
-
+import { useSelector } from "react-redux";
+import useAccount from "@/hook/useAccount";
+import usePost from "@/hook/usePost";
+import { Modal } from 'antd';
 
 const HeaderPost = (props) => {
+  const selectorAccount = useSelector((state) => state.account);
+  const { getProfileAccount } = useAccount();
+  const userAccount = selectorAccount.account;
+  const { deletePost } = usePost();
+  useEffect(() => {
+    getProfileAccount();
+  }, [userAccount]);
+  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleDeletePost = (value) => {
+    var data = {...value};
+    deletePost(data)
+    setIsModalVisible(false);
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  
   const {show,setShow,nodeRef} = useClickOutSide();
   const [showReport, setShowReport] = useState(false);
   return (
@@ -75,7 +101,7 @@ const HeaderPost = (props) => {
               </svg>
             </button>
 
-            {show ? (
+            {show && (userAccount.userEmail !== props.emailAccountPost) &&  (
               <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
                 <button
                   className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
@@ -110,7 +136,29 @@ const HeaderPost = (props) => {
                   <span>Bookmark</span>
                 </button>
               </div>
-            ) : (
+            )}
+            {show && (userAccount.userEmail === props.emailAccountPost) &&  (
+              <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
+                <button
+                  className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
+                  onClick={() => handleDelete()}
+                >
+                  Edit
+                </button>
+                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={showModal} danger>
+                  <span>Delete</span>
+                </button>
+                <Modal
+                  title="Xác nhận xóa"
+                  visible={isModalVisible}
+                  onOk={handleDeletePost}
+                  onCancel={handleCancel}
+                >
+                  <p>Bạn có chắc chắn muốn xóa bài đăng này?</p>
+                </Modal>
+              </div>
+            )}
+            {!show &&  (
               ""
             )}
           </div>
