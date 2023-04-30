@@ -18,10 +18,12 @@ import RichTextField from "../common/RichTextField";
 
 const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {} }) => {
   const [auth, setAuth] = useState(true);
+  const [content, setContent] = useState('');
   const schema = yup.object({
   titlePost: yup.string().required("This field is required").max(50,"Post title should not exceed 100 characters"),
   contentPost: yup.string().required("This field is required"),
   });
+  
   const {
     handleSubmit,
     control,
@@ -30,6 +32,8 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
     resolver: yupResolver(schema),
     mode: "onSubmit",
   });
+  
+  console.log("content",content)
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -38,8 +42,7 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
   const { user } = useAccount();
   
   const handleCreatePost = (value) => {
-    var data = {...value}
-    console.log("data",value)
+    var data = {...value, contentPost: content}
     createPost(data);
   };
 
@@ -134,7 +137,7 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
             </div>
             <div className="block w-[90%] ml-[5%]">
               <Label htmlFor="contentPost">Content Post</Label>
-              <RichTextField name="contentPost" label="contentPost" required ></RichTextField>
+              <RichTextField name="contentPost"  value={content} onChange={setContent} ></RichTextField>
             </div>
             <Button
                 // loading={loadings[0]}
