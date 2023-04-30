@@ -15,13 +15,13 @@ const HeaderPersonal = () => {
       <div className="flex flex-col justify-center items-center w-full p-5">
         <div className="imgBox h-[150px] w-[150px] rounded-lg flex flex-col justify-center">
           <img
-            src={userAccount?.avatar}
+            src={userAccount?.userAvatar}
             alt=""
             className=" w-full h-full rounded-full shadow-2xl"
           />
         </div>
         <span className="text-4xl  pt-3 pb-3 font-semibold">
-          {userAccount?.fullName}
+          {userAccount?.userFullName}
         </span>
         <Button
           onClick={() => {

@@ -5,22 +5,23 @@ import EditorText from "../common/EditorText";
 import { useSelector } from "react-redux";
 import useCookie from "@/hook/useCookie";
 import useAccount from "@/hook/useAccount";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import usePost from "@/hook/usePost";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../input";
 import { Label } from "../label";
+import RichTextField from "../common/RichTextField";
 
-const schema = yup.object({
-  titlePost: yup.string().required("This field is required").max(50,"Post title should not exceed 100 characters"),
-  contentPost: yup.string().required("This field is required"),
-});
+
 
 const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {} }) => {
   const [auth, setAuth] = useState(true);
-  
+  const schema = yup.object({
+  titlePost: yup.string().required("This field is required").max(50,"Post title should not exceed 100 characters"),
+  contentPost: yup.string().required("This field is required"),
+  });
   const {
     handleSubmit,
     control,
@@ -133,21 +134,13 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
             </div>
             <div className="block w-[90%] ml-[5%]">
               <Label htmlFor="contentPost">Content Post</Label>
-              <Input
-                control={control}
-                name="contentPost"
-                type="text"
-                placeholder="Content post"
-                error={errors.contentPost?.message}
-                className="h-[45px] m-5 ml-[5%] mb-3 w-[90%] border-2  p-2 overflow-scroll font-semibold"
-                
-              ></Input>
+              <RichTextField name="contentPost" label="contentPost" required ></RichTextField>
             </div>
             <Button
                 // loading={loadings[0]}
                 // onClick={() => enterLoading(0)}
                 className="w-full text-white bg-blueborder"
-                type="submit"
+                htmlType="submit"
             >
                 UPLOAD
             </Button>
