@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { Button } from "antd";
 import EditorText from "../common/EditorText";
@@ -14,16 +14,21 @@ import { Input } from "../input";
 import { Label } from "../label";
 import RichTextField from "../common/RichTextField";
 
-
-
-const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {} }) => {
+const CreatePostDetail = ({
+  fullname,
+  avatar,
+  open = false,
+  handleClose = () => {},
+}) => {
   const [auth, setAuth] = useState(true);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const schema = yup.object({
-  titlePost: yup.string().required("This field is required").max(50,"Post title should not exceed 100 characters"),
-  contentPost: yup.string().required("This field is required"),
+    titlePost: yup
+      .string()
+      .required("This field is required")
+      .max(50, "Post title should not exceed 100 characters"),
   });
-  
+
   const {
     handleSubmit,
     control,
@@ -33,37 +38,32 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
     mode: "onSubmit",
   });
   
-  console.log("content",content)
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
   const { createPost } = usePost();
   const { user } = useAccount();
-  
+  const [contentError, setContentError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleCreatePost = (value) => {
-    var data = {...value, contentPost: content}
-    createPost(data);
+    if (content.trim() === "") {
+      setContentError(true);
+      return;
+    }
+    setContentError(false);
+    setIsLoading(true);
+    const data = { ...value, contentPost: content };
+    setTimeout(()=> {
+      createPost(data)
+      setIsLoading(false)
+    },1000)
+    
   };
 
-  
-  
-
-  const [loadings, setLoadings] = useState([]);
-  const enterLoading = (index) => {
-    setLoadings((prevLoadings) => {
-      const newLoadings = [...prevLoadings];
-      newLoadings[index] = true;
-      return newLoadings;
-    });
-    setTimeout(() => {
-      setLoadings((prevLoadings) => {
-        const newLoadings = [...prevLoadings];
-        newLoadings[index] = false;
-        return newLoadings;
-      });
-    }, 6000);
+  const handleChangeContent = (html) => {
+    setContent(html);
+    setContentError("");
   };
+  
+  
 
   if (typeof document === "undefined")
     return <div className="createpostdetal"></div>;
@@ -77,7 +77,7 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
         className="absolute inset-0 bg-black bg-opacity-25 overlay"
         onClick={handleClose}
       ></div>
-      <div className="relative z-10 w-full bg-white mb-5 modal-content max-w-[650px] h-[600px]">
+      <div className="relative z-10 w-full bg-white mb-5 modal-content max-w-[650px] h-[720px]">
         <div className=" w-[650px] h-[50px]  bg-slate-200 border border-3 border-solid border-gray-400">
           <div>
             <div className="pt-3  pl-6 pr-6 flex ">
@@ -102,7 +102,6 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
                   />
                 </svg>
               </span>
-              
             </div>
           </div>
           <div className="w-full  flex relative mt-10 ml-2 z-0">
@@ -112,40 +111,42 @@ const CreatePostDetail = ({ fullname,avatar,open = false, handleClose = () => {}
             >
               <span className="overflow-hidden relative block">
                 <span className="pb-[100%] rounded-full"></span>
-                <img
-                  src={avatar}
-                  alt=""
-                  className="rounded-full"
-                />
+                <img src={avatar} alt="" className="rounded-full" />
               </span>
             </a>
 
-            <span className="text-base font-semibold" >{fullname}</span>
+            <span className="text-base font-semibold">{fullname}</span>
           </div>
           <form onSubmit={handleSubmit(handleCreatePost)}>
-            <div className="block ">
-              <Label htmlFor="titlePost">Title Post</Label>
+            <div className="block ml-[5%]">
+              <p className=" w-[100%] mt-[5%]  inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Title Post*</p>
               <Input
                 control={control}
                 name="titlePost"
                 type="text"
                 placeholder="Title post"
                 error={errors.titlePost?.message}
-                className="h-[45px] m-5 ml-[5%] mb-3 w-[90%] border-2  p-2 overflow-scroll font-semibold"
-                
+                className="h-[45px] mr-5  mb-3 w-[90%] border-2  p-2 overflow-scroll font-semibold"
               ></Input>
             </div>
-            <div className="block w-[90%] ml-[5%]">
-              <Label htmlFor="contentPost">Content Post</Label>
-              <RichTextField name="contentPost"  value={content} onChange={setContent} ></RichTextField>
+            <div className="block w-[90%] mt-6 mb-16 ml-[5%] h-[320px]">
+              <p className="inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Content Post*</p>
+              <RichTextField
+                name="contentPost"
+                value={content}
+                onChange={handleChangeContent}
+              ></RichTextField>
+              
             </div>
+            {contentError && (
+                <span className="absolute text-sm font-medium pointer-events-none text-error  bottom-6/4 left-1 error-input w-full ml-[5%] mt-4 ">This field is required</span>
+              )}
             <Button
-                // loading={loadings[0]}
-                // onClick={() => enterLoading(0)}
-                className="w-full text-white bg-blueborder"
-                htmlType="submit"
+              className="w-[90%] ml-[5%] text-white mt-10 bg-blueborder"
+              htmlType="submit"
+              loading={isLoading}
             >
-                UPLOAD
+              SUBMIT
             </Button>
           </form>
         </div>

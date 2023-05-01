@@ -37,7 +37,7 @@ const Input = (props) => {
       />
 
       {error.length > 0 && (
-        <span className="absolute text-sm font-medium pointer-events-none text-error bottom-2/4 translate-y-12 left-1 error-input w-full">
+        <span className="absolute text-sm font-medium pointer-events-none  text-error bottom-2/4 translate-y-12 left-1 error-input w-full">
           {error}
         </span>
       )}
