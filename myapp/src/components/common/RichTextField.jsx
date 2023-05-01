@@ -53,9 +53,14 @@ const RichTextField = (props) => {
         clipboard: {
             // toggle to add extra line breaks when pasting HTML:
             matchVisual: false,
+            
         },
     };
-
+    const customStyle = {
+        ...style,
+        height: '300px',
+        // marginBottom: '10px',
+    };
     const { rules } = useFormField(props);
     return (
         
@@ -63,10 +68,11 @@ const RichTextField = (props) => {
             value={value}
             name={name}
             onChange={onChange}
-            style={style}
+            style={customStyle}
             formats={formats}
             modules={modules}
             readOnly={disabled}
+            
         />
         
     );

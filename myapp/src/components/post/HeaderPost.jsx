@@ -10,6 +10,8 @@ const HeaderPost = (props) => {
   const selectorAccount = useSelector((state) => state.account);
   const { getProfileAccount } = useAccount();
   const userAccount = selectorAccount.account;
+  const selectorPost = useSelector((state) => state.post);
+  const listPost = selectorPost.listPost;
   const { deletePost } = usePost();
   useEffect(() => {
     getProfileAccount();
@@ -20,9 +22,10 @@ const HeaderPost = (props) => {
   const showModal = () => {
     setIsModalVisible(true);
   };
-  const handleDeletePost = (value) => {
-    var data = {...value};
+  const handleDeletePost = (idPost) => {
+    var data = {...idPost};
     deletePost(data)
+    console.log("id Post", data)
     setIsModalVisible(false);
   }
 
@@ -141,7 +144,7 @@ const HeaderPost = (props) => {
               <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
                 <button
                   className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
-                  onClick={() => handleDelete()}
+                  onClick={() => handleDeletePost()}
                 >
                   Edit
                 </button>
