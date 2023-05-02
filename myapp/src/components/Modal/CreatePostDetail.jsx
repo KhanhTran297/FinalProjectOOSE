@@ -49,12 +49,8 @@ const CreatePostDetail = ({
       return;
     }
     setContentError(false);
-    setIsLoading(true);
     const data = { ...value, contentPost: content };
-    setTimeout(()=> {
-      createPost(data)
-      setIsLoading(false)
-    },1000)
+    createPost(data)
     
   };
 
