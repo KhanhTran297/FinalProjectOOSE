@@ -14,8 +14,8 @@ export const createPostApi = (params) => {
 };
 
 export const deletePostApi = (id) => {
-    const url = "/v1/post/delete/${id}";
-    return useDelete({ id, url, requiredToken: true });
+    const url = `/v1/post/delete/${id}`;
+    return useDelete({ url, requiredToken: true });
 };
 
 export const updatePostApi = (params) => {

@@ -41,7 +41,7 @@ const Forum = () => {
         <div className="mt-3">
           {listPost?.content?.map((post) => (
             <Post
-              key={post.post.id}
+              id={post.post.id}
               title={post.titlePost}
               content={post.contentPost}
               usernameAccountPost={post.accountPost.fullName}

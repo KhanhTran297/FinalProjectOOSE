@@ -11,8 +11,7 @@ const HeaderPost = (props) => {
   const { getProfileAccount } = useAccount();
   const userAccount = selectorAccount.account;
   const selectorPost = useSelector((state) => state.post);
-  const listPost = selectorPost.listPost;
-  const { deletePost } = usePost();
+  
   useEffect(() => {
     getProfileAccount();
   }, [userAccount]);
@@ -22,12 +21,7 @@ const HeaderPost = (props) => {
   const showModal = () => {
     setIsModalVisible(true);
   };
-  const handleDeletePost = (idPost) => {
-    var data = {...idPost};
-    deletePost(data)
-    console.log("id Post", data)
-    setIsModalVisible(false);
-  }
+  
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -144,21 +138,21 @@ const HeaderPost = (props) => {
               <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
                 <button
                   className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
-                  onClick={() => handleDeletePost()}
+                  // onClick={() => handleDeletePost()}
                 >
                   Edit
                 </button>
-                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={showModal} danger>
-                  <span>Delete</span>
+                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={props.onDelete} >
+                  Delete
                 </button>
-                <Modal
+                {/* <Modal
                   title="Xác nhận xóa"
                   visible={isModalVisible}
                   onOk={handleDeletePost}
                   onCancel={handleCancel}
                 >
                   <p>Bạn có chắc chắn muốn xóa bài đăng này?</p>
-                </Modal>
+                </Modal> */}
               </div>
             )}
             {!show &&  (
