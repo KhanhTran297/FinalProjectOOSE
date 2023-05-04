@@ -16,7 +16,7 @@ const Forum = () => {
   //variables
   const userAccount = selectorAccount.account;
   const listPost = selectorPost.listPost;
-  // console.log("list post",listPost.content);
+  console.log("list post",listPost.content);
   // console.log("getlist",getListPost)
   useEffect(() => {
     getListPost();

@@ -17,11 +17,11 @@ const Post = (props) => {
     setIsModalVisible(false);
   };
   const handleDeletePost = (id) => {
-    const data ={id}
-    deletePost(data)
-    console.log("id Post", id)
+    deletePost(id)
+    
     
   }
+  console.log("props id",props.id)
   return (
     <div className="bg-slate-200 w-[700px] h-auto m-11 mt-0 rounded-lg">
       <div>
