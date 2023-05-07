@@ -6,22 +6,29 @@ import {
 } from "@/api/admin";
 import { useMutation, useQuery } from "react-query";
 import useMyToast from "./useMyToast";
+import { useDispatch } from "react-redux";
+import { setListAccount } from "@/redux/slice/account";
 
 function useAdmin() {
+  const dispatch = useDispatch();
   const { useSuccess, useError } = useMyToast();
+  // Create Expert Account
   const handleCreateExpertAccount = useMutation({
     mutationFn: createExpertAccountAPI,
     onSuccess: (data) => {
       useSuccess("Create Success");
+      handleGetListAccount();
     },
     onError: () => {
       useError("Create Fail");
     },
   });
-  const { mutate: handleCreateAdminAccount } = useMutation({
+  // Create Admin Account
+  const handleCreateAdminAccount = useMutation({
     mutationFn: createAdminAccountAPI,
     onSuccess: (data) => {
       useSuccess("Create Success");
+      handleGetListAccount();
     },
     onError: () => {
       useError("Create Fail");
@@ -33,7 +40,7 @@ function useAdmin() {
     retry: 0,
     enabled: false,
     onSuccess: (respone) => {
-      console.log("respone ne", respone);
+      dispatch(setListAccount(respone.data));
     },
   });
   // delete Account
@@ -41,6 +48,7 @@ function useAdmin() {
     mutationFn: deleteAccountAPI,
     onSuccess: (data) => {
       useSuccess("Delete Success");
+      handleGetListAccount();
     },
     onError: () => {
       useError("Delete Fail");
