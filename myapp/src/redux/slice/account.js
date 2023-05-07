@@ -3,34 +3,27 @@ const accountStore = createSlice({
   name: "account",
   initialState: {
     account: [],
-    token: null,
-    pass: null,
+    listAccount: [],
   },
   reducers: {
     authLogin: () => {},
     authRegister: () => {},
-    setToken: (state, action) => {
-      return {
-        ...state,
-        token: action.payload,
-      };
-    },
     setUser: (state, action) => {
       return {
         ...state,
         account: action.payload,
       };
     },
-    setPass: (state, action) => {
+    setListAccount: (state, action) => {
       return {
         ...state,
-        pass: action.payload,
+        listAccount: action.payload,
       };
     },
   },
 });
 //Action
-export const { authLogin, authRegister, setToken, setUser, setPass } =
+export const { authLogin, authRegister, setUser, setListAccount } =
   accountStore.actions;
 //Reducer
 export default accountStore.reducer;

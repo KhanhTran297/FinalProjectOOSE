@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useAccount from "@/hook/useAccount";
-import { setPass } from "@/redux/slice/account";
 import FormGroup from "../common/FormGroup";
 import { IconEyeToggle } from "../icons";
 import { Input } from "../input";
@@ -92,8 +91,6 @@ const LoginForm = () => {
           Go to Signup
         </Link>
       </div>
-
-      
     </div>
   );
 };

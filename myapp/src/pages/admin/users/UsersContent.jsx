@@ -1,33 +1,40 @@
 import useAdmin from "@/hook/useAdmin";
-import { Space, Table, Tag } from "antd";
-
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
+import { Space, Table, Tag, Modal } from "antd";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import classNames from "@/utils/classNames";
 const UsersContent = (props) => {
-  const { handleDeleteAccount } = useAdmin();
-  console.log("ne ne ne", props.data);
+  const { handleDeleteAccount, handleGetListAccount } = useAdmin();
+  const selector = useSelector((state) => state.account);
+  const listAccount = selector.listAccount;
+  const handleReloadTable = (id) => {
+    handleDeleteAccount.mutate(id);
+    // handleGetListAccount();
+  };
+  const { confirm } = Modal;
+  // handle confirm Modal
+  const showConfirm = (id) => {
+    confirm({
+      title: "Do you Want to delete these account?",
+      icon: <ExclamationCircleFilled />,
+      content: "Xóa là đi luôn ó nho :<",
+      onOk() {
+        handleReloadTable(id);
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
   const columns = [
+    {
+      title: "Avatar",
+      dataIndex: "avatarPath",
+      key: "avatarPath",
+      render: (avatar) => (
+        <img src={avatar} className=" w-[40px] h-[40px] rounded-full"></img>
+      ),
+    },
     {
       title: "Name",
       dataIndex: "fullName",
@@ -40,9 +47,29 @@ const UsersContent = (props) => {
       key: "email",
     },
     {
-      title: "LastLogin",
+      title: "Last Login",
       dataIndex: "lastLogin",
       key: "lastLogin",
+    },
+    {
+      title: "Role",
+      dataIndex: "roleDto",
+      key: "roleDto",
+      render: (roleDto) => {
+        let color = "#FFFFFF";
+        if (roleDto && roleDto.name === "ROLE ADMIN") {
+          color = "#FF0000"; // set red background for ROLE ADMIN
+        } else if (roleDto && roleDto.name === "ROLE END USER") {
+          color = "#00FF00"; // set green background for ROLE END USER
+        } else if (roleDto && roleDto.name === "ROLE EXPERT") {
+          color = "#448aff"; // set blue background for ROLE END USER
+        }
+        return (
+          <span style={{ backgroundColor: color }} className=" p-2 rounded-5">
+            {roleDto?.name}
+          </span>
+        );
+      },
     },
     // {
     //   title: "Tags",
@@ -69,11 +96,20 @@ const UsersContent = (props) => {
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          <a onClick={handleDeleteAccount(record.id)}>Delete</a>
+          <a
+            onClick={() => {
+              showConfirm(record.id);
+            }}
+          >
+            Delete
+          </a>
         </Space>
       ),
     },
   ];
-  return <Table columns={columns} dataSource={props.data} />;
+  // useEffect(() => {
+  //   handleGetListAccount;
+  // }, [listAccount]);
+  return <Table columns={columns} dataSource={listAccount.content} />;
 };
 export default UsersContent;

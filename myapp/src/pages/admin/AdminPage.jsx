@@ -93,8 +93,8 @@ const AdminPage = () => {
   const siderItems = [
     {
       label: (
-        <div>
-          <UserOutlined />
+        <div className=" flex items-center">
+          <UserOutlined className=" mr-1" />
           User
         </div>
       ),
@@ -108,7 +108,6 @@ const AdminPage = () => {
   //     getProfileAccount();
   //   }
   // }, [useraccount]);
-  console.log("listAccount", listAccount);
   useEffect(() => {
     handleGetListAccount();
   }, [listAccount]);

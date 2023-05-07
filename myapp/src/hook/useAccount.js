@@ -6,7 +6,7 @@ import {
   getAccountProfileApi,
   SignUpApi,
 } from "@/api/account";
-import { setToken, setUser } from "@/redux/slice/account";
+import { setUser } from "@/redux/slice/account";
 import { useMutation, useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
