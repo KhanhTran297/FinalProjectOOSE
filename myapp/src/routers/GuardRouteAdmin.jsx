@@ -4,23 +4,20 @@ import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
-const GuardRoute = ({ children }) => {
+const GuardRouteAdmin = ({ children }) => {
   //hooks
   const { isLoggedIn } = useCookie();
-  const { profileAccount, getProfileAccount, loadingPage } = useAccount();
+  const { loadingPage } = useAccount();
   const navigate = useNavigate();
   useEffect(() => {
     //Neu co token trong cookie
+    console.log(isLoggedIn());
     if (isLoggedIn()) {
-      if (!profileAccount?.data) {
-        getProfileAccount();
-      } else {
-        return;
-      }
+      return;
     } else {
       navigate("/login");
     }
-  }, [profileAccount?.data, isLoggedIn]);
+  }, [isLoggedIn]);
   return (
     <div className="">
       {loadingPage ? <div>Loading</div> : <div>{children}</div>}
@@ -28,4 +25,4 @@ const GuardRoute = ({ children }) => {
   );
 };
 
-export default GuardRoute;
+export default GuardRouteAdmin;
