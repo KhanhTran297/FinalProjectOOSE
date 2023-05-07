@@ -1,5 +1,5 @@
 import useAdmin from "@/hook/useAdmin";
-import { Space, Table, Tag, Modal } from "antd";
+import { Space, Table, Tag, Modal, Button } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import classNames from "@/utils/classNames";
@@ -96,13 +96,15 @@ const UsersContent = (props) => {
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          <a
+          <Button
+            type="primary"
+            className=" bg-cyan-900"
             onClick={() => {
               showConfirm(record.id);
             }}
           >
             Delete
-          </a>
+          </Button>
         </Space>
       ),
     },
