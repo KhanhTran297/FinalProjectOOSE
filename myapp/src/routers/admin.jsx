@@ -1,5 +1,7 @@
 import AdminPage from "@/pages/admin/AdminPage";
 import AdminLayout from "@/layout/AdminLayout";
+import GuardRoute from "./GuardRoute";
+import GuardRouteAdmin from "./GuardRouteAdmin";
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -10,9 +12,12 @@ export default function init(routes) {
     children: [
       {
         path: "admin",
-        element: <AdminPage></AdminPage> ,
+        element: (
+          <GuardRouteAdmin>
+            <AdminPage></AdminPage>
+          </GuardRouteAdmin>
+        ),
       },
-      
     ],
   };
 

@@ -3,7 +3,7 @@ import useCookie from "@/hook/useCookie";
 import { instance } from "./instance";
 
 const { getCookie } = useCookie();
-const { useGet, usePost, useEdit } = useCallApi();
+const { useGet, usePost, useEdit, useDelete } = useCallApi();
 export const authLoginApi = (params) => {
   const url = "/api/token";
   return usePost({ url, params });
@@ -30,4 +30,14 @@ export const editProfileApi = (params) => {
 export const changePasswordApi = (params) => {
   const url = "/v1/account/change-password";
   return useEdit({ url, requiredToken: true, params });
+};
+export const getPostApi = (id) => {
+  console.log("id", id.queryKey[0].PostId);
+  const url = `/v1/post/get/${id.queryKey[0].PostId}`;
+  return useGet({ url, requiredToken: true });
+};
+export const deletePostApi = (id) => {
+  console.log("id", id);
+  const url = `/v1/post/delete/${id}`;
+  return useDelete({ url, requiredToken: true });
 };

@@ -1,8 +1,8 @@
-import AdminHeader from '@/components/admin/AdminHeader';
-import React from 'react';
+import AdminHeader from "@/components/admin/AdminHeader";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import SideBar from '@/components/admin/SideBar';
+import SideBar from "@/components/admin/SideBar";
 
 const DashboardStyles = styled.div`
   max-width: 100%;
@@ -37,17 +37,11 @@ const DashboardStyles = styled.div`
   }
 `;
 const AdminLayout = () => {
-    return (
-    <DashboardStyles>
-      <AdminHeader></AdminHeader>
-      <div className="dashboard-main">
-        <SideBar></SideBar>
-        <div className="dashboard-children">
-          <Outlet></Outlet>
-        </div>
-      </div>
-    </DashboardStyles>
-    );
+  return (
+    <div className="">
+      <Outlet></Outlet>
+    </div>
+  );
 };
 
 export default AdminLayout;

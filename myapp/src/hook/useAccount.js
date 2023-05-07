@@ -31,14 +31,20 @@ function useAccount() {
   } = useMutation({
     mutationFn: authLoginApi,
     onSuccess: (data) => {
-      console.log("respone login ne:", data.data);
       removeCookie();
       //set token to cookie
       setCookie(data.data.token);
       //Luu thong tin account vao client state
       getProfileAccount();
       // dispatch(getAccountProfileApi({ requiredToken: true }));
-      navigate("/");
+      if (
+        data.data.role == "ROLE ADMIN" ||
+        data.data.role == "ROLE SUPER ADMIN"
+      ) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
       // useSuccess("Login Success!");
     },
     onError: () => {
