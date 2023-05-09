@@ -1,5 +1,5 @@
 import useAdmin from "@/hook/useAdmin";
-import { Space, Table, Tag, Modal, Button } from "antd";
+import { Space, Table, Tag, Modal, Button, Select } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import classNames from "@/utils/classNames";
@@ -109,9 +109,55 @@ const UsersContent = (props) => {
       ),
     },
   ];
+  const handleFilter = (value) => {
+    const { key } = this.props; // get the key prop passed to the Select component
+    const selectedOption = this.props.options.find(option => option.value === value); // find the selected option object based on its value
+    const selectedValue = selectedOption ? selectedOption.label : null; // extract the label value of the selected option, or null if no option is selected
+    const resultObj = {[key]: selectedValue}; // create the result object with a key based on the Select's key prop and the value based on the selected option's label
+    console.log(resultObj);
+  };
+  const onSearch = (value) => {
+    console.log("search:", value);
+  };
   // useEffect(() => {
   //   handleGetListAccount;
   // }, [listAccount]);
-  return <Table columns={columns} dataSource={listAccount.content} />;
+  return (
+    <div>
+      <Select
+        key={"roleid"}
+        showSearch
+        placeholder="Select a role"
+        className=" w-[200px] mb-3"
+        onChange={(value)=>{
+          console.log()
+        }}
+        onSearch={(value) => {
+          console.log("onSearch ne", value);
+        }}
+       
+        allowClear
+        options={[
+          {
+            value: "1",
+            label: "ROLE SUPER ADMIN",
+          },
+          {
+            value: "2",
+            label: "ROLE ADMIN",
+          },
+          {
+            value: "3",
+            label: "ROLE EXPERT",
+          },
+          {
+            value: "4",
+            label: "ROLE END USER",
+          },
+        ]}
+      />
+      <Table columns={columns} dataSource={listAccount.content} />
+    </div>
+  );
 };
 export default UsersContent;

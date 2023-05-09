@@ -12,6 +12,7 @@ export default function init(routes) {
     children: [
       {
         path: "admin",
+
         element: (
           <GuardRouteAdmin>
             <AdminPage></AdminPage>
