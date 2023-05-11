@@ -1,27 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { Button } from "antd";
-import EditorText from "../common/EditorText";
-import { useSelector } from "react-redux";
-import useCookie from "@/hook/useCookie";
-import useAccount from "@/hook/useAccount";
-// import { useNavigate } from "react-router-dom";
-import usePost from "@/hook/usePost";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { Button } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useAccount from "@/hook/useAccount";
+import usePost from "@/hook/usePost";
 import { Input } from "../input";
-import { Label } from "../label";
 import RichTextField from "../common/RichTextField";
 
-const CreatePostDetail = ({
-  fullname,
-  avatar,
-  open = false,
-  handleClose = () => {},
-}) => {
+const CreatePostDetail = (
+  {...props}
+) => {
+
   const [auth, setAuth] = useState(true);
   const [content, setContent] = useState("");
+  const { createPost, createPostLoading } = usePost();
+  const { user } = useAccount();
+  const [contentError, setContentError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const schema = yup.object({
     titlePost: yup
       .string()
@@ -38,18 +36,13 @@ const CreatePostDetail = ({
     mode: "onSubmit",
   });
   
-  const { createPost } = usePost();
-  const { user } = useAccount();
-  const [contentError, setContentError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleCreatePost = (value) => {
     if (content.trim() === "") {
       setContentError(true);
       return;
     }
     setContentError(false);
-    const data = { ...value, contentPost: content };
+    const data = { ...value, contentPost: content , typePost: 2};
     createPost(data)
     
   };
@@ -66,24 +59,24 @@ const CreatePostDetail = ({
   return ReactDOM.createPortal(
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center p-5 createpostdetal ${
-        open ? "" : "opacity-0 invisible"
+        props.open ? "" : "opacity-0 invisible"
       }`}
     >
       <div
         className="absolute inset-0 bg-black bg-opacity-25 overlay"
-        onClick={handleClose}
+        onClick={props.handleClose}
       ></div>
       <div className="relative z-10 w-full bg-white mb-5 modal-content max-w-[650px] h-[720px]">
         <div className=" w-[650px] h-[50px]  bg-slate-200 border border-3 border-solid border-gray-400">
           <div>
             <div className="pt-3  pl-6 pr-6 flex ">
               <span className="w-full text-lg font-medium  text-blue-500">
-                Create a post to share
+                {props.isUpdate ? "Edit a post to share" : "Create a post to share"}
               </span>
               <span
                 className="absolute top-8 right-8 flex items-center justify-center w-10 h-10 p-1  cursor-pointer -translate-y-2/4 translate-x-2/4
                 "
-                onClick={handleClose}
+                onClick={props.handleClose}
               >
                 <svg
                   width="14"
@@ -107,31 +100,32 @@ const CreatePostDetail = ({
             >
               <span className="overflow-hidden relative block">
                 <span className="pb-[100%] rounded-full"></span>
-                <img src={avatar} alt="" className="rounded-full" />
+                <img src={props.avatar} alt="" className="rounded-full" />
               </span>
             </a>
 
-            <span className="text-base font-semibold">{fullname}</span>
+            <span className="text-base font-semibold">{props.fullname}</span>
           </div>
-          <form onSubmit={handleSubmit(handleCreatePost)}>
+          <form onSubmit={handleSubmit(handleCreatePost)} isLoading={createPostLoading}>
             <div className="block ml-[5%]">
               <p className=" w-[100%] mt-[5%]  inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Title Post*</p>
               <Input
                 control={control}
                 name="titlePost"
                 type="text"
+                value={props.title || ""}
                 placeholder="Title post"
                 error={errors.titlePost?.message}
-                className="h-[45px] mr-5  mb-3 w-[90%] border-2  p-2 overflow-scroll font-semibold"
-              ></Input>
+                className="h-[45px] mr-5  mb-3 w-[95%] border-2  p-2 overflow-scroll font-semibold"
+              />
             </div>
             <div className="block w-[90%] mt-6 mb-16 ml-[5%] h-[320px]">
               <p className="inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Content Post*</p>
               <RichTextField
                 name="contentPost"
-                value={content}
+                value={props.updatedContent || content}
                 onChange={handleChangeContent}
-              ></RichTextField>
+              />
               
             </div>
             {contentError && (
@@ -140,9 +134,9 @@ const CreatePostDetail = ({
             <Button
               className="w-[90%] ml-[5%] text-white mt-10 bg-blueborder"
               htmlType="submit"
-              loading={isLoading}
+              loading={createPostLoading}
             >
-              SUBMIT
+              {props.isUpdate ? "Edit Post" : "Create Post"}
             </Button>
           </form>
         </div>

@@ -31,11 +31,12 @@ function usePost() {
   });
 
   //createPost
-  const { mutate: createPost } = useMutation({
+  const { mutate: createPost , isLoading: createPostLoading} = useMutation({
     mutationFn: createPostApi,
     onSuccess: (respone) => {
         if (respone.result) {
           getListPost();
+          
           useSuccess("Create post success!");
         } else {
           useError("Create post fail!");
@@ -85,6 +86,7 @@ function usePost() {
     updatePost,
     deletePost,
     createPost,
+    createPostLoading,
   };
 }
 

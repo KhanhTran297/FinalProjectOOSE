@@ -8,7 +8,7 @@ const BodyPost = (props) => {
   return (
     <div className="pt-7 pb-7 w-full">
       <div className="text-2xl font-semibold">{props.title}</div>
-      <ReadMoreReadLess limit={200}>{props.content}</ReadMoreReadLess>
+      <ReadMoreReadLess limit={200} >{props.content}</ReadMoreReadLess>
       <Comment></Comment>
     </div>
   );

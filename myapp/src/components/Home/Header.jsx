@@ -1,10 +1,11 @@
-import useAccount from "@/hook/useAccount";
-import useCookie from "@/hook/useCookie";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import UserOptions from "./UserOptions";
 import useClickOutSide from "@/hook/useClickOutSide";
+import useAccount from "@/hook/useAccount";
+import useCookie from "@/hook/useCookie";
+import UserOptions from "./UserOptions";
+
 const Header = () => {
   //hooks
   const [checkAccount, setCheckAccount] = useState(false);

@@ -1,20 +1,19 @@
-import useAccount from "@/hook/useAccount";
-import useCookie from "@/hook/useCookie";
 import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useAccount from "@/hook/useAccount";
+import useCookie from "@/hook/useCookie";
 import CreatePostDetail from "../Modal/CreatePostDetail";
 
 const CreatePost = (props) => {
-  //hooks
+
   const [showCreatePost, setShowCreatePost] = useState(false);
   const selector = useSelector((state) => state.account);
   const { isLoggedIn } = useCookie();
   const { getProfileAccount } = useAccount();
   const navigate = useNavigate();
-  //variables
   const userAccount = selector.account;
-  //methods
+
   const checkAccount = () => {
     if (isLoggedIn()) {
       if (!userAccount) {
@@ -34,7 +33,8 @@ const CreatePost = (props) => {
           fullname={props.fullname}
           open={showCreatePost}
           handleClose={() => setShowCreatePost(false)}
-        ></CreatePostDetail>
+          isEdit={false}
+        />
       </div>
       <div className="m-11 mt-3 mb-3 w-[700px] h-[72px] rounded-lg bg-slate-200">
         <div className="pt-4 pb-4 pl-6 pr-6">

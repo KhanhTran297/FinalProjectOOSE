@@ -1,42 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import usePost from "@/hook/usePost";
 import BodyPost from "./BodyPost";
 import HeaderPost from "./HeaderPost";
-import usePost from "@/hook/usePost";
-import { useSelector } from "react-redux";
 
 const Post = (props) => {
   const selectorPost = useSelector((state) => state.post);
   const { deletePost } = usePost();
-  const idPost = props.id;
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  const { updatePost } = usePost();
+  const [updatedContent, setUpdatedContent] = useState(props.content);
+  const [contentError, setContentError] = useState(false);  
+  
   const handleDeletePost = (id) => {
     deletePost(id)
-    
-    
   }
-  console.log("props id",props.id)
+
+  const handleUpdatePost = (id,value) => {
+    if (updatedContent.trim() === "") {
+      setContentError(true);
+      return;
+    }
+    setContentError(false);
+    const data = { ...value,id:id, contentPost: updatedContent };
+    updatePost(data);
+    console.log("data update Post",data)
+  };
+  
+  const handleChangeUpdateContent = (html) => {
+    setUpdatedContent(html);
+    setContentError(false);
+  };
+
+  useEffect(() => {
+    setUpdatedContent(props.content);
+  }, [props.content]);
+
   return (
     <div className="bg-slate-200 w-[700px] h-auto m-11 mt-0 rounded-lg">
       <div>
         <div className="p-5">
           <HeaderPost
-            avatar={props.avatarAccountPost}
-            username={props.usernameAccountPost}
-            emailAccountPost={props.emailAccountPost}
-            id={props.id}
+            {...props}
             onDelete={() => handleDeletePost(props.id)}
-          ></HeaderPost>
+            onChange={() => handleChangeUpdateContent()}
+            onUpdate={(value) => handleUpdatePost(props.id,value)}
+            updatedContent={updatedContent}
+            contentError={contentError}
+          />
           <BodyPost 
-              id={props.id}
-              title={props.title}
-              content={props.content}></BodyPost>
+            {...props}
+          />
         </div>
       </div>
     </div>

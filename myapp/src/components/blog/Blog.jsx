@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import useAccount from "@/hook/useAccount";
+import usePost from "@/hook/usePost";
 import CreatePost from "../Forum/CreatePost";
 import Post from "../post/Post";
 import LeftSideBlog from "./LeftSideBlog";
 import RightSideBlog from "./RightSideBlog";
-import useAccount from "@/hook/useAccount";
-import usePost from "@/hook/usePost";
+
 
 const Blog = () => {
   //hooks

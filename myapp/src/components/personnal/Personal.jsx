@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import usePost from "@/hook/usePost";
+import useAccount from "@/hook/useAccount";
 import CreatePost from "../Forum/CreatePost";
 import Post from "../post/Post";
 import HeaderPersonal from "./HeaderPersonal";
-import usePost from "@/hook/usePost";
-import useAccount from "@/hook/useAccount";
+
 
 const Personal = () => {
   //hooks
@@ -34,11 +35,13 @@ const Personal = () => {
           if (post.accountPost.email === userAccount.userEmail) {
             return (
               <Post
-                key={post.post.id}
+                id={post.id}
                 title={post.titlePost}
                 content={post.contentPost}
                 usernameAccountPost={post.accountPost.fullName}
                 avatarAccountPost={post.accountPost.avatarPath}
+                emailAccountPost={post.accountPost.email}
+
               />
             )
           }

@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import FormGroup from "../common/FormGroup";
-import { IconEyeToggle } from "../icons";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import useMyToast from "@/hook/useMyToast";
 import { Input } from "../input";
 import { Label } from "../label";
 import { Button } from "../button";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
-import useMyToast from "@/hook/useMyToast";
+import FormGroup from "../common/FormGroup";
+import { IconEyeToggle } from "../icons";
 
 const schema = yup.object({
   email: yup.string().required("This field is required"),
   otp: yup.string().required("this field is required"),
 });
+
 const ForgotPassword = (props) => {
   const {
     handleSubmit,

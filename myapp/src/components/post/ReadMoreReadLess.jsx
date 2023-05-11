@@ -8,11 +8,18 @@ const ReadMoreReadLess = ({ children, limit }) => {
     readmorebtnRef.current.style.display = "none";
   };
 
+  let content;
+  if (isReadMoreShown) {
+    content = children;
+  } else {
+    content = children.length > limit ? children.slice(0, limit) + "..." : children;
+  }
+
   return (
-    <div className="read-more-read-less ">
-      {isReadMoreShown ? children : children.substr(0, limit)}
+    <div>
+      <div className="read-more-read-less" dangerouslySetInnerHTML={{ __html: content }}></div>
       <button onClick={toggleBtn} ref={readmorebtnRef} className="opacity-60">
-        {children.length > limit ? "...Đọc tiếp" : ""}
+        {children && children.length > limit && !isReadMoreShown ? "Đọc thêm" : ""}
       </button>
     </div>
   );
