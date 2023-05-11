@@ -5,7 +5,7 @@ const { useGet, usePost, useEdit, useDelete } = useCallApi();
 
 export const getListPostApi = () => {
     const url = "/v1/post/list";
-    return useGet({ url, requiredToken: true })
+    return useGet({ url})
 };
 
 export const createPostApi = (params) => {
@@ -15,7 +15,8 @@ export const createPostApi = (params) => {
 
 export const deletePostApi = (id) => {
     const url = `/v1/post/delete/${id}`;
-    return useDelete({ url, requiredToken: true }).then((response) => response);
+    return useDelete({ url, requiredToken: true });
+    
 };
 
 export const updatePostApi = (params) => {

@@ -11,6 +11,7 @@ const Input = (props) => {
     error = "",
     placeholder = "",
     children,
+    value,
     ...rest
   } = props;
   const { field } = useController({
@@ -24,6 +25,7 @@ const Input = (props) => {
       <input
         id={name}
         type={type}
+        value={value}
         className={`
           "absolute w-full px-6 py-4 text-sm font-medium border rounded-xl placeholder:text-text4 dark:placeholder:text-text2 dark:text-white bg-transparent",
           error.length > 0
@@ -54,6 +56,7 @@ Input.propTypes = {
   type: PropTypes.string,
   error: PropTypes.string,
   control: PropTypes.any.isRequired,
+  value: PropTypes.string,
 };
 // export default withErrorBoundary(Input, {
 //   // FallbackComponent: <ErrorComponent></ErrorComponent>,

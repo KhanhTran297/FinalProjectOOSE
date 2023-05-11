@@ -1,41 +1,64 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Modal } from 'antd';
+import useAccount from "@/hook/useAccount";
+import useCookie from "@/hook/useCookie";
 import useClickOutSide from "@/hook/useClickOutSide";
 import Report from "../Modal/Report";
-import { useSelector } from "react-redux";
-import useAccount from "@/hook/useAccount";
-import usePost from "@/hook/usePost";
-import { Modal } from 'antd';
+import CreatePostDetail from "../Modal/CreatePostDetail";
 
 const HeaderPost = (props) => {
-  const selectorAccount = useSelector((state) => state.account);
-  const { getProfileAccount } = useAccount();
-  const userAccount = selectorAccount.account;
-  const selectorPost = useSelector((state) => state.post);
-  
-  useEffect(() => {
-    getProfileAccount();
-  }, [userAccount]);
-  
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const selectorAccount = useSelector((state) => state.account);
+  const userAccount = selectorAccount.account;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const {show,setShow,nodeRef} = useClickOutSide();
+  const [showReport, setShowReport] = useState(false);
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const { isLoggedIn } = useCookie();
+  const { getProfileAccount } = useAccount();
+  const navigate = useNavigate();
+  
+  //methods
+  const checkAccount = () => {
+    if (isLoggedIn()) {
+      if (!userAccount) {
+        getProfileAccount();
+      } else {
+        setShowCreatePost(true);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
+  
   const showModal = () => {
     setIsModalVisible(true);
   };
   
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
   
-  const {show,setShow,nodeRef} = useClickOutSide();
-  const [showReport, setShowReport] = useState(false);
   return (
     <Fragment>
       <div className="relative z-0">
         <Report
           open={showReport}
           handleClose={() => setShowReport(false)}
-        ></Report>
+        />
+      </div>
+      <div className="relative z-0">
+        <CreatePostDetail
+          {...props}
+          avatar={userAccount?.userAvatar}
+          fullname={userAccount?.userFullName}
+          open={showCreatePost}
+          handleClose={() => setShowCreatePost(false)}
+          isUpdate={true}
+        />
       </div>
       <div className="w-full  flex  h-8 ">
         <div className=" w-[90%] flex gap-4">
@@ -46,7 +69,7 @@ const HeaderPost = (props) => {
             <span className="overflow-hidden h-[100%] w-[100%] block">
               <span className="pb-[100%] rounded-full"></span>
               <img
-                src={props.avatar}
+                src={props.avatarAccountPost}
                 alt=""
                 className="rounded-full absolute w-full h-full"
               />
@@ -54,15 +77,15 @@ const HeaderPost = (props) => {
           </a>
 
           <div className="flex flex-col">
-            <span className="text-base font-semibold  ">{props.username}</span>
+            <span className="text-base font-semibold  ">{props.fullnameAccountPost}</span>
             <span className="text-base font-normal text-slate-400  h-[100%]">
-            25/06/2023
+              {props.createdDate}
             </span>
           </div>
         </div>
         
-        <div className="items-center w-[10%] " ref={nodeRef}>
-          <div className="">
+        <div className="items-center w-[10%] " ref={nodeRef} >
+          <div  >
             <button onClick={() => setShow(!show)}>
               <svg
                 fill="#000000"
@@ -135,24 +158,27 @@ const HeaderPost = (props) => {
               </div>
             )}
             {show && (userAccount.userEmail === props.emailAccountPost) &&  (
-              <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
+              <div type="primary" className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
                 <button
                   className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
-                  // onClick={() => handleDeletePost()}
+                  onClick={checkAccount}
                 >
                   Edit
                 </button>
-                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={props.onDelete} >
+                 
+                <button  className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={showModal} >
                   Delete
                 </button>
-                {/* <Modal
-                  title="Xác nhận xóa"
-                  visible={isModalVisible}
-                  onOk={handleDeletePost}
+                <Modal
+                  title="Confirm delete"
+                  open={isModalVisible}
+                  onOk={props.onDelete}
                   onCancel={handleCancel}
+                  okText="Delete"
+                  okType= 'danger'
                 >
-                  <p>Bạn có chắc chắn muốn xóa bài đăng này?</p>
-                </Modal> */}
+                  <p>Are you sure you want to delete this post??</p>
+                </Modal>
               </div>
             )}
             {!show &&  (

@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
 const HeaderPersonal = () => {
   //hooks
   const selector = useSelector((state) => state.account);

@@ -2,15 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import useMyToast from "@/hook/useMyToast";
 import FormGroup from "../common/FormGroup";
 import { IconEyeToggle } from "../icons";
-import * as yup from "yup";
 import { Input } from "../input";
 import { Label } from "../label";
 import { Button } from "../button";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
-import useMyToast from "@/hook/useMyToast";
 
 const schema = yup.object({
   newpassword: yup
@@ -22,6 +22,7 @@ const schema = yup.object({
     .required("this field is required")
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
+
 const CreateNewPassword = () => {
   const {
     handleSubmit,
@@ -38,9 +39,11 @@ const CreateNewPassword = () => {
   const { useSuccess, useError } = useMyToast();
   //variables
   //method
+
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
+
   const handleCreatePass = (value) => {
     if (value.newpassword == value.confirmpassword) {
       useSuccess("Recovery Success");
@@ -59,7 +62,7 @@ const CreateNewPassword = () => {
             type="newpassword"
             placeholder="Enter ur new password"
             error={errors.newpassword?.message}
-          ></Input>
+          />
         </FormGroup>
         <FormGroup>
           <Label htmlFor="otp">Confirm password</Label>
@@ -73,7 +76,7 @@ const CreateNewPassword = () => {
             <IconEyeToggle
               open={showPassword}
               onClick={handleTogglePassword}
-            ></IconEyeToggle>
+            />
           </Input>
         </FormGroup>
         <Button className="w-full bg-primary" type="submit">
