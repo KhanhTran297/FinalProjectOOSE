@@ -2,7 +2,7 @@ import useCallApi from "@/hook/useCallApi";
 import useCookie from "@/hook/useCookie";
 
 const { getCookie } = useCookie();
-const { useGet, usePost, useEdit } = useCallApi();
+const { useGet, usePost, useEdit, useDelete } = useCallApi();
 
 export const authLoginApi = (params) => {
   const url = "/api/token";
