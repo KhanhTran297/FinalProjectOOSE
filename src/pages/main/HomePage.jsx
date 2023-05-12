@@ -4,13 +4,13 @@ import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   //hooks
-  const { getProfileAccount, profileAccount } = useAccount();
+  const { getProfileAccount } = useAccount();
   const navigate = useNavigate();
-  const { removeCookie, isLoggedIn } = useCookie();
+  const { isLoggedIn } = useCookie();
   const selector = useSelector((state) => state.account);
   //variables
   const useraccount = selector.account;

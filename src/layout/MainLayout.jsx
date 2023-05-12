@@ -1,4 +1,3 @@
-import Header from "@/components/Home/Header";
 import React from "react";
 import { Outlet } from "react-router-dom";
 

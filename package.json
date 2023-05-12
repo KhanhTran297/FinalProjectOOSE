@@ -37,10 +37,13 @@
     "react-query": "^3.39.3",
     "react-quill": "^2.0.0",
     "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.1",
     "react-toastify": "^9.1.1",
+    "recoil": "^0.7.7",
     "redux-saga": "^1.2.2",
     "style-components": "^0.1.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

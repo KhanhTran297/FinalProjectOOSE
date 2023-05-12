@@ -1,32 +1,13 @@
-import React, { useEffect } from "react";
-import {
-  FileOutlined,
-  PieChartOutlined,
-  UserOutlined,
-  DesktopOutlined,
-  TeamOutlined,
-  AntDesignOutlined,
-} from "@ant-design/icons";
-import {
-  Avatar,
-  Breadcrumb,
-  Button,
-  Dropdown,
-  Layout,
-  Menu,
-  Modal,
-  Space,
-  theme,
-} from "antd";
-import { useState } from "react";
-import useAccount from "@/hook/useAccount";
-import Edit from "@/components/profile/Edit";
-import useCookie from "@/hook/useCookie";
-import { useSelector } from "react-redux";
-import ModalContent from "@/components/admin/ModalContent";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UsersContent from "./users/UsersContent";
+import { useSelector } from "react-redux";
+import { Avatar, Dropdown, Layout, Menu, Modal, Space, theme } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import useAccount from "@/hook/useAccount";
+import useCookie from "@/hook/useCookie";
+import ModalContent from "@/components/admin/ModalContent";
 import useAdmin from "@/hook/useAdmin";
+import UsersContent from "./users/UsersContent";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -45,7 +26,6 @@ const AdminPage = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const { getListPost, getProfileAccount } = useAccount();
   const { handleGetListAccount, listAccount } = useAdmin();
   const { removeCookie, isLoggedIn } = useCookie();
   const [modalType, setModalType] = useState();
@@ -198,7 +178,7 @@ const AdminPage = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        width={1000}
+        width={600}
       >
         <ModalContent type={modalType}></ModalContent>
       </Modal>
