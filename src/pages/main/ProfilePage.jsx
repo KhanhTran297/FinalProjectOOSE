@@ -1,6 +1,7 @@
+import React from "react";
 import Header from "@/components/Home/Header";
 import Profile from "@/components/profile/Profile";
-import React from "react";
+
 
 const ProfilePage = () => {
   return (

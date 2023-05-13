@@ -1,10 +1,11 @@
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Home/Header";
 import Home from "@/components/Home/Home";
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 
 const HomePage = () => {
   //hooks

@@ -1,6 +1,7 @@
+import React from "react";
 import Contact from "@/components/Contact/Contact";
 import Header from "@/components/Home/Header";
-import React from "react";
+
 
 const ContactPage = () => {
   return (

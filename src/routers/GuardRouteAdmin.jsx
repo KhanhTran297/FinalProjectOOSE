@@ -1,8 +1,7 @@
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
-import React, { useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
 
 const GuardRouteAdmin = ({ children }) => {
   //hooks
@@ -11,7 +10,6 @@ const GuardRouteAdmin = ({ children }) => {
   const navigate = useNavigate();
   useEffect(() => {
     //Neu co token trong cookie
-    console.log(isLoggedIn());
     if (isLoggedIn()) {
       return;
     } else {

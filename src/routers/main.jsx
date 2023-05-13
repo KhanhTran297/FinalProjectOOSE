@@ -3,7 +3,6 @@ import ContactPage from "@/pages/main/ContactPage";
 import ForumPage from "@/pages/main/ForumPage";
 import HomePage from "@/pages/main/HomePage";
 import ProfilePage from "@/pages/main/ProfilePage";
-import { element } from "prop-types";
 import GuardRoute from "./GuardRoute";
 import BlogPage from "@/pages/main/BlogPage";
 import PersonalPage from "@/pages/main/PersonalPage";

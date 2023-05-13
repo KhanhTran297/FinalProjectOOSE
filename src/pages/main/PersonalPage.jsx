@@ -1,7 +1,7 @@
-import Header from "@/components/Home/Header";
-import HeaderPersonal from "@/components/personnal/HeaderPersonal";
-import Personal from "@/components/personnal/Personal";
 import React from "react";
+import Header from "@/components/Home/Header";
+import Personal from "@/components/personnal/Personal";
+
 
 const PersonalPage = () => {
   return (

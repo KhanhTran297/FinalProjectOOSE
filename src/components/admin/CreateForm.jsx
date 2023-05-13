@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { Button, Form, Input } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
-import useMyToast from "@/hook/useMyToast";
 import useAdmin from "@/hook/useAdmin";
 
 const schema = yup.object({
@@ -16,18 +15,12 @@ const schema = yup.object({
     .string()
     .required("This field is required")
     .min(8, "Password must be 8 character "),
-  // ac_confirmpassword: yup
-  //   .string()
-  //   .required("This field is required")
-  //   .oneOf([yup.ref("ac_password"), null], "Passwords must match"),
-
   userFullName: yup.string().required("This field is required"),
   userPhone: yup
     .string()
     .required("This field is required")
     .matches(/((09|03|07|08|05)+([0-9]{8})\b)/g, "Invalid phone format"),
 });
-const { useError } = useMyToast();
 const CreateForm = (props) => {
   const {
     handleSubmit,
@@ -38,17 +31,7 @@ const CreateForm = (props) => {
     mode: "onSubmit",
   });
 
-  //hook
-  const [showPassword, setShowPassword] = useState(false);
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
-  const [showConfirm, setShowConfirm] = useState(false);
-  const handleToggleConfirm = () => {
-    setShowConfirm(!showConfirm);
-  };
   const { handleCreateExpertAccount, handleCreateAdminAccount } = useAdmin();
-  //methods
   const handleSignUp = (value) => {
     const data = {
       userAvatar: "./img/defaultAvatar2.jpg",
@@ -56,7 +39,6 @@ const CreateForm = (props) => {
     };
     if (props.type == "Expert") {
       data.userDayOfBirth = data.userDayOfBirth + " 00:00:00";
-      console.log("data", data);
       handleCreateExpertAccount.mutate(data);
     } else {
       handleCreateAdminAccount.mutate(data);
@@ -91,6 +73,7 @@ const CreateForm = (props) => {
       <Form.Item
         label="userEmail"
         name="userEmail"
+        help="Should be xxx@gmail.com"
         rules={[
           {
             required: true,

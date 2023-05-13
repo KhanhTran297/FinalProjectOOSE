@@ -14,7 +14,7 @@ export default function init(routes) {
 
         element: (
           <GuardRouteAdmin>
-            <AdminPage></AdminPage>
+            <AdminPage />
           </GuardRouteAdmin>
         ),
       },
