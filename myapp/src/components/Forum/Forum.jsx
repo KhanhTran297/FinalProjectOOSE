@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import usePost from "@/hook/usePost";
 import useAccount from "@/hook/useAccount";
+import useComment from "@/hook/useComment";
 import Post from "../post/Post";
 import CreatePost from "./CreatePost";
 import LeftSideForum from "./LeftSideForum";
@@ -11,18 +12,21 @@ import RightSideForum from "./RightSideForum";
 const Forum = () => {
 
   const selectorAccount = useSelector((state) => state.account);
+  const selectorComment = useSelector((state) => state.comment);
   const selectorPost = useSelector((state) => state.post);
+  const { getListComment } = useComment();
+  const listComment = selectorComment.listComment;
   const { getListPost } = usePost();
   const { getProfileAccount } = useAccount();
-
+  
   const userAccount = selectorAccount.account;
   const listPost = selectorPost.listPost;
   const filteredListPost = listPost?.content?.filter(post => post.typePost === 2);
-  
   useEffect(() => {
     getListPost();
     getProfileAccount();
-  }, [listPost,userAccount]);
+    getListComment();
+  }, [listPost,userAccount,listComment]);
   
   return (
     <div className="grid grid-cols-[20%_60%_20%]">
@@ -49,6 +53,7 @@ const Forum = () => {
               avatarAccountPost={post.accountPost.avatarPath}
               emailAccountPost={post.accountPost.email}
               createdDate={post.createdDate}
+              
             />
           ))}
         </div>

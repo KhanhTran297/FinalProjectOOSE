@@ -1,21 +1,27 @@
+import { useMutation, useQuery } from "react-query";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { atom, useRecoilState } from "recoil";
 import {
   createAdminAccountAPI,
   createExpertAccountAPI,
   deleteAccountAPI,
   getListAccountAPI,
 } from "@/api/admin";
-import { useMutation, useQuery } from "react-query";
-import useMyToast from "./useMyToast";
-import { useDispatch } from "react-redux";
 import { setListAccount } from "@/redux/slice/account";
-
+import useMyToast from "./useMyToast";
+const querySearchParams = atom({
+  key: "searchParams", // unique ID (with respect to other atoms/selectors)
+  default: "", // default value (aka initial value)
+});
 function useAdmin() {
   const dispatch = useDispatch();
+  const [params, setParams] = useRecoilState(querySearchParams);
   const { useSuccess, useError } = useMyToast();
   // Create Expert Account
   const handleCreateExpertAccount = useMutation({
     mutationFn: createExpertAccountAPI,
-    onSuccess: (data) => {
+    onSuccess: () => {
       useSuccess("Create Success");
       handleGetListAccount();
     },
@@ -27,16 +33,20 @@ function useAdmin() {
   const handleCreateAdminAccount = useMutation({
     mutationFn: createAdminAccountAPI,
     onSuccess: (data) => {
-      useSuccess("Create Success");
-      handleGetListAccount();
+      if (data.code == "ERROR-ACCOUNT-0001") {
+        useError("Email have already!!!!");
+      } else {
+        useSuccess("Create Success");
+        handleGetListAccount();
+      }
     },
     onError: () => {
       useError("Create Fail");
     },
   });
   const { refetch: handleGetListAccount, data: listAccount } = useQuery({
-    queryKey: ["listAccount"],
-    queryFn: getListAccountAPI,
+    queryKey: { SearchQuery: params },
+    queryFn: () => getListAccountAPI(params),
     retry: 0,
     enabled: false,
     onSuccess: (respone) => {
@@ -54,12 +64,17 @@ function useAdmin() {
       useError("Delete Fail");
     },
   });
+  useEffect(() => {
+    handleGetListAccount();
+  }, [params]);
   return {
     handleCreateAdminAccount,
     handleCreateExpertAccount,
     handleGetListAccount,
     listAccount,
     handleDeleteAccount,
+    setParams,
+    params,
   };
 }
 export default useAdmin;

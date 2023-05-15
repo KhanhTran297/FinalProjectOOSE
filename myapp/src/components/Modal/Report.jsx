@@ -3,23 +3,23 @@ import ReactDOM from "react-dom";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 
-const Report = ({ open = false, handleClose = () => {} }) => {
+const Report = (props) => {
   if (typeof document === "undefined") return <div className="report"></div>;
   return ReactDOM.createPortal(
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center p-5 modal ${
-        open ? "" : "opacity-0 invisible"
+        props.open ? "" : "opacity-0 invisible"
       }`}
     >
       <div
         className="absolute inset-0 bg-black bg-opacity-25 overlay"
-        onClick={handleClose}
+        onClick={props.handleClose}
       ></div>
       <div className="relative z-10 w-full p-10 bg-white rounded-lg modal-content max-w-[482px] h-64">
         <span
           className="absolute top-0 right-0 flex items-center justify-center w-10 h-10 p-1 bg-white rounded-full cursor-pointer -translate-y-2/4 translate-x-2/4
         "
-          onClick={handleClose}
+          onClick={props.handleClose}
         >
           <svg
             width="14"
