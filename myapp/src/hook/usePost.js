@@ -2,7 +2,6 @@ import React from "react";
 import {
   useMutation,
   useQuery,
-  useQueryClient,
 } from "react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,6 @@ import { createPostApi, deletePostApi, getListPostApi, updatePostApi } from "@/a
 import { setListPost } from "@/redux/slice/post";
 
 function usePost() {
-  const navigate = useNavigate();
   const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();
 
@@ -64,7 +62,7 @@ function usePost() {
   });
 
   //editPost
-  const {mutation: updatePost} = useMutation({
+  const {mutate: updatePost} = useMutation({
     mutationFn: updatePostApi,
     onSuccess: (respone) => {
         if (respone.result) {

@@ -13,12 +13,11 @@ export const createAdminAccountAPI = (params) => {
   const url = "/v1/account/create-admin";
   return usePost({ url, requiredToken: true, params });
 };
-export const getListAccountAPI = () => {
-  const url = "v1/account/list";
+export const getListAccountAPI = (params) => {
+  const url = `v1/account/list?${params.toString()}`;
   return useGet({ url, requiredToken: true });
 };
 export const deleteAccountAPI = (id) => {
-  console.log("id ne", id);
   const url = `v1/account/delete/${id}`;
   return useDelete({ url, requiredToken: true });
 };

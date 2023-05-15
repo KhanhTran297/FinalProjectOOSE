@@ -5,8 +5,8 @@ import { Modal } from 'antd';
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import useClickOutSide from "@/hook/useClickOutSide";
-import Report from "../Modal/Report";
 import CreatePostDetail from "../Modal/CreatePostDetail";
+import Report from "../Modal/Report";
 
 const HeaderPost = (props) => {
 
@@ -46,8 +46,9 @@ const HeaderPost = (props) => {
     <Fragment>
       <div className="relative z-0">
         <Report
-          open={showReport}
-          handleClose={() => setShowReport(false)}
+        {...props}
+        open={showReport}
+        handleClose={() => setShowReport(false)}
         />
       </div>
       <div className="relative z-0">
@@ -123,10 +124,7 @@ const HeaderPost = (props) => {
 
             {show && (userAccount.userEmail !== props.emailAccountPost) &&  (
               <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
-                <button
-                  className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
-                  onClick={() => setShowReport(true)}
-                >
+                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={setShowReport}>
                   Report
                 </button>
                 <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex ">

@@ -10,15 +10,12 @@ import { Input } from "../input";
 import RichTextField from "../common/RichTextField";
 
 const CreatePostDetail = (
-  {...props}
+  props
 ) => {
 
-  const [auth, setAuth] = useState(true);
-  const [content, setContent] = useState("");
-  const { createPost, createPostLoading } = usePost();
-  const { user } = useAccount();
+  const { createPost, createPostLoading} = usePost();
+  const { updatePost } = usePost();
   const [contentError, setContentError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const schema = yup.object({
     titlePost: yup
@@ -31,27 +28,40 @@ const CreatePostDetail = (
     handleSubmit,
     control,
     formState: { errors },
+    reset,
+    getValues,
+    setValue,
   } = useForm({
+    defaultValues: {
+      titlePost: props?.title ?? "",
+      contentPost: props?.content ?? "",
+    },
     resolver: yupResolver(schema),
     mode: "onSubmit",
   });
   
   const handleCreatePost = (value) => {
-    if (content.trim() === "") {
+    const data = { ...value , typePost: 2};
+    createPost(data)
+    reset()
+    props.handleClose();
+  };
+
+  const handleUpdatePost = (id,value) => {
+    const data = { ...value,id:id };
+    updatePost(data);
+    props.handleClose();
+  };
+
+  const onSubmit = (values) => {
+    if (values.contentPost.trim() === "") {
       setContentError(true);
       return;
     }
     setContentError(false);
-    const data = { ...value, contentPost: content , typePost: 2};
-    createPost(data)
-    
+    const data = { ...values , typePost: 2};
+    props.isUpdate ? handleUpdatePost(props.id,data) : handleCreatePost(data);
   };
-
-  const handleChangeContent = (html) => {
-    setContent(html);
-    setContentError("");
-  };
-  
   
 
   if (typeof document === "undefined")
@@ -93,27 +103,30 @@ const CreatePostDetail = (
               </span>
             </div>
           </div>
-          <div className="w-full  flex relative mt-10 ml-2 z-0">
+          <div className="w-full ml-8  flex relative mt-10  z-0">
             <a
               href=""
-              className="w-8 h-8 border-[1px] ml-3 mr-3 border-solid border-blueborder rounded-full"
+              className="w-8 h-8 border-[1px] mt-2  border-solid border-blueborder relative rounded-full"
             >
-              <span className="overflow-hidden relative block">
+              <span className="overflow-hidden h-[100%] w-[100%] block">
                 <span className="pb-[100%] rounded-full"></span>
-                <img src={props.avatar} alt="" className="rounded-full" />
+                <img
+                  src={props.avatar}
+                  alt=""
+                  className="rounded-full absolute w-full h-full"
+                />
               </span>
             </a>
 
-            <span className="text-base font-semibold">{props.fullname}</span>
+            <span className=" pt-2 pl-3 text-base font-semibold">{props.fullname}</span>
           </div>
-          <form onSubmit={handleSubmit(handleCreatePost)} isLoading={createPostLoading}>
+          <form onSubmit={handleSubmit(onSubmit)} isLoading={createPostLoading}>
             <div className="block ml-[5%]">
               <p className=" w-[100%] mt-[5%]  inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Title Post*</p>
               <Input
                 control={control}
                 name="titlePost"
                 type="text"
-                value={props.title || ""}
                 placeholder="Title post"
                 error={errors.titlePost?.message}
                 className="h-[45px] mr-5  mb-3 w-[95%] border-2  p-2 overflow-scroll font-semibold"
@@ -123,8 +136,8 @@ const CreatePostDetail = (
               <p className="inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Content Post*</p>
               <RichTextField
                 name="contentPost"
-                value={props.updatedContent || content}
-                onChange={handleChangeContent}
+                value={getValues("contentPost")}
+                onChange={(html) => setValue("contentPost", html)}
               />
               
             </div>
