@@ -8,26 +8,21 @@ import CreatePost from "./CreatePost";
 import LeftSideForum from "./LeftSideForum";
 import RightSideForum from "./RightSideForum";
 
-
 const Forum = () => {
-
   const selectorAccount = useSelector((state) => state.account);
-  const selectorComment = useSelector((state) => state.comment);
   const selectorPost = useSelector((state) => state.post);
-  const { getListComment } = useComment();
-  const listComment = selectorComment.listComment;
   const { getListPost } = usePost();
   const { getProfileAccount } = useAccount();
-  
   const userAccount = selectorAccount.account;
   const listPost = selectorPost.listPost;
-  const filteredListPost = listPost?.content?.filter(post => post.typePost === 2);
+  const filteredListPost = listPost?.content?.filter(
+    (post) => post.typePost === 2
+  );
   useEffect(() => {
     getListPost();
     getProfileAccount();
-    getListComment();
-  }, [listPost,userAccount,listComment]);
-  
+  }, [listPost, userAccount]);
+
   return (
     <div className="grid grid-cols-[20%_60%_20%]">
       <LeftSideForum className="fixed"></LeftSideForum>
@@ -39,13 +34,14 @@ const Forum = () => {
             </span>
           </div>
         </div>
-        <CreatePost 
+        <CreatePost
           avatar={userAccount?.userAvatar}
           fullname={userAccount?.userFullName}
         />
         <div className="mt-3">
           {filteredListPost?.map((post) => (
             <Post
+              key={post.id}
               id={post.id}
               title={post.titlePost}
               content={post.contentPost}
@@ -53,13 +49,11 @@ const Forum = () => {
               avatarAccountPost={post.accountPost.avatarPath}
               emailAccountPost={post.accountPost.email}
               createdDate={post.createdDate}
-              
             />
           ))}
         </div>
-        
       </div>
-      <RightSideForum/>
+      <RightSideForum />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Modal } from 'antd';
+import { Modal } from "antd";
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import useClickOutSide from "@/hook/useClickOutSide";
@@ -9,17 +9,16 @@ import CreatePostDetail from "../Modal/CreatePostDetail";
 import Report from "../Modal/Report";
 
 const HeaderPost = (props) => {
-
   const selectorAccount = useSelector((state) => state.account);
   const userAccount = selectorAccount.account;
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const {show,setShow,nodeRef} = useClickOutSide();
+  const { show, setShow, nodeRef } = useClickOutSide();
   const [showReport, setShowReport] = useState(false);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const { isLoggedIn } = useCookie();
   const { getProfileAccount } = useAccount();
   const navigate = useNavigate();
-  
+
   //methods
   const checkAccount = () => {
     if (isLoggedIn()) {
@@ -32,23 +31,22 @@ const HeaderPost = (props) => {
       navigate("/login");
     }
   };
-  
+
   const showModal = () => {
     setIsModalVisible(true);
   };
-  
+
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
-  
   return (
     <Fragment>
       <div className="relative z-0">
         <Report
-        {...props}
-        open={showReport}
-        handleClose={() => setShowReport(false)}
+          {...props}
+          open={showReport}
+          handleClose={() => setShowReport(false)}
         />
       </div>
       <div className="relative z-0">
@@ -78,15 +76,17 @@ const HeaderPost = (props) => {
           </a>
 
           <div className="flex flex-col">
-            <span className="text-base font-semibold  ">{props.fullnameAccountPost}</span>
+            <span className="text-base font-semibold  ">
+              {props.fullnameAccountPost}
+            </span>
             <span className="text-base font-normal text-slate-400  h-[100%]">
               {props.createdDate}
             </span>
           </div>
         </div>
-        
-        <div className="items-center w-[10%] " ref={nodeRef} >
-          <div  >
+
+        <div className="items-center w-[10%] " ref={nodeRef}>
+          <div>
             <button onClick={() => setShow(!show)}>
               <svg
                 fill="#000000"
@@ -95,11 +95,11 @@ const HeaderPost = (props) => {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g
                   id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></g>
                 <g id="SVGRepo_iconCarrier">
                   {" "}
@@ -122,9 +122,12 @@ const HeaderPost = (props) => {
               </svg>
             </button>
 
-            {show && (userAccount.userEmail !== props.emailAccountPost) &&  (
+            {show && userAccount.userEmail !== props.emailAccountPost && (
               <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
-                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={setShowReport}>
+                <button
+                  className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex "
+                  onClick={setShowReport}
+                >
                   Report
                 </button>
                 <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex ">
@@ -136,11 +139,11 @@ const HeaderPost = (props) => {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                       <g
                         id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       ></g>
                       <g id="SVGRepo_iconCarrier">
                         {" "}
@@ -155,16 +158,22 @@ const HeaderPost = (props) => {
                 </button>
               </div>
             )}
-            {show && (userAccount.userEmail === props.emailAccountPost) &&  (
-              <div type="primary" className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
+            {show && userAccount.userEmail === props.emailAccountPost && (
+              <div
+                type="primary"
+                className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg "
+              >
                 <button
                   className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
                   onClick={checkAccount}
                 >
                   Edit
                 </button>
-                 
-                <button  className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={showModal} >
+
+                <button
+                  className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex "
+                  onClick={showModal}
+                >
                   Delete
                 </button>
                 <Modal
@@ -173,15 +182,13 @@ const HeaderPost = (props) => {
                   onOk={props.onDelete}
                   onCancel={handleCancel}
                   okText="Delete"
-                  okType= 'danger'
+                  okType="danger"
                 >
                   <p>Are you sure you want to delete this post??</p>
                 </Modal>
               </div>
             )}
-            {!show &&  (
-              ""
-            )}
+            {!show && ""}
           </div>
         </div>
       </div>

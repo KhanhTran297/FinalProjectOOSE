@@ -139,11 +139,13 @@ const AdminPage = () => {
       <Modal
         title={titleModal}
         open={isModalOpen}
-        onOk={() => {
-          setIsModalOpen(false);
-        }}
         onCancel={() => {
           setIsModalOpen(false);
+        }}
+        okButtonProps={{ style: { display: "none" } }}
+        cancelButtonProps={{
+          className:
+            " bg-red-500 text-white hover:!text-white hover:!border-slate-950",
         }}
         width={600}
       >

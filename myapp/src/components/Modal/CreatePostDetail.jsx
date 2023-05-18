@@ -1,19 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { Button } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
-import useAccount from "@/hook/useAccount";
+
 import usePost from "@/hook/usePost";
 import { Input } from "../input";
 import RichTextField from "../common/RichTextField";
 
-const CreatePostDetail = (
-  props
-) => {
-
-  const { createPost, createPostLoading} = usePost();
+const CreatePostDetail = (props) => {
+  const { createPost, createPostLoading } = usePost();
   const { updatePost } = usePost();
   const [contentError, setContentError] = useState(false);
 
@@ -39,16 +36,16 @@ const CreatePostDetail = (
     resolver: yupResolver(schema),
     mode: "onSubmit",
   });
-  
+
   const handleCreatePost = (value) => {
-    const data = { ...value , typePost: 2};
-    createPost(data)
-    reset()
+    const data = { ...value, typePost: 2 };
+    createPost(data);
+    reset();
     props.handleClose();
   };
 
-  const handleUpdatePost = (id,value) => {
-    const data = { ...value,id:id };
+  const handleUpdatePost = (id, value) => {
+    const data = { ...value, id: id };
     updatePost(data);
     props.handleClose();
   };
@@ -59,10 +56,9 @@ const CreatePostDetail = (
       return;
     }
     setContentError(false);
-    const data = { ...values , typePost: 2};
-    props.isUpdate ? handleUpdatePost(props.id,data) : handleCreatePost(data);
+    const data = { ...values, typePost: 2 };
+    props.isUpdate ? handleUpdatePost(props.id, data) : handleCreatePost(data);
   };
-  
 
   if (typeof document === "undefined")
     return <div className="createpostdetal"></div>;
@@ -81,7 +77,9 @@ const CreatePostDetail = (
           <div>
             <div className="pt-3  pl-6 pr-6 flex ">
               <span className="w-full text-lg font-medium  text-blue-500">
-                {props.isUpdate ? "Edit a post to share" : "Create a post to share"}
+                {props.isUpdate
+                  ? "Edit a post to share"
+                  : "Create a post to share"}
               </span>
               <span
                 className="absolute top-8 right-8 flex items-center justify-center w-10 h-10 p-1  cursor-pointer -translate-y-2/4 translate-x-2/4
@@ -118,11 +116,15 @@ const CreatePostDetail = (
               </span>
             </a>
 
-            <span className=" pt-2 pl-3 text-base font-semibold">{props.fullname}</span>
+            <span className=" pt-2 pl-3 text-base font-semibold">
+              {props.fullname}
+            </span>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)} isLoading={createPostLoading}>
+          <form onSubmit={handleSubmit(onSubmit)} isloading={createPostLoading}>
             <div className="block ml-[5%]">
-              <p className=" w-[100%] mt-[5%]  inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Title Post*</p>
+              <p className=" w-[100%] mt-[5%]  inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">
+                Title Post
+              </p>
               <Input
                 control={control}
                 name="titlePost"
@@ -133,17 +135,20 @@ const CreatePostDetail = (
               />
             </div>
             <div className="block w-[90%] mt-6 mb-16 ml-[5%] h-[320px]">
-              <p className="inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Content Post*</p>
+              <p className="inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">
+                Content Post
+              </p>
               <RichTextField
                 name="contentPost"
                 value={getValues("contentPost")}
                 onChange={(html) => setValue("contentPost", html)}
               />
-              
             </div>
             {contentError && (
-                <span className="absolute text-sm font-medium pointer-events-none text-error  bottom-6/4 left-1 error-input w-full ml-[5%] mt-4 ">This field is required</span>
-              )}
+              <span className="absolute text-sm font-medium pointer-events-none text-error  bottom-6/4 left-1 error-input w-full ml-[5%] mt-4 ">
+                This field is required
+              </span>
+            )}
             <Button
               className="w-[90%] ml-[5%] text-white mt-10 bg-blueborder"
               htmlType="submit"
