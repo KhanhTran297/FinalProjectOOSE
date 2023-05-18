@@ -1,8 +1,5 @@
-import React from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import useMyToast from "./useMyToast";
 import {
   createCommentApi,
   deleteCommentApi,
@@ -10,12 +7,10 @@ import {
   updateCommentApi,
 } from "@/api/comment";
 import { setListComment } from "@/redux/slice/comment";
-
-
+import useMyToast from "./useMyToast";
 function useComment() {
   const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();
-
   //getListcomment
   const {
     data: listComment,
@@ -23,15 +18,16 @@ function useComment() {
     isLoading: loadingPage,
   } = useQuery({
     queryKey: ["listComment"],
-    queryFn: getListCommentApi,
+    queryFn: () => getListCommentApi(),
     enabled: false,
     retry: 0,
     onSuccess: (listComment) => {
       dispatch(setListComment(listComment.data));
     },
+    onError: () => {
+      console.log("Error");
+    },
   });
-
-
 
   //createcomment
   const { mutate: createComment, isLoading: createCommentLoading } =
@@ -82,7 +78,6 @@ function useComment() {
       useError("Save fail!!!!");
     },
   });
-
   return {
     listComment,
     getListComment,

@@ -18,6 +18,7 @@ const UsersContent = () => {
       title: "Do you Want to delete these account?",
       icon: <ExclamationCircleFilled />,
       content: "You sure?",
+      okType: "danger",
       onOk() {
         handleReloadTable(id);
       },
