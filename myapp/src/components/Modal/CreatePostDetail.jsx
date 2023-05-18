@@ -120,7 +120,7 @@ const CreatePostDetail = (
 
             <span className=" pt-2 pl-3 text-base font-semibold">{props.fullname}</span>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)} isLoading={createPostLoading}>
+          <form onSubmit={handleSubmit(onSubmit)} isloading={createPostLoading}>
             <div className="block ml-[5%]">
               <p className=" w-[100%] mt-[5%]  inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">Title Post*</p>
               <Input

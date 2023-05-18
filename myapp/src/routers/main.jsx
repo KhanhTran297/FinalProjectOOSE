@@ -1,12 +1,11 @@
 import MainLayout from "@/layout/MainLayout";
-import ContactPage from "@/pages/main/ContactPage";
 import ForumPage from "@/pages/main/ForumPage";
 import HomePage from "@/pages/main/HomePage";
 import ProfilePage from "@/pages/main/ProfilePage";
-import { element } from "prop-types";
 import GuardRoute from "./GuardRoute";
 import BlogPage from "@/pages/main/BlogPage";
 import PersonalPage from "@/pages/main/PersonalPage";
+import BookmarkPage from "@/pages/main/BookmarkPage";
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -40,6 +39,14 @@ export default function init(routes) {
         element: (
           <GuardRoute>
             <PersonalPage />
+          </GuardRoute>
+        ),
+      },
+      {
+        path: "bookmark",
+        element: (
+          <GuardRoute>
+            <BookmarkPage />
           </GuardRoute>
         ),
       },

@@ -106,7 +106,7 @@ const Header = () => {
                 avatar={userAccount?.userAvatar}
                 check={show}
                 checkAccount={checkAccount}
-              ></UserOptions>
+              />
             ) : (
               ""
             )}

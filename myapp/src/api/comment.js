@@ -7,9 +7,6 @@ export const getListCommentApi = () => {
     return useGet({ url })
 };
 
-
-
-
 export const createCommentApi = (params) => {
     const url = "/v1/comment/create";
     return usePost({ url, requiredToken: true, params })

@@ -45,7 +45,7 @@ function useAdmin() {
     },
   });
   const { refetch: handleGetListAccount, data: listAccount } = useQuery({
-    queryKey: { SearchQuery: params },
+    queryKey: {},
     queryFn: () => getListAccountAPI(params),
     retry: 0,
     enabled: false,

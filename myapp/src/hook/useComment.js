@@ -1,7 +1,5 @@
-import React from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import useMyToast from "./useMyToast";
 import {
   createCommentApi,
@@ -10,7 +8,6 @@ import {
   updateCommentApi,
 } from "@/api/comment";
 import { setListComment } from "@/redux/slice/comment";
-
 
 function useComment() {
   const { useSuccess, useError } = useMyToast();
@@ -23,7 +20,7 @@ function useComment() {
     isLoading: loadingPage,
   } = useQuery({
     queryKey: ["listComment"],
-    queryFn: getListCommentApi,
+    queryFn: () => getListCommentApi(),
     enabled: false,
     retry: 0,
     onSuccess: (listComment) => {

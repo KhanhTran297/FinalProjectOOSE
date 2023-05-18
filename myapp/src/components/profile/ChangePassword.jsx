@@ -8,11 +8,7 @@ import * as yup from "yup";
 import { Button } from "../button";
 import { useSelector } from "react-redux";
 import useAccount from "@/hook/useAccount";
-// import { Field, Form, Formik } from "formik";
 import useCookie from "@/hook/useCookie";
-import { useState } from "react";
-import { IconEyeToggle } from "../icons";
-import { changePasswordApi } from "@/api/account";
 
 const schema = yup.object({
   oldpassword: yup.string().required("This field is required"),
