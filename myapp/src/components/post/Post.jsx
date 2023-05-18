@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import usePost from "@/hook/usePost";
 import BodyPost from "./BodyPost";
 import HeaderPost from "./HeaderPost";
 import useBookmark from "@/hook/useBookmark";
+import useComment from "@/hook/useComment";
 
 const Post = (props) => {
   const { deletePost } = usePost();
   const { createBookmark, deleteBookmark } = useBookmark();
   const selectorBookmark = useSelector((state) => state.bookmark);
+  const { getListComment } = useComment();
+  const selector = useSelector((state) => state.comment);
   const listBookmark = selectorBookmark.listBookmark;
+  const listComment = selector.listComment;
   const idBookmarked = listBookmark?.content?.filter((bookmark) => bookmark.postDto.id === props.id).map((bookmark) => {
     return bookmark.id;
   });
@@ -26,7 +30,9 @@ const Post = (props) => {
   const handleDeleteBookmark = (id) => {
     deleteBookmark(id);
   }
-  
+  useEffect(() => {
+    getListComment();
+  }, [listComment]);
 
   
   

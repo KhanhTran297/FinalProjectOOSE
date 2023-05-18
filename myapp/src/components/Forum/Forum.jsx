@@ -55,6 +55,7 @@ const Forum = () => {
           {filteredListPost?.map((post) => (
             
             <Post
+              key={post.id}
               id={post.id}
               title={post.titlePost}
               content={post.contentPost}

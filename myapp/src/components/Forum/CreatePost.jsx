@@ -6,7 +6,6 @@ import useCookie from "@/hook/useCookie";
 import CreatePostDetail from "../Modal/CreatePostDetail";
 
 const CreatePost = (props) => {
-
   const [showCreatePost, setShowCreatePost] = useState(false);
   const selector = useSelector((state) => state.account);
   const { isLoggedIn } = useCookie();
@@ -74,25 +73,25 @@ const CreatePost = (props) => {
                   height="20.148"
                   rx="4"
                   stroke="#101828"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></rect>
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M14.519 11.937c0 1.191-.996 2.158-2.223 2.158-1.226 0-2.222-.967-2.222-2.158 0-1.192.996-2.159 2.222-2.159 1.227 0 2.223.967 2.223 2.159z"
                   stroke="#101828"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M26.667 17.778c-1.266-1.018-1.182-1.04-2.633-1.849-1.453-.808-3.015-.31-4.024.897-.973 1.166-1.582 2.735-3.052 3.47-1.812.907-2.876-.555-4.387-1.141-1.687-.654-2.967.52-3.952 1.65-.987 1.129-1.097 1.188-2.1 2.306"
                   stroke="#101828"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
             </button>

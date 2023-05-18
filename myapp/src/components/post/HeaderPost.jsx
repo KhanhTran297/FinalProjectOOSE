@@ -14,13 +14,12 @@ import Report from "../Modal/Report";
 import useBookmark from "@/hook/useBookmark";
 
 const HeaderPost = (props) => {
-
   const selectorAccount = useSelector((state) => state.account);
   const selectorBookmark = useSelector((state) => state.bookmark);
   const listBookmark = selectorBookmark.listBookmark;
   const userAccount = selectorAccount.account;
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const {show,setShow,nodeRef} = useClickOutSide();
+  const { show, setShow, nodeRef } = useClickOutSide();
   const [showReport, setShowReport] = useState(false);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const { isLoggedIn } = useCookie();
@@ -41,11 +40,11 @@ const HeaderPost = (props) => {
       navigate("/login");
     }
   };
-  
+
   const showModal = () => {
     setIsModalVisible(true);
   };
-  
+
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -61,9 +60,9 @@ const HeaderPost = (props) => {
     <Fragment>
       <div className="relative z-0">
         <Report
-        {...props}
-        open={showReport}
-        handleClose={() => setShowReport(false)}
+          {...props}
+          open={showReport}
+          handleClose={() => setShowReport(false)}
         />
       </div>
       <div className="relative z-0">
@@ -93,15 +92,17 @@ const HeaderPost = (props) => {
           </a>
 
           <div className="flex flex-col">
-            <span className="text-base font-semibold  ">{props.fullnameAccountPost}</span>
+            <span className="text-base font-semibold  ">
+              {props.fullnameAccountPost}
+            </span>
             <span className="text-base font-normal text-slate-400  h-[100%]">
               {props.createdDate}
             </span>
           </div>
         </div>
-        
-        <div className="items-center w-[10%] " ref={nodeRef} >
-          <div  >
+
+        <div className="items-center w-[10%] " ref={nodeRef}>
+          <div>
             <button onClick={() => setShow(!show)}>
               <svg
                 fill="#000000"
@@ -137,9 +138,12 @@ const HeaderPost = (props) => {
               </svg>
             </button>
 
-            {show && (userAccount.userEmail !== props.emailAccountPost) &&  (
+            {show && userAccount.userEmail !== props.emailAccountPost && (
               <div className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
-                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={setShowReport}>
+                <button
+                  className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex "
+                  onClick={setShowReport}
+                >
                   Report
                 </button>
                 <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex "
@@ -153,16 +157,22 @@ const HeaderPost = (props) => {
                 </button>
               </div>
             )}
-            {show && (userAccount.userEmail === props.emailAccountPost) &&  (
-              <div type="primary" className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg ">
+            {show && userAccount.userEmail === props.emailAccountPost && (
+              <div
+                type="primary"
+                className="absolute w-25 h-22 z-10 translate-x-0 translate-y-2 bg-white border   shadow-lg "
+              >
                 <button
                   className="w-full h-8 block border  border-solid cursor-pointer text-left pl-1 pr-1"
                   onClick={checkAccount}
                 >
                   Edit
                 </button>
-                 
-                <button  className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex " onClick={showModal} >
+
+                <button
+                  className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex "
+                  onClick={showModal}
+                >
                   Delete
                 </button>
                 <Modal
@@ -171,15 +181,13 @@ const HeaderPost = (props) => {
                   onOk={props.onDelete}
                   onCancel={handleCancel}
                   okText="Delete"
-                  okType= 'danger'
+                  okType="danger"
                 >
                   <p>Are you sure you want to delete this post??</p>
                 </Modal>
               </div>
             )}
-            {!show &&  (
-              ""
-            )}
+            {!show && ""}
           </div>
         </div>
       </div>

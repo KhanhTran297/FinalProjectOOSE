@@ -11,7 +11,6 @@ const GuardRouteAdmin = ({ children }) => {
   const navigate = useNavigate();
   useEffect(() => {
     //Neu co token trong cookie
-    console.log(isLoggedIn());
     if (isLoggedIn()) {
       return;
     } else {

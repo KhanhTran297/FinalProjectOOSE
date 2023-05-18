@@ -1,6 +1,9 @@
 import { useMutation, useQuery } from "react-query";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import useMyToast from "./useMyToast";
+=======
+>>>>>>> develop
 import {
   createCommentApi,
   deleteCommentApi,
@@ -8,11 +11,14 @@ import {
   updateCommentApi,
 } from "@/api/comment";
 import { setListComment } from "@/redux/slice/comment";
+<<<<<<< HEAD
 
+=======
+import useMyToast from "./useMyToast";
+>>>>>>> develop
 function useComment() {
   const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();
-
   //getListcomment
   const {
     data: listComment,
@@ -26,9 +32,10 @@ function useComment() {
     onSuccess: (listComment) => {
       dispatch(setListComment(listComment.data));
     },
+    onError: () => {
+      console.log("Error");
+    },
   });
-
-
 
   //createcomment
   const { mutate: createComment, isLoading: createCommentLoading } =
@@ -79,7 +86,6 @@ function useComment() {
       useError("Save fail!!!!");
     },
   });
-
   return {
     listComment,
     getListComment,
