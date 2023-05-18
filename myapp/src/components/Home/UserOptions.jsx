@@ -47,7 +47,11 @@ const UserOptions = (props) => {
             <i className="fa-solid fa-user-pen"></i>
             <p className=" ml-1">Profile</p>
           </div>
-          <div className="bookmark p-[10px] grid grid-cols-[20%_80%] border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer">
+          <div 
+            onClick={() => {
+              navigate("/bookmark");
+            }}
+            className="bookmark p-[10px] grid grid-cols-[20%_80%] border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer">
             <i className="fa-regular fa-bookmark "></i>
             <p className=" ml-1">Bookmark</p>
           </div>

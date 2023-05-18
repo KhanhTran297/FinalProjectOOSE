@@ -1,15 +1,22 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal } from 'antd';
+import {
+  BookOutlined,
+  BookFilled
+} from '@ant-design/icons';
 import useAccount from "@/hook/useAccount";
 import useCookie from "@/hook/useCookie";
 import useClickOutSide from "@/hook/useClickOutSide";
 import CreatePostDetail from "../Modal/CreatePostDetail";
 import Report from "../Modal/Report";
+import useBookmark from "@/hook/useBookmark";
 
 const HeaderPost = (props) => {
   const selectorAccount = useSelector((state) => state.account);
+  const selectorBookmark = useSelector((state) => state.bookmark);
+  const listBookmark = selectorBookmark.listBookmark;
   const userAccount = selectorAccount.account;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { show, setShow, nodeRef } = useClickOutSide();
@@ -18,7 +25,9 @@ const HeaderPost = (props) => {
   const { isLoggedIn } = useCookie();
   const { getProfileAccount } = useAccount();
   const navigate = useNavigate();
+  const {  setParams } = useBookmark();
 
+  
   //methods
   const checkAccount = () => {
     if (isLoggedIn()) {
@@ -40,6 +49,13 @@ const HeaderPost = (props) => {
     setIsModalVisible(false);
   };
 
+  useEffect(() => {
+
+    setParams(userAccount.id);
+
+  }, [listBookmark, props.isBookmarked]);
+
+  
   return (
     <Fragment>
       <div className="relative z-0">
@@ -130,31 +146,14 @@ const HeaderPost = (props) => {
                 >
                   Report
                 </button>
-                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex ">
-                  <span className="pt-1">
-                    <svg
-                      width="16px"
-                      height="16px"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                      <g
-                        id="SVGRepo_tracerCarrier"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></g>
-                      <g id="SVGRepo_iconCarrier">
-                        {" "}
-                        <path
-                          d="M17.75 20.75C17.5974 20.747 17.4487 20.702 17.32 20.62L12 16.91L6.68 20.62C6.56249 20.6915 6.42757 20.7294 6.29 20.7294C6.15243 20.7294 6.01751 20.6915 5.9 20.62C5.78491 20.5607 5.68741 20.4722 5.61722 20.3634C5.54703 20.2546 5.50661 20.1293 5.5 20V6C5.5 5.27065 5.78973 4.57118 6.30546 4.05546C6.82118 3.53973 7.52065 3.25 8.25 3.25H15.75C16.4793 3.25 17.1788 3.53973 17.6945 4.05546C18.2103 4.57118 18.5 5.27065 18.5 6V20C18.5005 20.1362 18.4634 20.2698 18.3929 20.3863C18.3223 20.5027 18.2209 20.5974 18.1 20.66C17.9927 20.7189 17.8724 20.7498 17.75 20.75ZM12 15.25C12.1532 15.2484 12.3033 15.2938 12.43 15.38L17 18.56V6C17 5.66848 16.8683 5.35054 16.6339 5.11612C16.3995 4.8817 16.0815 4.75 15.75 4.75H8.25C7.91848 4.75 7.60054 4.8817 7.36612 5.11612C7.1317 5.35054 7 5.66848 7 6V18.56L11.57 15.38C11.6967 15.2938 11.8468 15.2484 12 15.25Z"
-                          fill="#000000"
-                        ></path>{" "}
-                      </g>
-                    </svg>
+                <button className="w-full h-8  border border-t-1 border-solid cursor-pointer text-left pl-1 pr-1 flex "
+                  onClick={ props.isBookmarked ? props.onDeleteBookmark : props.onBookmark }
+                >
+                  <span className="flex">
+                    {props.isBookmarked ?  <BookFilled className="pt-1"/> : <BookOutlined className="pt-1"/> }
+                    <span>Bookmark</span>
+
                   </span>
-                  <span>Bookmark</span>
                 </button>
               </div>
             )}

@@ -2,26 +2,39 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import usePost from "@/hook/usePost";
 import useAccount from "@/hook/useAccount";
-import useComment from "@/hook/useComment";
 import Post from "../post/Post";
 import CreatePost from "./CreatePost";
 import LeftSideForum from "./LeftSideForum";
 import RightSideForum from "./RightSideForum";
+import useBookmark from "@/hook/useBookmark";
 
 const Forum = () => {
   const selectorAccount = useSelector((state) => state.account);
+  const selectorBookmark = useSelector((state) => state.bookmark);
   const selectorPost = useSelector((state) => state.post);
   const { getListPost } = usePost();
   const { getProfileAccount } = useAccount();
+  const {  setParams } = useBookmark();
+  const listBookmark = selectorBookmark.listBookmark;
   const userAccount = selectorAccount.account;
   const listPost = selectorPost.listPost;
-  const filteredListPost = listPost?.content?.filter(
-    (post) => post.typePost === 2
-  );
+  
+
+  const filteredListPost = listPost?.content
+    ?.filter((post) => post.typePost === 2)
+    ?.map((post) => ({
+      ...post,
+      isBookmarked: listBookmark?.content?.some(
+        (bookmark) => bookmark.postDto.id === post.id
+      ),
+    }));
+
   useEffect(() => {
     getListPost();
     getProfileAccount();
-  }, [listPost, userAccount]);
+    setParams(userAccount.id);
+
+  }, [listPost, userAccount, listBookmark]);
 
   return (
     <div className="grid grid-cols-[20%_60%_20%]">
@@ -40,6 +53,7 @@ const Forum = () => {
         />
         <div className="mt-3">
           {filteredListPost?.map((post) => (
+            
             <Post
               key={post.id}
               id={post.id}
@@ -49,6 +63,7 @@ const Forum = () => {
               avatarAccountPost={post.accountPost.avatarPath}
               emailAccountPost={post.accountPost.email}
               createdDate={post.createdDate}
+              isBookmarked={post.isBookmarked}
             />
           ))}
         </div>

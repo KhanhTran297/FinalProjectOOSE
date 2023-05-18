@@ -1,5 +1,4 @@
 import useFormField from '@/hook/useFormField';
-import { Form } from 'antd';
 import React from 'react';
 
 import ReactQuill from 'react-quill'; // ES6
@@ -35,7 +34,7 @@ const formats = [
 ];
 
 const RichTextField = (props) => {
-    const { label, disabled, name, required, style, labelAlign, formItemProps , value , onChange} = props;
+    const { disabled, name, style, value , onChange} = props;
 
     const modules = {
         toolbar: {
@@ -51,7 +50,6 @@ const RichTextField = (props) => {
             
         },
         clipboard: {
-            // toggle to add extra line breaks when pasting HTML:
             matchVisual: false,
             
         },
@@ -59,7 +57,6 @@ const RichTextField = (props) => {
     const customStyle = {
         ...style,
         height: '300px',
-        // marginBottom: '10px',
     };
     const { rules } = useFormField(props);
     return (

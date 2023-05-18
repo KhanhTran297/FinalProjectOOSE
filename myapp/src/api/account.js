@@ -1,6 +1,5 @@
 import useCallApi from "@/hook/useCallApi";
 import useCookie from "@/hook/useCookie";
-import { instance } from "./instance";
 
 const { getCookie } = useCookie();
 const { useGet, usePost, useEdit, useDelete } = useCallApi();

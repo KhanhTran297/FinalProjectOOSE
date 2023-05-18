@@ -1,5 +1,9 @@
 import { useMutation, useQuery } from "react-query";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
+import useMyToast from "./useMyToast";
+=======
+>>>>>>> develop
 import {
   createCommentApi,
   deleteCommentApi,
@@ -7,7 +11,11 @@ import {
   updateCommentApi,
 } from "@/api/comment";
 import { setListComment } from "@/redux/slice/comment";
+<<<<<<< HEAD
+
+=======
 import useMyToast from "./useMyToast";
+>>>>>>> develop
 function useComment() {
   const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();

@@ -4,7 +4,6 @@ import JoditEditor from "jodit-react";
 const EditorText = (props) => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
-  // console.log(content)
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/docs/,
     // placeholder: placeholder || "Start typings...",
