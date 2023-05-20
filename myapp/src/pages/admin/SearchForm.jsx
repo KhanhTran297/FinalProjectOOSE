@@ -7,7 +7,6 @@ const SearchForm = (props) => {
   const [form] = Form.useForm();
   const { setParams } = useAdmin();
   const handleSearch = (value) => {
-    console.log("Coi thu ne", value);
     const params = new URLSearchParams();
     Object.keys(value).forEach((key) => {
       if (value[key] !== undefined && value[key] !== "") {
