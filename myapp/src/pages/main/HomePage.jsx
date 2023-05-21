@@ -22,8 +22,8 @@ const HomePage = () => {
 
   return (
     <div className="">
-      <Header></Header>
-      <Home></Home>
+      <Header/>
+      <Home/>
     </div>
   );
 };

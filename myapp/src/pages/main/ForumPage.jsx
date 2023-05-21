@@ -5,8 +5,8 @@ import React from "react";
 const ForumPage = () => {
   return (
     <div className="">
-      <Header></Header>
-      <Forum></Forum>
+      <Header/>
+      <Forum/>
     </div>
   );
 };

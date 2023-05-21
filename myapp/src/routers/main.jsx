@@ -6,6 +6,7 @@ import GuardRoute from "./GuardRoute";
 import BlogPage from "@/pages/main/BlogPage";
 import PersonalPage from "@/pages/main/PersonalPage";
 import BookmarkPage from "@/pages/main/BookmarkPage";
+import PostDetailPage from "@/pages/main/PostDetailPage";
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -26,13 +27,13 @@ export default function init(routes) {
         path: "profile",
         element: (
           <GuardRoute>
-            <ProfilePage></ProfilePage>
+            <ProfilePage/>
           </GuardRoute>
         ),
       },
       {
         path: "forum",
-        element: <ForumPage></ForumPage>,
+        element: <ForumPage/>,
       },
       {
         path: "personal",
@@ -48,6 +49,14 @@ export default function init(routes) {
           <GuardRoute>
             <BookmarkPage />
           </GuardRoute>
+        ),
+      },
+      {
+        path: "post/:postId",
+        element: (
+          
+          <PostDetailPage />
+          
         ),
       },
     ],

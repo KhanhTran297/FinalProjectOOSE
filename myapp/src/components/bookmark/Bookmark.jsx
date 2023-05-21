@@ -15,10 +15,12 @@ const Bookmark = () => {
     
     getListBookmark();
     useEffect(() => {
-        getProfileAccount();
-        setParams(userAccount.id);
         
-    }, [userAccount, listBookmark]);
+        if (userAccount.id) {
+            setParams(userAccount.id);
+          }
+        
+    }, [userAccount]);
       
       
 

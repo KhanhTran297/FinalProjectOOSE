@@ -21,7 +21,7 @@ const Post = (props) => {
   const handleDeletePost = (id) => {
     deletePost(id)
   }
-  const handleCreateBookmark = (id) => {
+const handleCreateBookmark = (id) => {
     
     const data = {postId: id}
     createBookmark(data);
@@ -33,10 +33,6 @@ const Post = (props) => {
   useEffect(() => {
     getListComment();
   }, [listComment]);
-
-  
-  
-
 
   return (
     <div className="bg-slate-200 w-[700px] h-auto m-11 mt-0 rounded-lg">

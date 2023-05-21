@@ -67,14 +67,14 @@ const Header = () => {
               FORUM
             </Link>
           </div>
-          <div className="Contact mr-5">
+          {/* <div className="Contact mr-5">
             <Link
               to="/blog"
               className="no-underline text-black text-18 cursor-pointer hover:text-userOptions font-semibold"
             >
               BLOG
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="toolBox flex flex-row items-center justify-end">
           <div className="searchContainer ml-36">

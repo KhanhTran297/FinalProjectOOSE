@@ -65,18 +65,22 @@ const UserOptions = (props) => {
         </div>
       ) : (
         <div className=" w-userOptions_authen">
-          <Link
-            to="signup"
+          <div
+            onClick={() => {
+              navigate("/signup");
+            }}
             className="signin justify-center p-[10px] flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >
             <p>Sign up</p>
-          </Link>
-          <Link
-            to="login"
+          </div>
+          <div
+            onClick={() => {
+              navigate("/login");
+            }}
             className="profile justify-center p-[10px] flex border-t-[0.5px] border-solid border-gray-400 w-full items-center hover:text-userOptions cursor-pointer"
           >
             <p>Sign in</p>
-          </Link>
+          </div>
         </div>
       )}
     </div>
