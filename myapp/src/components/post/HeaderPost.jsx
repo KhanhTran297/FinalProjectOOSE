@@ -51,7 +51,9 @@ const HeaderPost = (props) => {
 
   useEffect(() => {
 
-    setParams(userAccount.id);
+    if (userAccount.id) {
+      setParams(userAccount.id);
+    }
 
   }, [listBookmark, props.isBookmarked]);
 

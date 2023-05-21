@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const postStore = createSlice({
     name: "post",
     initialState: {
-        listPost: []
+        listPost: [],
+        postId: null,
+        page: 0,
     },
     reducers: {
         setListPost: (state,action) => {
@@ -11,8 +13,21 @@ const postStore = createSlice({
                 listPost: action.payload,
             }
 
+        },
+        setPostId: (state, action) => {
+            return {
+                ...state,
+                postId: action.payload,
+            }
+        },
+        setPage: (state,action) => {
+            return {
+                ...state,
+                page: action.payload,
+            }
         }
     }
 });
-export const {setListPost} = postStore.actions;
+
+export const {setListPost, setPostId, setPage} = postStore.actions;
 export default postStore.reducer;

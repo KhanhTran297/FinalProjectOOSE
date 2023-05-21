@@ -5,8 +5,8 @@ import React from "react";
 const ProfilePage = () => {
   return (
     <div className=" h-[900px]  ">
-      <Header></Header>
-      <Profile></Profile>
+      <Header/>
+      <Profile/>
     </div>
   );
 };

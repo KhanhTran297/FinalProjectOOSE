@@ -10,18 +10,20 @@ const CreateComment = (props) => {
   const handleCreateComment = (postId, value) => {
     const data = { ...value, postId: postId, parentId: parentId };
     createComment(data);
+    // reset()
   };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault(); // prevent the default behavior of textarea
       handleSubmit((value) => handleCreateComment(postId, value))();
+      reset()
     }
   };
   const schema = yup.object({
     contentComment: yup
       .string()
-      .max(50, "Content should not exceed 100 characters"),
+      .max(500, "Content should not exceed 100 characters"),
   });
   const {
     handleSubmit,

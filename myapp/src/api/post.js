@@ -3,10 +3,15 @@ import useCallApi from "@/hook/useCallApi";
 
 const { useGet, usePost, useEdit, useDelete } = useCallApi();
 
-export const getListPostApi = () => {
-  const url = "/v1/post/list";
+export const getListPostApi = (page) => {
+  const url = `/v1/post/list?page=${page}&size=50`;
   return useGet({ url });
 };
+
+export const getPostApi = (postId) => {
+  const url = `/v1/post/get/${postId}`;
+  return useGet({ url });
+}
 
 export const createPostApi = (params) => {
   const url = "/v1/post/create";
