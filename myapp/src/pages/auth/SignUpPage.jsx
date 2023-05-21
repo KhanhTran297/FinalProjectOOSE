@@ -1,4 +1,5 @@
 import SignUpForm from "@/components/auth/SignUpForm";
+import SignUpForm2 from "@/components/auth/SignUpForm2";
 import React from "react";
 
 const SignUpPage = () => {
@@ -19,7 +20,8 @@ const SignUpPage = () => {
           <h1 className="mb-1 text-lg font-semibold text-center lg:text-xl lg:mb-3 text-text1 dark:text-white">
             Sign Up
           </h1>
-          <SignUpForm></SignUpForm>
+          {/* <SignUpForm/> */}
+          <SignUpForm />
         </div>
       </div>
     </div>
