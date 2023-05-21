@@ -3,15 +3,16 @@ import {
   useMutation,
   useQuery,
 } from "react-query";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import useMyToast from "./useMyToast";
-import { createPostApi, deletePostApi, getListPostApi, updatePostApi } from "@/api/post";
-import { setListPost } from "@/redux/slice/post";
+import { createPostApi, deletePostApi, getListPostApi, getPostApi, updatePostApi } from "@/api/post";
+import { setListPost, setPostId } from "@/redux/slice/post";
 
 function usePost() {
   const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();
+  const postId = useSelector((state) => state.post.postId);
+  const page = useSelector((state) => state.post.page);
 
   //getListPost
   const {
@@ -20,11 +21,24 @@ function usePost() {
     isLoading: loadingPage,
   } = useQuery({
     queryKey: ["listPost"],
-    queryFn: getListPostApi,
+    queryFn:() => getListPostApi(),
     enabled: false,
     retry: 0,
     onSuccess: (listPost) => {
       dispatch(setListPost(listPost.data));
+    },
+  });
+
+  // getPost
+  const {
+    data: post,
+    refetch: getPost,
+    isLoading: loadingPost,
+  } = useQuery(["post", postId], () => getPostApi(postId), {
+    enabled: false,
+    retry: 0,
+    onSuccess: (post) => {
+      dispatch(setPostId(post.data));
     },
   });
 
@@ -85,6 +99,8 @@ function usePost() {
     deletePost,
     createPost,
     createPostLoading,
+    getPost,
+    post,
   };
 }
 

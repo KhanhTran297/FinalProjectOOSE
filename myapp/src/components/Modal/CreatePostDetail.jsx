@@ -18,7 +18,7 @@ const CreatePostDetail = (props) => {
     titlePost: yup
       .string()
       .required("This field is required")
-      .max(50, "Post title should not exceed 100 characters"),
+      .max(200, "Post title should not exceed 200 characters"),
   });
 
   const {

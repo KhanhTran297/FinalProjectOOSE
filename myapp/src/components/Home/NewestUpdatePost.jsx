@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NewestUpdatePost = (props) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/post/${props.id}`);
+  };
   return (
-    <div className="">
+    <div className="" onClick={handleClick}>
       {props.position == "right" ? (
         <div className="postContainer grid grid-cols-[30%_70%] border-b-2 border-solid border-[#ccc] p-[10px] hover:opacity-60 cursor-pointer">
           <div className="imgBox relative w-full h-full  ">
@@ -20,15 +26,15 @@ const NewestUpdatePost = (props) => {
             </div>
             <div className="postContent grid grid-rows-[80%_20%] p-[10px]">
               <div className="content font-semibold text-[18px] leading-6 text-[#232323]">
-                Hướng dẫn setup cho phòng cực chill dành cho người mới toàn tập
+                {props.title}
               </div>
               <div className="date_actor flex flex-row items-center">
                 <p className=" pr-[10px] size-[14px] font-semibold leading-[18px] text-[#6b6b6b]">
-                  Mac 23
+                  {props.createdDate}
                 </p>
                 <i className="fa-solid fa-circle text-[5px] font-semibold leading-[18px] text-[#6b6b6b] pr-[10px]"></i>
                 <p className=" pr-[10px] size-[14px] font-semibold leading-[18px] text-[#6b6b6b]">
-                  Andiez Le
+                  {props.fullnameAccountPost}
                 </p>
               </div>
             </div>
