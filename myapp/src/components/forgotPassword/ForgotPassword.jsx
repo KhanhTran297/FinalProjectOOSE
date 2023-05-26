@@ -1,29 +1,20 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import useMyToast from "@/hook/useMyToast";
 import { Button, Form, Input } from "antd";
-import { checkOtpApi, createNewPasswordApi, sentOtpApi } from "@/api/account";
-import useAccount from "@/hook/useAccount";
 import { useMutation } from "react-query";
-
+import useMyToast from "@/hook/useMyToast";
+import { checkOtpApi, createNewPasswordApi, sentOtpApi } from "@/api/account";
 const ForgotPassword = (props) => {
   //hook
-  const selector = useSelector((state) => state.account);
-  const [showPassword, setShowPassword] = useState(false);
   const [toggleOtp, setToggleOtp] = useState(false);
   const [toggleCreateNewPass, setToggleCreateNewPass] = useState(false);
   const [nameButton, setNameButton] = useState("Send otp");
   const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { useSuccess, useError } = useMyToast();
   //variables
   //method
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
   const onFinish = (value) => {
     if (toggleOtp == false) {
       sendOtp(value);
