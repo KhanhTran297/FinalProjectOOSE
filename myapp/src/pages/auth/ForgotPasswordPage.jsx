@@ -1,7 +1,5 @@
-import CreateNewPassword from "@/components/forgotPassword/CreateNewPassword";
 import ForgotPassword from "@/components/forgotPassword/ForgotPassword";
-import React, { useState } from "react";
-import { set } from "react-hook-form";
+import React from "react";
 
 const ForgotPasswordPage = () => {
   return (
