@@ -51,7 +51,7 @@ const CreatePostDetail = (props) => {
   };
 
   const onSubmit = (values) => {
-    if (values.contentPost.trim() === "") {
+    if (values.contentPost.trim() === "" || values.contentPost.trim() === "<p><br></p>") {
       setContentError(true);
       return;
     }
