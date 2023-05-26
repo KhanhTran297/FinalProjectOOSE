@@ -3,7 +3,7 @@ function useCookie() {
   const acc_cookie = import.meta.env.VITE_TOKEN_COOKIE;
   const dataAcc_cookie = import.meta.env.VITE_ACC_COOKIE;
   const setCookie = (tokenAccount) => {
-    Cookies.set(acc_cookie, tokenAccount, {
+    Cookies.set("accountToken", tokenAccount, {
       expires: 1, //1 day
       secure: true,
       sameSite: "strict",
@@ -11,7 +11,7 @@ function useCookie() {
     });
   };
   const setPassCookie = (dataAccount) => {
-    Cookies.set(dataAcc_cookie, dataAccount, {
+    Cookies.set("accountData", dataAccount, {
       expires: 1, //1 day
       secure: true,
       sameSite: "strict",
@@ -19,16 +19,16 @@ function useCookie() {
     });
   };
   const getPassCookie = () => {
-    return Cookies.get(dataAcc_cookie);
+    return Cookies.get("accountData");
   };
   const removePassCookie = () => {
-    return Cookies.remove(dataAcc_cookie);
+    return Cookies.remove("accountData");
   };
   const getCookie = () => {
-    return Cookies.get(acc_cookie);
+    return Cookies.get("accountToken");
   };
   const removeCookie = () => {
-    return Cookies.remove(acc_cookie);
+    return Cookies.remove("accountToken");
   };
   const isLoggedIn = () => !!getCookie();
   return {
