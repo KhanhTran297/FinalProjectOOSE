@@ -4,6 +4,7 @@ import {
   changePasswordApi,
   editProfileApi,
   getAccountProfileApi,
+  sentOtpApi,
   SignUpApi,
 } from "@/api/account";
 import { setUser } from "@/redux/slice/account";
@@ -13,6 +14,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useCookie from "./useCookie";
 import useMyToast from "./useMyToast";
+import { checkOtpApi } from "@/api/account";
 
 function useAccount() {
   //hooks
@@ -31,6 +33,7 @@ function useAccount() {
   } = useMutation({
     mutationFn: authLoginApi,
     onSuccess: (data) => {
+      console.log("data", data);
       removeCookie();
       //set token to cookie
       setCookie(data.data.token);
@@ -111,6 +114,26 @@ function useAccount() {
       useError("ChangePassword Fail");
     },
   });
+  //send Otp
+  const { mutate: sendOtp, data: datasendOtp } = useMutation({
+    mutationFn: sentOtpApi,
+    onSuccess: (data) => {
+      {
+        data.code == "ERROR-USER-0004"
+          ? useError("Email doesn't exist")
+          : useSuccess("Send otp success");
+      }
+    },
+    onError: () => {
+      return false;
+    },
+  });
+  //Check Otp
+  const { mutate: checkOtp } = useMutation({
+    mutationFn: checkOtpApi,
+    onSuccess: () => {},
+    onError: () => {},
+  });
   return {
     handleLogin,
     accountdata,
@@ -122,6 +145,9 @@ function useAccount() {
     loadingPage,
     editProfile,
     changePassword,
+    sendOtp,
+    checkOtp,
+    datasendOtp,
   };
 }
 export default useAccount;

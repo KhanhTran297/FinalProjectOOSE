@@ -57,8 +57,12 @@ const SignUpForm = () => {
   const handleSignUp = (value) => {
     // var userDayOfBirth=value.userDayOfBirth+" 00:00:00"
     // console.log("string ne", userDayOfBirth);
-    value.userDayOfBirth=value.userDayOfBirth+" 00:00:00"
-    var data={userAvatar: "https://i.pinimg.com/236x/19/b8/d6/19b8d6e9b13eef23ec9c746968bb88b1.jpg",...value}
+    value.userDayOfBirth = value.userDayOfBirth + " 00:00:00";
+    var data = {
+      userAvatar:
+        "https://i.pinimg.com/236x/19/b8/d6/19b8d6e9b13eef23ec9c746968bb88b1.jpg",
+      ...value,
+    };
     authSignup(data);
   };
   return (
@@ -130,21 +134,6 @@ const SignUpForm = () => {
             ></IconEyeToggle>
           </Input>
         </FormGroup>
-        {/* <FormGroup>
-          <Label htmlFor="password">Confirm password</Label>
-          <Input
-            control={control}
-            name="ac_confirmpassword"
-            type={`${showConfirm ? "text" : "password"}`}
-            placeholder="confirm  password"
-            error={errors.ac_confirmpassword?.message}
-          >
-            <IconEyeToggle
-              open={showConfirm}
-              onClick={handleToggleConfirm}
-            ></IconEyeToggle>
-          </Input>
-        </FormGroup> */}
         <Button className="w-full bg-primary mt-12" type="submit">
           Create Account
         </Button>

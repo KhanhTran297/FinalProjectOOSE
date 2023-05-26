@@ -2,32 +2,20 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import useMyToast from "@/hook/useMyToast";
-import { Input } from "../input";
-import { Label } from "../label";
-import { Button } from "../button";
-import FormGroup from "../common/FormGroup";
-import { IconEyeToggle } from "../icons";
-
-const schema = yup.object({
-  email: yup.string().required("This field is required"),
-  otp: yup.string().required("this field is required"),
-});
+import { Button, Form, Input } from "antd";
+import { checkOtpApi, createNewPasswordApi, sentOtpApi } from "@/api/account";
+import useAccount from "@/hook/useAccount";
+import { useMutation } from "react-query";
 
 const ForgotPassword = (props) => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onSubmit",
-  });
   //hook
   const selector = useSelector((state) => state.account);
   const [showPassword, setShowPassword] = useState(false);
+  const [toggleOtp, setToggleOtp] = useState(false);
+  const [toggleCreateNewPass, setToggleCreateNewPass] = useState(false);
+  const [nameButton, setNameButton] = useState("Send otp");
+  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { useSuccess, useError } = useMyToast();
@@ -36,58 +24,121 @@ const ForgotPassword = (props) => {
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
-  console.log("Before", props.status);
-  const handleAuth = (value) => {
-    if (value.otp == 123) {
-      props.handleStatus;
-      useSuccess("Auth success");
+  const onFinish = (value) => {
+    if (toggleOtp == false) {
+      sendOtp(value);
+      setUserEmail((state) => (state = value?.email));
+    } else if (toggleCreateNewPass == false) {
+      checkOtp(value);
     } else {
-      useError("Auth error");
+      console.log("userEmail", userEmail);
+      const newValue = { email: userEmail, newPassword: value?.newPassword };
+      createNewPassword(newValue);
     }
   };
-  console.log("After", props.status);
+  //send Otp
+  const { mutate: sendOtp, data: datasendOtp } = useMutation({
+    mutationFn: sentOtpApi,
+    onSuccess: (data) => {
+      {
+        if (data.result == true) {
+          setToggleOtp((state) => (state = true));
+          setNameButton((state) => (state = "Check otp"));
+        } else {
+          useError("Email doesn't exist");
+        }
+      }
+    },
+    onError: () => {
+      return false;
+    },
+  });
+  //Check Otp
+  const { mutate: checkOtp } = useMutation({
+    mutationFn: checkOtpApi,
+    onSuccess: () => {
+      useSuccess("Check otp success");
+      setToggleCreateNewPass((state) => (state = true));
+      setNameButton((state) => (state = "Create new password"));
+    },
+    onError: () => {
+      useError("Check otp fail");
+    },
+  });
+  //Create newPassword
+  const { mutate: createNewPassword } = useMutation({
+    mutationFn: createNewPasswordApi,
+    onSuccess: () => {
+      useSuccess("Create success");
+      navigate("/login");
+    },
+    onError: () => {},
+  });
   return (
     <div>
-      <form
-        className=" w-full "
-        onSubmit={handleSubmit(() => {
-          props.handleStatus;
-        })}
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        autoComplete="off"
       >
-        <FormGroup>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            control={control}
-            name="email"
-            type="email"
-            placeholder="Enter ur email"
-            error={errors.email?.message}
-          ></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="otp">Code otp</Label>
-          <Input
-            control={control}
+        {toggleCreateNewPass ? (
+          <div className="">
+            <Form.Item
+              label="New password"
+              name="newPassword"
+              rules={[
+                { required: true, message: "Please input your newPassword!" },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+            <Form.Item
+              label="Confirm new password"
+              name="confirmNewPass"
+              rules={[
+                { required: true, message: "Please confirm your newPassword!" },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("newPassword") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error("The two passwords do not match!")
+                    );
+                  },
+                }),
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </div>
+        ) : toggleOtp ? (
+          <Form.Item
+            label="Otp"
             name="otp"
-            type={`${showPassword ? "text" : "password"}`}
-            placeholder="Enter otp"
-            error={errors.otp?.message}
+            rules={[{ required: true, message: "Please input your otp" }]}
           >
-            <IconEyeToggle
-              open={showPassword}
-              onClick={handleTogglePassword}
-            ></IconEyeToggle>
-          </Input>
-        </FormGroup>
-        <div className=" grid grid-cols-2 gap-4">
-          <Button className="w-full bg-yellow-300" type="submit">
-            Send otp
+            <Input />
+          </Form.Item>
+        ) : (
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: "Please input your email!" }]}
+          >
+            <Input />
+          </Form.Item>
+        )}
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="default" htmlType="submit">
+            {nameButton}
           </Button>
-          <Button className="w-full bg-primary" type="submit">
-            create new password
-          </Button>
-        </div>
-      </form>
+        </Form.Item>
+      </Form>
     </div>
   );
 };
