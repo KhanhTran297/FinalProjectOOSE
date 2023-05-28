@@ -22,7 +22,6 @@ const ForgotPassword = (props) => {
     } else if (toggleCreateNewPass == false) {
       checkOtp(value);
     } else {
-      console.log("userEmail", userEmail);
       const newValue = { email: userEmail, newPassword: value?.newPassword };
       createNewPassword(newValue);
     }

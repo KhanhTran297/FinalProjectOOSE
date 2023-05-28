@@ -75,9 +75,14 @@ function useAccount() {
   //signup
   const { mutate: authSignup } = useMutation({
     mutationFn: SignUpApi,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log("data", data);
+      {
+        data.code == "ERROR-USER-0002"
+          ? useError("Email exist")
+          : navigate("/login");
+      }
       // useSuccess("Sign up success!");
-      navigate("/login");
     },
   });
   //logout
