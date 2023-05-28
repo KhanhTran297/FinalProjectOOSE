@@ -34,7 +34,11 @@ export default function init(routes) {
       },
       {
         path: "forgotpassword",
-        element: <ForgotPasswordPage />,
+        element: (
+          <GuardRouteLoginSignUp>
+            <ForgotPasswordPage />
+          </GuardRouteLoginSignUp>
+        ),
       },
     ],
   };
