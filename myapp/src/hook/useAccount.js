@@ -10,14 +10,14 @@ import {
 import { setUser } from "@/redux/slice/account";
 import { useMutation, useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useCookie from "./useCookie";
-import useMyToast from "./useMyToast";
 import { checkOtpApi } from "@/api/account";
+import useMyToast from "./useMyToast";
 
 function useAccount() {
   //hooks
+  const { useError } = useMyToast();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setCookie, getCookie, removeCookie, setPassCookie } = useCookie();
@@ -76,7 +76,7 @@ function useAccount() {
   const { mutate: authSignup } = useMutation({
     mutationFn: SignUpApi,
     onSuccess: (data) => {
-      console.log("data", data);
+      console.log("data", data.code);
       {
         data.code == "ERROR-USER-0002"
           ? useError("Email exist")
