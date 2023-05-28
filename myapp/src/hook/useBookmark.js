@@ -15,7 +15,7 @@ const queryBookmarkParams = atom({
   });
 
 function useBookmark() {
-  const { useSuccess, useError } = useMyToast();
+  // const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();
   const [params, setParams] = useRecoilState(queryBookmarkParams);
 
@@ -40,13 +40,13 @@ function useBookmark() {
     onSuccess: (respone) => {
       if (respone.result) {
         getListBookmark();
-        useSuccess("Add bookmark success");
+        // useSuccess("Add bookmark success");
       } else {
-        useError("Add bookmark fail!");
+        // useError("Add bookmark fail!");
       }
     },
     onError: () => {
-      useError("Save fail!!!!");
+      // useError("Save fail!!!!");
     },
   });
 
@@ -56,13 +56,13 @@ function useBookmark() {
     onSuccess: (respone) => {
       if (respone.result) {
         getListBookmark();
-        useSuccess("Delete bookmark success");
+        // useSuccess("Delete bookmark success");
       } else {
-        useError("Add bookmark fail!");
+        // useError("Add bookmark fail!");
       }
     },
     onError: () => {
-      useError("Delete fail!!!!");
+      // useError("Delete fail!!!!");
     },
   });
   useEffect(() => {

@@ -9,7 +9,7 @@ import { createPostApi, deletePostApi, getListPostApi, getPostApi, updatePostApi
 import { setListPost, setPostId } from "@/redux/slice/post";
 
 function usePost() {
-  const { useSuccess, useError } = useMyToast();
+  // const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();
   const postId = useSelector((state) => state.post.postId);
   const page = useSelector((state) => state.post.page);
@@ -49,9 +49,9 @@ function usePost() {
         if (respone.result) {
           getListPost();
           
-          useSuccess("Create post success!");
+          // useSuccess("Create post success!");
         } else {
-          useError("Create post fail!");
+          // useError("Create post fail!");
         }
     },
     onError: () => {
@@ -65,13 +65,13 @@ function usePost() {
     onSuccess: (respone) => {
         if (respone.result) {
           getListPost();
-          useSuccess("Delete post success!");
+          // useSuccess("Delete post success!");
         } else {
-          useError("Delete post fail!");
+          // useError("Delete post fail!");
         }
       },
       onError: () => {
-        useError("Save fail!!!!");
+        // useError("Save fail!!!!");
       },
   });
 
@@ -81,13 +81,13 @@ function usePost() {
     onSuccess: (respone) => {
         if (respone.result) {
           getListPost();
-          useSuccess("Update post success!");
+          // useSuccess("Update post success!");
         } else {
-          useError("Update post fail!");
+          // useError("Update post fail!");
         }
       },
       onError: () => {
-        useError("Save fail!!!!");
+        // useError("Save fail!!!!");
       },
   });
 

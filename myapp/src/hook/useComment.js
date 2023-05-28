@@ -7,10 +7,10 @@ import {
   updateCommentApi,
 } from "@/api/comment";
 import { setListComment } from "@/redux/slice/comment";
-import useMyToast from "./useMyToast";
+// import useMyToast from "./useMyToast";
 
 function useComment() {
-  const { useSuccess, useError } = useMyToast();
+  // const { useSuccess, useError } = useMyToast();
   const dispatch = useDispatch();
   //getListcomment
   const {
@@ -38,13 +38,13 @@ function useComment() {
         if (respone.result) {
           getListComment();
 
-          useSuccess("Create comment success!");
+          // useSuccess("Create comment success!");
         } else {
-          useError("Create comment fail!");
+          // useError("Create comment fail!");
         }
       },
       onError: () => {
-        useError("Save fail!!!!");
+        // useError("Save fail!!!!");
       },
     });
 
@@ -54,13 +54,13 @@ function useComment() {
     onSuccess: (respone) => {
       if (respone.result) {
         getListComment();
-        useSuccess("Delete comment success!");
+        // useSuccess("Delete comment success!");
       } else {
-        useError("Delete comment fail!");
+        // useError("Delete comment fail!");
       }
     },
     onError: () => {
-      useError("Save fail!!!!");
+      // useError("Save fail!!!!");
     },
   });
 
@@ -70,13 +70,13 @@ function useComment() {
     onSuccess: (respone) => {
       if (respone.result) {
         getListComment();
-        useSuccess("Update comment success!");
+        // useSuccess("Update comment success!");
       } else {
-        useError("Update comment fail!");
+        // useError("Update comment fail!");
       }
     },
     onError: () => {
-      useError("Save fail!!!!");
+      // useError("Save fail!!!!");
     },
   });
   return {
