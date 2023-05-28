@@ -21,7 +21,7 @@ function useAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setCookie, getCookie, removeCookie, setPassCookie } = useCookie();
-  const { useSuccess, useError } = useMyToast();
+  // const { useSuccess, useError } = useMyToast();
   const selector = useSelector((state) => state.account);
   //variables
   const passAcc = selector.pass;
@@ -76,7 +76,7 @@ function useAccount() {
   const { mutate: authSignup } = useMutation({
     mutationFn: SignUpApi,
     onSuccess: () => {
-      useSuccess("Sign up success!");
+      // useSuccess("Sign up success!");
       navigate("/login");
     },
   });
@@ -95,23 +95,23 @@ function useAccount() {
     onSuccess: (respone) => {
       if (respone.result) {
         getProfileAccount();
-        useSuccess("Edit success!");
+        // useSuccess("Edit success!");
       } else {
-        useError("Edit fail");
+        // useError("Edit fail");
       }
     },
     onError: () => {
-      useError("Save fail!!!!");
+      // useError("Save fail!!!!");
     },
   });
   //change password
   const { mutate: changePassword } = useMutation({
     mutationFn: changePasswordApi,
     onSuccess: () => {
-      useSuccess("ChangePassword success");
+      // useSuccess("ChangePassword success");
     },
     onError: () => {
-      useError("ChangePassword Fail");
+      // useError("ChangePassword Fail");
     },
   });
   //send Otp
@@ -119,9 +119,9 @@ function useAccount() {
     mutationFn: sentOtpApi,
     onSuccess: (data) => {
       {
-        data.code == "ERROR-USER-0004"
-          ? useError("Email doesn't exist")
-          : useSuccess("Send otp success");
+        // data.code == "ERROR-USER-0004"
+        //   ? useError("Email doesn't exist")
+        //   : useSuccess("Send otp success");
       }
     },
     onError: () => {
