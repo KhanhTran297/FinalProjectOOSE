@@ -3,7 +3,6 @@ import useCallApi from "@/hook/useCallApi";
 const { useGet, usePost, useDelete } = useCallApi();
 
 export const getListBookmarkApi = (accountId) => {
-  console.log(accountId);
   const url = `/v1/post/bookmark-list?accountId=${accountId}`;
   return useGet({ url, requiredToken: true });
 };

@@ -36,9 +36,7 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
   const loginAccount = (dataAccount) => {
-    // console.log("responedata ne:", dataAccount);
     handleLogin(dataAccount);
-    // dispatch(setPass(dataAccount.password));
   };
   return (
     <div>

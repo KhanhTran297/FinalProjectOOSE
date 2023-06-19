@@ -21,7 +21,7 @@ function useAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setCookie, getCookie, removeCookie, setPassCookie } = useCookie();
-  // const { useSuccess, useError } = useMyToast();
+  const { useSuccess, useError } = useMyToast();
   const selector = useSelector((state) => state.account);
   //variables
   const passAcc = selector.pass;
@@ -33,7 +33,6 @@ function useAccount() {
   } = useMutation({
     mutationFn: authLoginApi,
     onSuccess: (data) => {
-      console.log("data", data);
       removeCookie();
       //set token to cookie
       setCookie(data.data.token);
@@ -48,7 +47,7 @@ function useAccount() {
       } else {
         navigate("/");
       }
-      // useSuccess("Login Success!");
+      useSuccess("Login Success!");
     },
     onError: () => {
       useError("Wrong username or password");

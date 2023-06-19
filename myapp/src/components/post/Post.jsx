@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import usePost from "@/hook/usePost";
 import BodyPost from "./BodyPost";
@@ -11,6 +11,7 @@ const Post = (props) => {
   const { createBookmark, deleteBookmark } = useBookmark();
   const selectorBookmark = useSelector((state) => state.bookmark);
   const { getListComment } = useComment();
+  const [checkContent, setCheckContent] = useState(false);
   const selector = useSelector((state) => state.comment);
   const listBookmark = selectorBookmark.listBookmark;
   const listComment = selector.listComment;
@@ -21,8 +22,7 @@ const Post = (props) => {
   const handleDeletePost = (id) => {
     deletePost(id)
   }
-const handleCreateBookmark = (id) => {
-    
+  const handleCreateBookmark = (id) => {  
     const data = {postId: id}
     createBookmark(data);
   }
@@ -30,10 +30,16 @@ const handleCreateBookmark = (id) => {
   const handleDeleteBookmark = (id) => {
     deleteBookmark(id);
   }
+  const handleCheckContentTrue=()=>{
+    setCheckContent(prevState=>prevState=true)
+  }
+  const handleCheckContentFalse=()=>{
+    setCheckContent(prevState=>prevState=false)
+  }
   useEffect(() => {
     getListComment();
   }, [listComment]);
-
+  console.log("checkContent",checkContent)
   return (
     <div className="bg-slate-200 w-[700px] h-auto m-11 mt-0 rounded-lg">
       <div>
@@ -43,10 +49,12 @@ const handleCreateBookmark = (id) => {
             onDelete={() => handleDeletePost(props.id)}
             onBookmark={() => handleCreateBookmark(props.id)}
             onDeleteBookmark={() => handleDeleteBookmark(idBookmarked)}
-
+           
           />
           <BodyPost 
             {...props}
+            onCheckContentTrue={()=>handleCheckContentTrue()}
+            onCheckContentFalse={()=>handleCheckContentFalse()}
           />
         </div>
       </div>

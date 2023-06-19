@@ -1,39 +1,28 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import React, { useRef } from "react";
 import useComment from "@/hook/useComment";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Textarea from "@/textarea/Textarea";
+import { Form, Input } from "antd";
 const CreateComment = (props) => {
-  const { postId, parentId, data } = props;
+  const { postId, parentId, data, onCheckContentTrue, onCheckContentFalse  } = props;
   const { createComment } = useComment();
-  const handleCreateComment = (postId, value) => {
-    const data = { ...value, postId: postId, parentId: parentId };
+  const formRef=useRef()
+  const [form]=Form.useForm()
+  const { TextArea } = Input;
+  const handleCreateComment = ( values) => {
+    const data = { ...values, postId: postId, parentId: parentId };
     createComment(data);
-    // reset()
+    // form.resetFields()
+    onCheckContentFalse
   };
-
+  const onFinish=(values)=>{  
+      handleCreateComment(values)  
+  }
+  
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault(); // prevent the default behavior of textarea
-      handleSubmit((value) => handleCreateComment(postId, value))();
-      reset()
+      formRef.current.submit() 
     }
   };
-  const schema = yup.object({
-    contentComment: yup
-      .string()
-      .max(500, "Content should not exceed 100 characters"),
-  });
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onSubmit",
-  });
   return (
     <div>
       <div className="border-b-[0.5px] border-solid p-2 border-gray-400">
@@ -42,19 +31,28 @@ const CreateComment = (props) => {
           {data?.length > 1 ? " comments" : " comment"}
         </i>
       </div>
-      <form onSubmit={handleSubmit(handleCreateComment)}>
-        <div className=" mt-3 relative ">
-          <Textarea
-            control={control}
-            name="contentComment"
-            type="text"
-            placeholder="Content comment"
-            error={errors.contentComment?.message}
-            onKeyDown={handleKeyDown}
-            className=" mr-5  mb-3 w-[100%] border-2  p-2 overflow-scroll font-semibold"
+      <Form
+        form={form}
+        onFinish={onFinish}
+        ref={formRef}
+        onKeyDown={handleKeyDown}
+      >
+        <Form.Item 
+         name="contentComment"
+        >
+          <TextArea
+           
+            showCount
+            maxLength={100}
+            style={{
+              height: 120,
+              resize: 'none',
+            }}
+            onChange={onCheckContentTrue}
+            placeholder="Enter comment"            
           />
-        </div>
-      </form>
+        </Form.Item>
+      </Form>
     </div>
   );
 };

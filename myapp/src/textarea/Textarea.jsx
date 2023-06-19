@@ -26,6 +26,7 @@ const Textarea = (props) => {
         id={name}
         type={type}
         value={value}
+        onChange={()=>{console.log("hello")}}
         className={`
           "absolute w-full px-6 py-4 text-sm font-medium border rounded-xl placeholder:text-text4 dark:placeholder:text-text2 dark:text-white bg-transparent",
           error.length > 0

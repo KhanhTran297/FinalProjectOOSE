@@ -19,6 +19,8 @@ const BodyPost = (props) => {
         postId={props.id}
         data={filteredListComment}
         parentId={""}
+        onCheckContentTrue={props.onCheckContentTrue}
+        onCheckContentFalse={props.onCheckContentFalse}
       />
       <Comment
         data={filteredListComment}
