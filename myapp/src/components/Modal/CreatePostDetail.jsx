@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import usePost from "@/hook/usePost";
@@ -13,6 +13,12 @@ const CreatePostDetail = (props) => {
   const { createPost, createPostLoading } = usePost();
   const { updatePost } = usePost();
   const [contentError, setContentError] = useState(false);
+  const [isDataChanged, setDataChanged] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleFormChange = () => {
+    setDataChanged(true);
+  };
 
   const schema = yup.object({
     titlePost: yup
@@ -60,6 +66,53 @@ const CreatePostDetail = (props) => {
     props.isUpdate ? handleUpdatePost(props.id, data) : handleCreatePost(data);
   };
 
+  const handleContentChange = (html) => {
+    setValue("contentPost", html); 
+    setDataChanged(true); 
+  };
+
+  
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     if (isDataChanged) {
+  //       event.preventDefault();
+  //       event.returnValue = "";
+  //     }
+  //   };
+  
+  //   const handleUnload = () => {
+  //     if (isDataChanged) {
+  //       alert("Dữ liệu chưa được lưu. Bạn có muốn rời khỏi trang?");
+  //     }
+  //   };
+  
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("unload", handleUnload);
+  
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //     window.removeEventListener("unload", handleUnload);
+  //   };
+  // }, [isDataChanged]);
+  const handleClose = () => {
+    if (isDataChanged) {
+      setShowModal(true);
+    } else {
+      props.handleClose();
+    }
+  };
+
+  const handleModalConfirm = () => {
+    setShowModal(false);
+    props.handleClose();
+  };
+
+  const handleModalCancel = () => {
+    setShowModal(false);
+  };
+
+  
+  
   if (typeof document === "undefined")
     return <div className="createpostdetal"></div>;
   return ReactDOM.createPortal(
@@ -70,21 +123,23 @@ const CreatePostDetail = (props) => {
     >
       <div
         className="absolute inset-0 bg-black bg-opacity-25 overlay"
-        onClick={props.handleClose}
+        onClick={handleClose}
+        
       ></div>
       <div className="relative z-10 w-full bg-white mb-5 modal-content max-w-[650px] h-[720px]">
         <div className=" w-[650px] h-[50px]  bg-slate-200 border border-3 border-solid border-gray-400">
           <div>
-            <div className="pt-3  pl-6 pr-6 flex ">
-              <span className="w-full text-lg font-medium  text-blue-500">
+            <div className="flex pt-3 pl-6 pr-6 ">
+              <span className="w-full text-lg font-medium text-blue-500">
                 {props.isUpdate
                   ? "Edit a post to share"
                   : "Create a post to share"}
               </span>
               <span
-                className="absolute top-8 right-8 flex items-center justify-center w-10 h-10 p-1  cursor-pointer -translate-y-2/4 translate-x-2/4
-                "
-                onClick={props.handleClose}
+                className="absolute flex items-center justify-center w-10 h-10 p-1 cursor-pointer top-8 right-8 -translate-y-2/4 translate-x-2/4 "
+                onClick={handleClose}
+                type="default"
+                
               >
                 <svg
                   width="14"
@@ -101,7 +156,7 @@ const CreatePostDetail = (props) => {
               </span>
             </div>
           </div>
-          <div className="w-full ml-8  flex relative mt-10  z-0">
+          <div className="relative z-0 flex w-full mt-10 ml-8">
             <a
               href=""
               className="w-8 h-8 border-[1px] mt-2  border-solid border-blueborder relative rounded-full"
@@ -111,12 +166,12 @@ const CreatePostDetail = (props) => {
                 <img
                   src={props.avatar}
                   alt=""
-                  className="rounded-full absolute w-full h-full"
+                  className="absolute w-full h-full rounded-full"
                 />
               </span>
             </a>
 
-            <span className=" pt-2 pl-3 text-base font-semibold">
+            <span className="pt-2 pl-3 text-base font-semibold ">
               {props.fullname}
             </span>
           </div>
@@ -132,16 +187,17 @@ const CreatePostDetail = (props) => {
                 placeholder="Title post"
                 error={errors.titlePost?.message}
                 className="h-[45px] mr-5  mb-3 w-[95%] border-2  p-2 overflow-scroll font-semibold"
+                onChange={handleFormChange}
               />
             </div>
             <div className="block w-[90%] mt-6 mb-16 ml-[5%] h-[320px]">
-              <p className="inline-block self-start text-sm font-medium cursor-pointer text-text2 dark:text-text3">
+              <p className="self-start inline-block text-sm font-medium cursor-pointer text-text2 dark:text-text3">
                 Content Post
               </p>
               <RichTextField
                 name="contentPost"
                 value={getValues("contentPost")}
-                onChange={(html) => setValue("contentPost", html)}
+                onChange={handleContentChange}
               />
             </div>
             {contentError && (
@@ -159,6 +215,28 @@ const CreatePostDetail = (props) => {
           </form>
         </div>
       </div>
+      {showModal && (
+        <Modal
+          title="Confirmation"
+          open={showModal}
+          onOk={handleModalConfirm}
+          onCancel={handleModalCancel}
+          footer={[
+            <Button key="back" onClick={handleModalCancel}>
+              Cancel
+            </Button>,
+            <Button
+              key="back"
+              type="default"
+              onClick={handleModalConfirm}
+            >
+              Ok
+            </Button>,
+          ]}
+        >
+          <p>The data has not been saved. Do you want to close the page?</p>
+        </Modal>
+      )}
     </div>,
     document.querySelector("body")
   );
