@@ -14,22 +14,23 @@ const Post = (props) => {
   const selector = useSelector((state) => state.comment);
   const listBookmark = selectorBookmark.listBookmark;
   const listComment = selector.listComment;
-  const idBookmarked = listBookmark?.content?.filter((bookmark) => bookmark.postDto.id === props.id).map((bookmark) => {
-    return bookmark.id;
-  });
-  
+  const idBookmarked = listBookmark?.content
+    ?.filter((bookmark) => bookmark.postDto.id === props.id)
+    .map((bookmark) => {
+      return bookmark.id;
+    });
+
   const handleDeletePost = (id) => {
-    deletePost(id)
-  }
-const handleCreateBookmark = (id) => {
-    
-    const data = {postId: id}
+    deletePost(id);
+  };
+  const handleCreateBookmark = (id) => {
+    const data = { postId: id };
     createBookmark(data);
-  }
+  };
 
   const handleDeleteBookmark = (id) => {
     deleteBookmark(id);
-  }
+  };
   useEffect(() => {
     getListComment();
   }, [listComment]);
@@ -43,11 +44,8 @@ const handleCreateBookmark = (id) => {
             onDelete={() => handleDeletePost(props.id)}
             onBookmark={() => handleCreateBookmark(props.id)}
             onDeleteBookmark={() => handleDeleteBookmark(idBookmarked)}
-
           />
-          <BodyPost 
-            {...props}
-          />
+          <BodyPost {...props} />
         </div>
       </div>
     </div>

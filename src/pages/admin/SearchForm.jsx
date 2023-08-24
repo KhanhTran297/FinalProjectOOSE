@@ -18,7 +18,6 @@ const SearchForm = (props) => {
   };
   const handleClearSearch = () => {
     form.resetFields();
-
     // form.resetFields();
     setParams("");
   };

@@ -73,10 +73,6 @@ const SignUpForm = () => {
           Login
         </Link>
       </p>
-      <button className="flex items-center justify-center w-full py-4 mb-5 text-xl font-semibold border gap-x-3 border-strock rounded-xl text-text2 dark:text-white dark:border-darkStroke">
-        {/* <img srcSet="/icon-google.png 2x" alt="icon-google" /> */}
-        <span>Sign up with google</span>
-      </button>
       <form onSubmit={handleSubmit(handleSignUp)} className=" w-full ">
         <FormGroup>
           <Label htmlFor="userFullName">Fullname</Label>

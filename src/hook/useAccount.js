@@ -33,25 +33,28 @@ function useAccount() {
   } = useMutation({
     mutationFn: authLoginApi,
     onSuccess: (data) => {
-      console.log("data", data);
       removeCookie();
-      //set token to cookie
-      setCookie(data.data.token);
       //Luu thong tin account vao client state
-      getProfileAccount();
       // dispatch(getAccountProfileApi({ requiredToken: true }));
-      if (
-        data.data.role == "ROLE ADMIN" ||
-        data.data.role == "ROLE SUPER ADMIN"
-      ) {
-        navigate("/admin");
+      if (data.code == "UNAUTHORIZED") {
+        useError("Wrong password or email");
       } else {
-        navigate("/");
+        setCookie(data?.data?.token);
+        getProfileAccount();
+        if (
+          data.data.role == "ROLE ADMIN" ||
+          data.data.role == "ROLE SUPER ADMIN"
+        ) {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       }
+
       // useSuccess("Login Success!");
     },
     onError: () => {
-      useError("Wrong username or password");
+      useError("Wrong password or email");
     },
   });
   //get

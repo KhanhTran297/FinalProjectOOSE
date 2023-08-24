@@ -79,6 +79,10 @@ const CreateForm = (props) => {
             required: true,
             message: "xxxx@gmail.com",
           },
+          {
+            pattern: /^[^\s@]+@gmail\.com$/,
+            message: "Please enter a valid gmail address",
+          },
         ]}
       >
         <Input />

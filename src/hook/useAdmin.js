@@ -9,6 +9,7 @@ import {
   getListAccountAPI,
 } from "@/api/admin";
 import { setListAccount } from "@/redux/slice/account";
+import useMyToast from "./useMyToast";
 // import useMyToast from "./useMyToast";
 const querySearchParams = atom({
   key: "searchParams", // unique ID (with respect to other atoms/selectors)
@@ -17,16 +18,21 @@ const querySearchParams = atom({
 function useAdmin() {
   const dispatch = useDispatch();
   const [params, setParams] = useRecoilState(querySearchParams);
-  // const { useSuccess, useError } = useMyToast();
+  const { useSuccess, useError } = useMyToast();
   // Create Expert Account
   const handleCreateExpertAccount = useMutation({
     mutationFn: createExpertAccountAPI,
-    onSuccess: () => {
-      // useSuccess("Create Success");
-      handleGetListAccount();
+    onSuccess: (data) => {
+      console.log(data);
+      if (data.code == "ERROR-USER-0002") {
+        useError("Email have already!!!!");
+      } else {
+        useSuccess("Create Success");
+        handleGetListAccount();
+      }
     },
     onError: () => {
-      // useError("Create Fail");
+      useError("Create Fail");
     },
   });
   // Create Admin Account
@@ -34,14 +40,14 @@ function useAdmin() {
     mutationFn: createAdminAccountAPI,
     onSuccess: (data) => {
       if (data.code == "ERROR-ACCOUNT-0001") {
-        // useError("Email have already!!!!");
+        useError("Email have already!!!!");
       } else {
-        // useSuccess("Create Success");
+        useSuccess("Create Success");
         handleGetListAccount();
       }
     },
     onError: () => {
-      // useError("Create Fail");
+      useError("Create Fail");
     },
   });
   const { refetch: handleGetListAccount, data: listAccount } = useQuery({
@@ -57,11 +63,11 @@ function useAdmin() {
   const handleDeleteAccount = useMutation({
     mutationFn: deleteAccountAPI,
     onSuccess: (data) => {
-      // useSuccess("Delete Success");
+      useSuccess("Delete Success");
       handleGetListAccount();
     },
     onError: () => {
-      // useError("Delete Fail");
+      useError("Delete Fail");
     },
   });
   useEffect(() => {

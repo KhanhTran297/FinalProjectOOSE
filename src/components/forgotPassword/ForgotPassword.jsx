@@ -46,10 +46,14 @@ const ForgotPassword = (props) => {
   //Check Otp
   const { mutate: checkOtp } = useMutation({
     mutationFn: checkOtpApi,
-    onSuccess: () => {
-      useSuccess("Check otp success");
-      setToggleCreateNewPass((state) => (state = true));
-      setNameButton((state) => (state = "Create new password"));
+    onSuccess: (data) => {
+      if (data.result == false) {
+        useError("wrong otp");
+      } else {
+        useSuccess("Check otp success");
+        setToggleCreateNewPass((state) => (state = true));
+        setNameButton((state) => (state = "Create new password"));
+      }
     },
     onError: () => {
       useError("Check otp fail");
@@ -118,7 +122,13 @@ const ForgotPassword = (props) => {
           <Form.Item
             label="Email"
             name="email"
-            rules={[{ required: true, message: "Please input your email!" }]}
+            rules={[
+              { required: true, message: "Please input your email!" },
+              {
+                pattern: /^[^\s@]+@gmail\.com$/,
+                message: "Please enter a valid gmail address",
+              },
+            ]}
           >
             <Input />
           </Form.Item>
